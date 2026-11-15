@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>NOID · Desconfiamos por ti</title>
-<meta name="description" content="NOID: agentes de pedidos por WhatsApp, automatizaciones administrativas, tableros, alertas y realidad aumentada. Escríbenos al 318 227 2063 o 300 419 8710.">
+<meta name="description" content="NOID: agentes de pedidos por WhatsApp, llamadas con agente de voz, software a la medida, automatizaciones administrativas, tableros, alertas y realidad aumentada. Escríbenos al 318 227 2063 o 300 419 8710.">
 <meta property="og:title" content="NOID · Desconfiamos por ti">
 <meta property="og:description" content="Agentes de pedidos por WhatsApp, automatizaciones administrativas, reportes y alertas.">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
@@ -230,6 +230,57 @@ a.serv{text-decoration:none;color:inherit;grid-template-rows:auto auto 1fr auto}
 .tarea .antes{background:var(--cafe-3);color:var(--suave)}
 .tarea .antes+p{color:var(--suave);text-decoration:line-through;text-decoration-color:rgba(199,216,238,.35)}
 .tarea .ahora{background:var(--azul);color:var(--cafe)}
+
+/* Llamadas */
+.voz-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:24px;align-items:stretch}
+@media (max-width:900px){.voz-grid{grid-template-columns:minmax(0,1fr)}}
+.llamada{background:var(--tinto);border-radius:22px;padding:22px;display:grid;gap:18px;align-content:start}
+.ll-cab{display:flex;align-items:center;gap:10px}
+.ll-cab #llTiempo{margin-left:auto;color:var(--mant)}
+.punto{width:10px;height:10px;border-radius:50%;background:var(--mant);box-shadow:0 0 0 0 rgba(250,236,178,.6);animation:late 1.6s infinite}
+@keyframes late{70%{box-shadow:0 0 0 10px rgba(250,236,178,0)}}
+.onda{display:flex;align-items:center;justify-content:center;gap:4px;height:70px}
+.onda.chica{height:56px}.onda i{width:5px;border-radius:3px;background:var(--azul);height:20%;animation:habla 1.1s ease-in-out infinite}
+.onda i:nth-child(3n){animation-delay:.2s}.onda i:nth-child(3n+1){animation-delay:.45s}.onda i:nth-child(4n){animation-duration:.8s}.onda i:nth-child(5n){animation-duration:1.4s}
+@keyframes habla{50%{height:95%}}
+.transcripcion{display:grid;gap:8px;min-height:190px;align-content:start;font-size:15px;line-height:1.4}
+.transcripcion p{animation:entra .3s ease both;max-width:none}
+.transcripcion b{font-family:var(--dato);font-weight:500;font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-right:6px}
+.transcripcion .ag b{color:var(--mant)}.transcripcion .cl b{color:var(--azul);opacity:.7}
+.ll-pie{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;border-top:1px solid rgba(199,216,238,.2);padding-top:14px}
+.panel-ll{background:var(--cafe-2);border:1px solid var(--linea);border-radius:22px;padding:22px;display:grid;gap:16px;align-content:start;min-width:0}
+.panel-cab{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.contador{font-size:15px;color:var(--suave)}.contador b{font-family:var(--marca);font-size:26px;color:var(--azul);margin-right:4px}
+.lineas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+@media (max-width:560px){.lineas{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.linea-ll{background:var(--cafe);border-radius:10px;padding:10px;display:grid;gap:4px;font-family:var(--dato);font-size:12px;min-width:0}
+.linea-ll .tel{color:var(--azul);font-size:13px}
+.linea-ll .st{display:flex;align-items:center;gap:6px;color:var(--suave);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.linea-ll .st::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
+.linea-ll.hablando .st{color:var(--mant)}.linea-ll.listo .st{color:var(--azul)}
+.voz-f{margin-top:36px;grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:1000px){.voz-f{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.voz-f{grid-template-columns:minmax(0,1fr)}}
+
+/* Software a la medida */
+.medida{background:var(--tinto)}
+.medida .encabezado p{color:rgba(199,216,238,.85)}
+.medida-grid{display:grid;gap:16px;grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:900px){.medida-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.medida-grid{grid-template-columns:minmax(0,1fr)}}
+.medida-grid article{background:rgba(54,32,17,.55);border:1px solid rgba(199,216,238,.14);border-radius:16px;padding:22px;display:grid;gap:8px;align-content:start}
+.medida-grid h3{margin:0;font-size:21px;font-weight:600}
+.medida-grid p{color:rgba(199,216,238,.8);font-size:15px}
+.medida-grid .mono{color:var(--mant)}
+
+/* servicios en 4 columnas */
+.servicios{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:1100px){.servicios{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.servicios{grid-template-columns:minmax(0,1fr)}}
+.serv h3{font-size:21px}
+.titular .pal{flex-wrap:nowrap}
+@media (max-width:420px){.titular .pal{flex-wrap:wrap}}
+@media (max-width:1100px){.barra nav a.opc{display:none}}
 </style>
 </head>
 <body>
@@ -238,8 +289,10 @@ a.serv{text-decoration:none;color:inherit;grid-template-rows:auto auto 1fr auto}
   <div class="ancho">
     <a class="marca" href="#inicio" aria-label="NOID, inicio"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1457 442"><g transform="translate(129.57 291.58)"><path fill="#C7D8EE" d="M54.43 -18.00L0.43 -18.00L14.77 -154.40L76.17 -154.40L166.61 -76.80L174.77 -154.40L228.77 -154.40L214.43 -18.00L154.43 -18.00L62.82 -97.80L54.43 -18.00ZM447.84 -4.20Q421.64 13.00 360.84 13.00Q300.04 13.00 271.44 -4.20Q242.84 -21.40 240.27 -58.20Q237.69 -95.00 263.89 -112.20Q290.09 -129.40 350.89 -129.40Q411.69 -129.40 440.29 -112.20Q468.89 -95.00 471.47 -58.20Q474.04 -21.40 447.84 -4.20ZM357.63 -33.00Q382.63 -33.00 395.07 -35.20Q407.52 -37.40 412.35 -42.70Q417.18 -48.00 416.47 -58.20Q415.75 -68.40 410.18 -73.70Q404.61 -79.00 391.86 -81.20Q379.10 -83.40 354.10 -83.40Q317.50 -83.40 305.36 -78.30Q293.22 -73.20 294.27 -58.20Q295.31 -43.20 308.17 -38.10Q321.03 -33.00 357.63 -33.00ZM546.97 8.00L492.97 8.00L485.82 -128.40L539.82 -128.40L546.97 8.00ZM719.20 0.00L577.20 0.00L577.20 -136.40L719.20 -136.40Q736.20 -136.40 749.30 -133.20Q762.40 -130.00 773.40 -122.60Q784.40 -115.20 790.20 -101.50Q796.00 -87.80 796.00 -68.40Q796.00 -52.20 792.00 -39.90Q788.00 -27.60 781.20 -20.10Q774.40 -12.60 764.30 -8.00Q754.20 -3.40 743.40 -1.70Q732.60 0.00 719.20 0.00ZM631.20 -90.40L631.20 -46.00L713.80 -46.00Q728.60 -46.00 734.30 -50.00Q740.00 -54.00 740.00 -68.40Q740.00 -82.40 734.20 -86.40Q728.40 -90.40 713.80 -90.40L631.20 -90.40Z"/><path fill="none" stroke="#C7D8EE" stroke-width="7.00" d="M-59.57 -146.40V-214.40H8.43M788.00 -214.40H856.00V-146.40M-59.57 5.00V73.00H8.43M788.00 73.00H856.00V5.00"/><polygon fill="#C7D8EE" points="1107.76,-180.79 1113.02,-116.43 1134.96,-157.15 1131.90,-115.92 1200.44,-171.90 1154.64,-105.38 1194.88,-117.30 1156.89,-84.53 1230.42,-80.99 1163.79,-68.02 1228.49,-37.13 1149.48,-50.51 1194.58,-0.32 1143.03,-34.77 1160.62,6.26 1130.67,-13.63 1132.82,56.59 1108.63,-18.85 1086.37,56.31 1090.05,-18.49 1058.15,17.60 1075.31,-35.34 1025.82,-4.32 1063.46,-51.77 981.68,-29.65 1060.12,-64.43 967.74,-79.62 1051.07,-90.24 1005.42,-115.71 1057.64,-103.85 1033.83,-144.36 1074.32,-118.53 1060.55,-206.08 1096.42,-122.23"/></g></svg></a>
     <nav aria-label="Principal">
-      <a class="opc" href="#whatsapp">Pedidos WhatsApp</a>
+      <a class="opc" href="#whatsapp">WhatsApp</a>
+      <a class="opc" href="#llamadas">Llamadas</a>
       <a class="opc" href="#administrativo">Automatizaciones</a>
+      <a class="opc" href="#software">Software</a>
       <a class="btn azul chico" href="https://wa.me/573182272063?text=Hola%20NOID" target="_blank" rel="noopener"><svg class="icono" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3Z"/></svg>Escríbenos</a>
     </nav>
   </div>
@@ -252,7 +305,7 @@ a.serv{text-decoration:none;color:inherit;grid-template-rows:auto auto 1fr auto}
     <div>
       <span class="mono">Tecnología para la operación de tu empresa</span>
       <h1 class="titular rescate" data-t="Desconfiamos por ti">Desconfiamos por ti</h1>
-      <p class="bajada">Agentes de pedidos por WhatsApp, automatizaciones administrativas y reportes <b>para que tu negocio funcione solo y nada falle sin que lo sepas.</b></p>
+      <p class="bajada">Agentes de WhatsApp y de llamadas, software a la medida y automatizaciones administrativas <b>para que tu negocio funcione solo y nada falle sin que lo sepas.</b></p>
 
       <div class="contacto" aria-label="Contacto">
         <div class="canal">
@@ -278,8 +331,8 @@ a.serv{text-decoration:none;color:inherit;grid-template-rows:auto auto 1fr auto}
 
 <div class="cinta" aria-hidden="true">
   <div class="pista">
-    <span>pedidos por whatsapp <i></i> automatizamos <i></i> reportes <i></i> alertas <i></i> facturación <i></i></span>
-    <span>pedidos por whatsapp <i></i> automatizamos <i></i> reportes <i></i> alertas <i></i> facturación <i></i></span>
+    <span>pedidos por whatsapp <i></i> llamadas con ia <i></i> software a la medida <i></i> automatizamos <i></i> reportes <i></i></span>
+    <span>pedidos por whatsapp <i></i> llamadas con ia <i></i> software a la medida <i></i> automatizamos <i></i> reportes <i></i></span>
   </div>
 </div>
 
@@ -302,6 +355,12 @@ a.serv{text-decoration:none;color:inherit;grid-template-rows:auto auto 1fr auto}
         <p>Atiende, toma el pedido, cobra y lo manda a cocina. Día y noche, sin que nadie tenga que contestar.</p>
         <span class="ir">Ver cómo funciona ↓</span>
       </a>
+      <a class="serv dest" href="#llamadas">
+        <div class="vis"><div class="onda chica" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="log"><div><b>48 llamadas activas</b><em>en vivo</em></div></div></div>
+        <h3>Llamadas con agente de voz</h3>
+        <p>Hace y recibe llamadas con voz natural, muchas al tiempo. Toma pedidos, agenda y guarda todo.</p>
+        <span class="ir">Ver cómo suena ↓</span>
+      </a>
       <a class="serv dest" href="#administrativo">
         <div class="vis log">
           <div><b>Facturas del día</b><em>enviadas</em></div>
@@ -312,6 +371,12 @@ a.serv{text-decoration:none;color:inherit;grid-template-rows:auto auto 1fr auto}
         <h3>Automatizaciones administrativas</h3>
         <p>Facturas, cobros, nómina, inventario y reportes que se hacen solos. Menos papeleo, menos errores.</p>
         <span class="ir">Ver qué automatizamos ↓</span>
+      </a>
+      <a class="serv dest" href="#software">
+        <div class="vis log"><div><b>Tu sistema</b><em>a la medida</em></div><div><b>App para clientes</b><em>web y móvil</em></div><div><b>Integraciones</b><em>conectadas</em></div></div>
+        <h3>Software a la medida</h3>
+        <p>Sistemas, apps e integraciones hechos para cómo trabaja tu empresa.</p>
+        <span class="ir">Ver qué construimos ↓</span>
       </a>
       <article class="serv">
         <div class="vis">
@@ -399,6 +464,42 @@ a.serv{text-decoration:none;color:inherit;grid-template-rows:auto auto 1fr auto}
   </div>
 </section>
 
+<section class="bloque voz" id="llamadas">
+  <div class="ancho">
+    <div class="encabezado">
+      <span class="mono">Llamadas con agente de voz</span>
+      <h2 class="rescate" data-t="Cientos de llamadas a la vez">Cientos de llamadas a la vez</h2>
+      <p>Un agente que habla por teléfono con voz natural. Hace y recibe llamadas, toma pedidos, agenda, cobra o pregunta lo que necesites. Muchas llamadas al mismo tiempo, cada una personalizada, y todo queda guardado en tu base de datos.</p>
+    </div>
+    <div class="voz-grid">
+      <div class="llamada">
+        <div class="ll-cab"><span class="punto"></span><span class="mono" style="color:var(--azul)">Llamada en curso</span><span class="mono" id="llTiempo">00:00</span></div>
+        <div class="onda" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="transcripcion" id="llTexto" aria-live="polite"></div>
+        <div class="ll-pie"><span class="mono">Guardado en tu base de datos</span><span class="pill ok" id="llGuardado">Cita · jueves 10:00 a. m.</span></div>
+      </div>
+      <div class="panel-ll">
+        <div class="panel-cab"><span class="mono">Campaña de hoy</span><span class="contador"><b id="llActivas">48</b> llamadas activas</span></div>
+        <div class="lineas" id="llLineas"></div>
+      </div>
+    </div>
+    <ul class="funciones voz-f">
+      <li><b>Llamadas masivas</b>Muchas llamadas al tiempo: confirmaciones, cobros, encuestas o ventas.</li>
+      <li><b>Recibe llamadas</b>Contesta tu línea, toma pedidos y resuelve dudas sin ponerte en espera.</li>
+      <li><b>Hecho a tu medida</b>Personalizamos el guion, el tono y lo que debe lograr en cada llamada.</li>
+      <li><b>Se programa para lo que necesites</b>Agendar, cobrar, calificar clientes, recordar citas o hacer seguimiento.</li>
+      <li><b>Todo queda guardado</b>Grabación, transcripción y resultado de cada llamada en tu base de datos.</li>
+      <li><b>Voces de última generación</b>Suenan naturales, con acento local y sin pausas robóticas.</li>
+      <li><b>Respuesta rápida</b>Contesta al instante y deja que la persona interrumpa, como en una conversación real.</li>
+      <li><b>Clonación de voz</b>El agente puede hablar con la voz de tu marca o de quien tú autorices.</li>
+    </ul>
+    <div class="wa-cta">
+      <p>¿Quieres escuchar cómo suena?</p>
+      <a class="btn azul" href="https://wa.me/573182272063?text=Hola%20NOID%2C%20quiero%20una%20demo%20de%20llamadas%20con%20agente%20de%20voz" target="_blank" rel="noopener">Pide una llamada de prueba</a>
+    </div>
+  </div>
+</section>
+
 <section class="bloque" id="administrativo">
   <div class="ancho">
     <div class="encabezado">
@@ -419,6 +520,27 @@ a.serv{text-decoration:none;color:inherit;grid-template-rows:auto auto 1fr auto}
   </div>
 </section>
 
+
+<section class="bloque medida" id="software">
+  <div class="ancho">
+    <div class="encabezado">
+      <span class="mono" style="color:var(--mant)">Software a la medida</span>
+      <h2 class="rescate" data-t="Si no existe lo construimos">Si no existe lo construimos</h2>
+      <p>Cuando ninguna herramienta del mercado encaja con cómo trabaja tu empresa, la hacemos desde cero. Tuya, a tu medida y conectada con lo que ya usas.</p>
+    </div>
+    <div class="medida-grid">
+      <article><span class="mono">01</span><h3>Sistemas internos</h3><p>Paneles de control, inventarios, agendas y flujos de aprobación hechos para tu operación.</p></article>
+      <article><span class="mono">02</span><h3>Apps web y móviles</h3><p>Para tus clientes o tu equipo. Rápidas, claras y funcionando en cualquier celular.</p></article>
+      <article><span class="mono">03</span><h3>Integraciones</h3><p>Conectamos tu contabilidad, WhatsApp, correo, hojas de cálculo y sistemas para que hablen entre sí.</p></article>
+      <article><span class="mono">04</span><h3>Bases de datos</h3><p>Tu información ordenada en un solo lugar, segura y lista para consultar o reportar.</p></article>
+      <article><span class="mono">05</span><h3>Agentes con inteligencia artificial</h3><p>Asistentes que leen, responden, clasifican y toman acciones dentro de tus procesos.</p></article>
+      <article><span class="mono">06</span><h3>Portales para clientes</h3><p>Que tus clientes consulten pedidos, facturas o citas sin tener que llamarte.</p></article>
+    </div>
+    <div class="botones" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:36px">
+      <a class="btn azul" href="https://wa.me/573182272063?text=Hola%20NOID%2C%20necesito%20software%20a%20la%20medida" target="_blank" rel="noopener">Cuéntanos tu idea</a>
+    </div>
+  </div>
+</section>
 
 <section class="bloque" style="padding-top:0">
   <div class="ancho">
@@ -576,6 +698,30 @@ var quieto=matchMedia('(prefers-reduced-motion: reduce)').matches;
   burbuja('yo',guion[0][1]);burbuja('bot',guion[1][1]);guion[1][2]();paso=2;
   var empezo=false,io=new IntersectionObserver(function(en){if(en[0].isIntersecting&&!empezo){empezo=true;timer=setTimeout(sigue,600)}},{threshold:.35});
   io.observe(chat);
+})();
+
+// Llamadas: transcripción y panel de líneas
+(function(){
+  var quieto=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var txt=document.getElementById('llTexto'),t=document.getElementById('llTiempo'),g=document.getElementById('llGuardado');
+  var guion=[['ag','Agente','Hola, ¿hablo con Laura? Te llamo de la Clínica Dental Sonríe para confirmar tu limpieza.'],
+    ['cl','Laura','Sí, soy yo. ¿Era el miércoles?'],
+    ['ag','Agente','Está el miércoles a las 3:00 p. m. ¿Te sirve o prefieres otro horario?'],
+    ['cl','Laura','Mejor el jueves en la mañana.'],
+    ['ag','Agente','Listo, te dejé el jueves a las 10:00 a. m. Te llega la confirmación por WhatsApp.']];
+  var i=0,seg=0;
+  function linea(k){var p=document.createElement('p');p.className=guion[k][0];p.innerHTML='<b>'+guion[k][1]+'</b>'+guion[k][2];txt.appendChild(p)}
+  function ciclo(){
+    if(i>=guion.length){g.textContent='Cita · jueves 10:00 a. m.';g.className='pill ok';setTimeout(function(){txt.innerHTML='';i=0;seg=0;g.textContent='Escuchando…';g.className='pill';ciclo()},4000);return}
+    linea(i++);setTimeout(ciclo,2300);
+  }
+  if(quieto){guion.forEach(function(_,k){linea(k)})}else{g.textContent='Escuchando…';g.className='pill';ciclo();setInterval(function(){seg++;t.textContent='00:'+String(seg%60).padStart(2,'0')},1000)}
+
+  var cont=document.getElementById('llLineas'),act=document.getElementById('llActivas');
+  var est=[['hablando','Hablando'],['hablando','Tomando pedido'],['listo','Cita agendada'],['listo','Pago confirmado'],['','Marcando…'],['listo','Guardado'],['hablando','Respondiendo duda'],['','No contestó · reintento']];
+  var lin=[];for(var k=0;k<9;k++){var d=document.createElement('div');d.className='linea-ll';d.innerHTML='<span class="tel">+57 3'+(10+((k*7)%20))+' ••• '+(1000+k*733)%9000+'</span><span class="st"></span>';cont.appendChild(d);lin.push(d);pon(d,k%est.length)}
+  function pon(d,e){d.className='linea-ll '+est[e][0];d.querySelector('.st').textContent=est[e][1]}
+  if(!quieto)setInterval(function(){pon(lin[Math.floor(Math.random()*lin.length)],Math.floor(Math.random()*est.length));act.textContent=40+Math.floor(Math.random()*30)},900);
 })();
 
 // Copiar números
