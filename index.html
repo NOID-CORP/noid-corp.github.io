@@ -54,10 +54,10 @@ p{margin:0}
 .portada{position:relative;overflow:hidden}
 .portada canvas#ondas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .portada .ancho{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;align-items:center;padding-block:56px 64px}
-@media (max-width:900px){.portada .ancho{grid-template-columns:1fr;padding-block:32px 48px}}
-.titular{font-size:clamp(40px,6vw,76px)!important;display:flex;flex-wrap:wrap;gap:6px 4px;margin:18px 0 22px;font-size:clamp(40px,7.2vw,84px);line-height:1;font-weight:400}
+@media (max-width:900px){.portada .ancho{grid-template-columns:minmax(0,1fr);padding-block:32px 48px}}
+.titular{font-size:clamp(28px,7.6vw,76px)!important;display:flex;flex-wrap:wrap;gap:6px 4px;margin:18px 0 22px;font-size:clamp(40px,7.2vw,84px);line-height:1;font-weight:400}
 .rescate .esp{width:.3em}
-.rescate .pal{display:inline-flex;gap:3px;white-space:nowrap}
+.rescate .pal{display:inline-flex;flex-wrap:wrap;gap:3px;white-space:nowrap}
 .rescate span.l{display:inline-block;padding:.07em .13em .09em;clip-path:polygon(2% 6%,30% 0,62% 5%,98% 1%,100% 40%,97% 96%,64% 100%,28% 95%,0 100%,3% 52%)}
 .bajada{font-size:clamp(18px,2.2vw,22px);max-width:34ch;color:var(--azul)}
 .bajada b{color:var(--mant);font-weight:600}
@@ -85,7 +85,7 @@ p{margin:0}
 /* Secciones */
 section.bloque{padding-block:88px}
 .encabezado{display:grid;gap:14px;margin-bottom:44px;max-width:720px}
-.encabezado h2{display:flex;flex-wrap:wrap;gap:5px 3px;margin:0;font-size:clamp(32px,5vw,54px);line-height:1;font-weight:400}
+.encabezado h2{display:flex;flex-wrap:wrap;gap:5px 3px;margin:0;font-size:clamp(26px,5vw,54px);line-height:1;font-weight:400}
 .encabezado p{font-size:19px;color:var(--suave);max-width:56ch}
 
 /* Servicios */
