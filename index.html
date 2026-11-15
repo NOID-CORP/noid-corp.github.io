@@ -281,6 +281,37 @@ a.serv{text-decoration:none;color:inherit;grid-template-rows:auto auto 1fr auto}
 .titular .pal{flex-wrap:nowrap}
 @media (max-width:420px){.titular .pal{flex-wrap:wrap}}
 @media (max-width:1100px){.barra nav a.opc{display:none}}
+
+/* Datos de IA */
+.datos{background:var(--azul);color:var(--cafe)}
+.datos .mono{color:var(--tinto)}
+.datos .encabezado p{color:rgba(54,32,17,.78)}
+.cifras{display:grid;gap:16px;grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:1050px){.cifras{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.cifras{grid-template-columns:minmax(0,1fr)}}
+.cifra{margin:0;background:var(--cafe);color:var(--azul);border-radius:20px;padding:24px;display:grid;gap:14px;align-content:start}
+.cifra .grande{font-family:var(--marca);font-size:clamp(44px,5vw,64px);line-height:1;color:var(--azul);display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.cifra .grande small{font-family:var(--dato);font-size:16px;color:var(--mant);font-weight:500}
+.cifra figcaption{font-size:16px;line-height:1.45}
+.puntos{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;max-width:240px}
+.puntos i{aspect-ratio:1;border-radius:50%;background:var(--azul)}
+.puntos i.no{background:transparent;box-shadow:inset 0 0 0 1.5px rgba(199,216,238,.4)}
+.barra-c{height:12px;border-radius:999px;background:var(--cafe-3);overflow:hidden;display:flex}
+.barra-c span{display:block;height:100%;background:var(--azul);border-radius:999px}
+.barra-c.doble span:last-child{background:var(--mant);border-radius:0 999px 999px 0}
+.barra-c.doble span:first-child{border-radius:999px 0 0 999px}
+.fuente{font-family:var(--dato);font-size:12px;color:var(--mant);text-decoration:none;border-top:1px solid var(--linea);padding-top:12px;line-height:1.4}
+.fuente:hover{text-decoration:underline}
+.nota-datos{margin-top:20px;font-family:var(--dato);font-size:13px;color:rgba(54,32,17,.7)}
+@media (prefers-reduced-motion:no-preference){
+  .cifra .barra-c span{animation:llena 1.4s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes llena{from{width:0}}
+}
+/* Sectores del agente */
+.sectores{display:flex;flex-wrap:wrap;gap:8px;margin:-16px 0 28px}
+.sectores button{font:500 14px var(--dato);color:var(--azul);background:var(--cafe);border:1px solid var(--linea);border-radius:999px;padding:8px 14px;cursor:pointer}
+.sectores button[aria-pressed="true"]{background:var(--azul);color:var(--cafe);border-color:var(--azul)}
+.tambien{font-family:var(--dato);font-size:13px;color:var(--suave);margin:-14px 0 28px}
 </style>
 </head>
 <body>
@@ -305,7 +336,7 @@ a.serv{text-decoration:none;color:inherit;grid-template-rows:auto auto 1fr auto}
     <div>
       <span class="mono">Tecnología para la operación de tu empresa</span>
       <h1 class="titular rescate" data-t="Desconfiamos por ti">Desconfiamos por ti</h1>
-      <p class="bajada">Agentes de WhatsApp y de llamadas, software a la medida y automatizaciones administrativas <b>para que tu negocio funcione solo y nada falle sin que lo sepas.</b></p>
+      <p class="bajada">Agentes de IA para WhatsApp y llamadas, software a la medida y automatizaciones administrativas <b>para que tu negocio funcione solo y nada falle sin que lo sepas.</b></p>
 
       <div class="contacto" aria-label="Contacto">
         <div class="canal">
@@ -331,8 +362,8 @@ a.serv{text-decoration:none;color:inherit;grid-template-rows:auto auto 1fr auto}
 
 <div class="cinta" aria-hidden="true">
   <div class="pista">
-    <span>pedidos por whatsapp <i></i> llamadas con ia <i></i> software a la medida <i></i> automatizamos <i></i> reportes <i></i></span>
-    <span>pedidos por whatsapp <i></i> llamadas con ia <i></i> software a la medida <i></i> automatizamos <i></i> reportes <i></i></span>
+    <span>agentes de whatsapp <i></i> llamadas con ia <i></i> software a la medida <i></i> automatizamos <i></i> reportes <i></i></span>
+    <span>agentes de whatsapp <i></i> llamadas con ia <i></i> software a la medida <i></i> automatizamos <i></i> reportes <i></i></span>
   </div>
 </div>
 
@@ -351,8 +382,8 @@ a.serv{text-decoration:none;color:inherit;grid-template-rows:auto auto 1fr auto}
           <span class="yo">Domicilio</span>
           <span class="bot">Pedido #482 confirmado · 35 min</span>
         </div>
-        <h3>Agente de pedidos por WhatsApp</h3>
-        <p>Atiende, toma el pedido, cobra y lo manda a cocina. Día y noche, sin que nadie tenga que contestar.</p>
+        <h3>Agente de WhatsApp</h3>
+        <p>Atiende, vende, toma pedidos, agenda citas y cobra. Para cualquier negocio, día y noche.</p>
         <span class="ir">Ver cómo funciona ↓</span>
       </a>
       <a class="serv dest" href="#llamadas">
@@ -418,48 +449,93 @@ a.serv{text-decoration:none;color:inherit;grid-template-rows:auto auto 1fr auto}
   </div>
 </section>
 
+<section class="bloque datos" id="datos">
+  <div class="ancho">
+    <div class="encabezado">
+      <span class="mono">Los números</span>
+      <h2 class="rescate" data-t="La IA ya está trabajando">La IA ya está trabajando</h2>
+      <p>No es una promesa a futuro. Las empresas ya la usan todos los días y los estudios serios muestran que funciona.</p>
+    </div>
+    <div class="cifras">
+      <figure class="cifra">
+        <div class="grande">9<small>de cada</small>10</div>
+        <div class="puntos" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="no"></i></div>
+        <figcaption>organizaciones ya usan IA con regularidad en al menos un área de su negocio.</figcaption>
+        <a class="fuente" href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank" rel="noopener">McKinsey · The state of AI in 2026 ↗</a>
+      </figure>
+      <figure class="cifra">
+        <div class="grande">80<small>%</small></div>
+        <div class="barra-c" aria-hidden="true"><span style="width:80%"></span></div>
+        <figcaption>de quienes la usan dicen que la IA mejoró su productividad en el trabajo.</figcaption>
+        <a class="fuente" href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank" rel="noopener">McKinsey · The state of AI in 2026 ↗</a>
+      </figure>
+      <figure class="cifra">
+        <div class="grande">+15<small>%</small></div>
+        <div class="barra-c" aria-hidden="true"><span style="width:66%;opacity:.35"></span></div>
+        <div class="barra-c" aria-hidden="true" style="margin-top:-6px"><span style="width:76%"></span></div>
+        <figcaption>más casos resueltos por hora en atención al cliente cuando los asesores trabajan con un asistente de IA. Estudio con 5.172 asesores reales.</figcaption>
+        <a class="fuente" href="https://www.nber.org/papers/w31161" target="_blank" rel="noopener">Brynjolfsson, Li y Raymond · Quarterly Journal of Economics, 2025 ↗</a>
+      </figure>
+      <figure class="cifra">
+        <div class="grande">27<small>→</small>40<small>%</small></div>
+        <div class="barra-c doble" aria-hidden="true"><span style="width:27%;opacity:.35"></span><span style="width:13%"></span></div>
+        <figcaption>de las organizaciones ya tienen agentes de IA funcionando a escala. Subió en solo un año.</figcaption>
+        <a class="fuente" href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank" rel="noopener">McKinsey · The state of AI in 2026 ↗</a>
+      </figure>
+    </div>
+    <p class="nota-datos">McKinsey encuestó a 1.719 personas de empresas de todo el mundo entre mayo y junio de 2026.</p>
+  </div>
+</section>
+
 <section class="bloque wa" id="whatsapp">
   <div class="ancho">
     <div class="encabezado">
-      <span class="mono">Agente de pedidos por WhatsApp</span>
-      <h2 class="rescate" data-t="Tu mejor mesero">Tu mejor mesero</h2>
-      <p>Un asistente que contesta tu WhatsApp como lo haría tu mejor empleado: muestra la carta, toma el pedido, calcula el domicilio, confirma el pago y lo manda a cocina. Tú solo ves llegar los pedidos ordenados.</p>
+      <span class="mono">Agente de WhatsApp para tu negocio</span>
+      <h2 class="rescate" data-t="Tu mejor empleado">Tu mejor empleado</h2>
+      <p>Un agente que contesta tu WhatsApp como lo haría tu mejor empleado. Vende, toma pedidos, agenda citas, cobra y hace seguimiento, en cualquier tipo de negocio. Tú solo ves llegar todo ordenado.</p>
     </div>
+    <div class="sectores" role="group" aria-label="Elige un tipo de negocio">
+      <button type="button" data-s="restaurante" aria-pressed="true">Restaurante</button>
+      <button type="button" data-s="tienda" aria-pressed="false">Tienda</button>
+      <button type="button" data-s="salud" aria-pressed="false">Consultorio</button>
+      <button type="button" data-s="servicios" aria-pressed="false">Servicio técnico</button>
+    </div>
+    <p class="tambien">También para inmobiliarias, colegios, gimnasios, talleres, hoteles, distribuidoras y más.</p>
     <div class="wa-grid">
       <div class="telefono" aria-label="Conversación de ejemplo con el agente de pedidos">
         <div class="tel-cab">
           <span class="tel-av"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1088 1088"><rect width="100%" height="100%" fill="#362011"/><g transform="translate(242.04 752.44)"><path fill="#C7D8EE" d="M124.00 0.00L16.00 0.00L16.00 -272.80L138.80 -272.80L336.00 -117.60L336.00 -272.80L444.00 -272.80L444.00 0.00L324.00 0.00L124.00 -159.60L124.00 0.00Z"/><path fill="none" stroke="#C7D8EE" stroke-width="14.00" d="M-104.00 -256.80V-392.80H32.00M-104.00 -16.00V120.00H32.00M428.00 120.00H564.00V-16.00"/><polygon fill="#C7D8EE" points="548.93,-493.54 554.50,-425.29 577.77,-468.48 574.53,-424.75 647.21,-484.11 598.63,-413.57 641.31,-426.22 601.02,-391.47 679.00,-387.71 608.35,-373.95 676.95,-341.20 593.16,-355.39 640.99,-302.17 586.33,-338.70 604.98,-295.19 573.22,-316.28 575.50,-241.82 549.85,-321.82 526.25,-242.11 530.15,-321.43 496.32,-283.16 514.52,-339.30 462.04,-306.41 501.95,-356.72 415.24,-333.27 498.41,-370.16 400.45,-386.26 488.81,-397.52 440.40,-424.53 495.78,-411.95 470.53,-454.91 513.47,-427.52 498.86,-520.36 536.90,-431.44"/></g></svg></span>
-          <div><strong>Tu restaurante</strong><small id="estadoBot">en línea</small></div>
+          <div><strong id="telNombre">Tu restaurante</strong><small id="estadoBot">en línea</small></div>
         </div>
         <div class="tel-chat" id="telChat"></div>
         <div class="tel-pie"><span>Escribe un mensaje</span><button type="button" class="btn azul chico" id="repetir">Ver de nuevo</button></div>
       </div>
       <div class="wa-lado">
         <div class="ticket" aria-live="polite">
-          <div class="ticket-cab"><span class="mono">Panel del restaurante</span><span class="pill" id="tkEstado">Esperando pedido</span></div>
+          <div class="ticket-cab"><span class="mono">Panel de tu negocio</span><span class="pill" id="tkEstado">Esperando pedido</span></div>
           <div class="ticket-num" id="tkNum">Pedido nuevo</div>
           <ul id="tkItems"><li class="vacio">Los productos aparecen aquí mientras el cliente pide.</li></ul>
           <dl>
-            <div><dt>Entrega</dt><dd id="tkEntrega">—</dd></div>
-            <div><dt>Pago</dt><dd id="tkPago">—</dd></div>
+            <div><dt id="tkL1">Entrega</dt><dd id="tkEntrega">—</dd></div>
+            <div><dt id="tkL2">Pago</dt><dd id="tkPago">—</dd></div>
             <div class="total"><dt>Total</dt><dd id="tkTotal">$0</dd></div>
           </dl>
         </div>
         <ul class="funciones">
           <li><b>Atiende 24/7</b>Contesta al instante, también de noche y en hora pico.</li>
-          <li><b>Carta con fotos y precios</b>El cliente ve lo que hay, sin pedir que le manden el menú.</li>
-          <li><b>Suma y cobra</b>Calcula total, domicilio por zona y confirma Nequi, tarjeta o efectivo.</li>
-          <li><b>Directo a cocina</b>Cada pedido llega a tu panel con número, dirección y estado.</li>
-          <li><b>Avisa el estado</b>“Tu pedido salió” sin que nadie tenga que escribirlo.</li>
-          <li><b>Responde preguntas</b>Horarios, ubicación, ingredientes y promociones del día.</li>
+          <li><b>Catálogo con fotos y precios</b>Productos, servicios u horarios disponibles, sin esperar a que alguien conteste.</li>
+          <li><b>Vende, agenda y cobra</b>Calcula totales y envíos, agenda citas y confirma Nequi, PSE, tarjeta o efectivo.</li>
+          <li><b>Directo a tu equipo</b>Cada pedido, cita u orden llega a tu panel con número y estado.</li>
+          <li><b>Avisa y recuerda</b>“Tu pedido salió” o “tu cita es mañana” sin que nadie lo escriba.</li>
+          <li><b>Responde preguntas</b>Horarios, ubicación, precios, garantías y promociones.</li>
           <li><b>Recuerda al cliente</b>Historial de pedidos y direcciones para pedir otra vez en segundos.</li>
           <li><b>Pasa a una persona</b>Si algo se complica, le entrega la conversación a tu equipo.</li>
         </ul>
       </div>
     </div>
     <div class="wa-cta">
-      <p>¿Quieres verlo con tu propia carta?</p>
-      <a class="btn azul" href="https://wa.me/573182272063?text=Hola%20NOID%2C%20quiero%20el%20agente%20de%20pedidos%20por%20WhatsApp" target="_blank" rel="noopener">Pide tu demo por WhatsApp</a>
+      <p>¿Quieres verlo funcionando con tu negocio?</p>
+      <a class="btn azul" href="https://wa.me/573182272063?text=Hola%20NOID%2C%20quiero%20el%20agente%20de%20WhatsApp" target="_blank" rel="noopener">Pide tu demo por WhatsApp</a>
     </div>
   </div>
 </section>
@@ -654,50 +730,84 @@ var quieto=matchMedia('(prefers-reduced-motion: reduce)').matches;
   requestAnimationFrame(dibuja);
 })();
 
-// Agente de pedidos: conversación de ejemplo
+// Agente de WhatsApp: conversaciones de ejemplo por tipo de negocio
 (function(){
-  var chat=document.getElementById('telChat'),est=document.getElementById('estadoBot');
-  var items=document.getElementById('tkItems'),tE=document.getElementById('tkEstado'),tN=document.getElementById('tkNum'),
-      tEnt=document.getElementById('tkEntrega'),tPago=document.getElementById('tkPago'),tTot=document.getElementById('tkTotal');
-  var carta='<div class="carta"><div><span>Hamburguesa doble</span><em>$28.000</em></div><div><span>Papas criollas</span><em>$9.000</em></div><div><span>Limonada de coco</span><em>$8.500</em></div><div><span>Combo familiar</span><em>$69.000</em></div></div>';
-  var guion=[
-    ['yo','Hola, ¿qué tienen hoy?'],
-    ['bot','¡Hola! Bienvenido. Esta es la carta de hoy:'+carta,function(){estado('Cliente escribiendo','')}],
-    ['yo','2 hamburguesas dobles y unas papas'],
-    ['bot','Anotado: 2 hamburguesas dobles y 1 papas criollas. ¿Algo de tomar?',function(){item('2 × Hamburguesa doble','$56.000');item('1 × Papas criollas','$9.000');total('$65.000')}],
-    ['yo','Una limonada de coco'],
-    ['bot','Listo. ¿Es para domicilio o pasas a recoger?',function(){item('1 × Limonada de coco','$8.500');total('$73.500')}],
-    ['yo','Domicilio a la Cra 15 #82-40'],
-    ['bot','El domicilio a esa dirección cuesta $5.000. Total: <b>$78.500</b>. ¿Pagas con Nequi, tarjeta o efectivo?',function(){item('Domicilio','$5.000');tEnt.textContent='Cra 15 #82-40';total('$78.500')}],
-    ['yo','Nequi'],
-    ['bot','Te envié el link de pago por Nequi.',function(){tPago.textContent='Nequi'}],
-    ['yo','Ya pagué'],
-    ['bot','Pago recibido. Tu pedido <b>#482</b> está en cocina. Llega en unos 35 minutos.',function(){tN.textContent='Pedido #482';tPago.textContent='Nequi · pagado';estado('En cocina','ok')}],
-    ['bot','Tu pedido salió. Va en camino con Andrés.',function(){estado('En camino','va')}]
-  ];
-  var quieto=matchMedia('(prefers-reduced-motion: reduce)').matches,timer,paso=0;
-  function hora(){return '7:4'+Math.min(9,paso)+' p. m.'}
+  var $=function(id){return document.getElementById(id)};
+  var chat=$('telChat'),est=$('estadoBot'),items=$('tkItems'),tE=$('tkEstado'),tN=$('tkNum'),v1=$('tkEntrega'),v2=$('tkPago'),l1=$('tkL1'),l2=$('tkL2'),tTot=$('tkTotal'),nom=$('telNombre');
+  function lista(f){return '<div class="carta">'+f.map(function(x){return '<div><span>'+x[0]+'</span><em>'+x[1]+'</em></div>'}).join('')+'</div>'}
+  var S={
+    restaurante:{n:'Tu restaurante',l:['Entrega','Pago'],p:[
+      ['yo','Hola, ¿qué tienen hoy?'],
+      ['bot','¡Hola! Esta es la carta de hoy:'+lista([['Hamburguesa doble','$28.000'],['Papas criollas','$9.000'],['Limonada de coco','$8.500']]),function(){estado('Cliente escribiendo','')}],
+      ['yo','2 hamburguesas dobles y unas papas'],
+      ['bot','Anotado. ¿Algo de tomar?',function(){item('2 × Hamburguesa doble','$56.000');item('1 × Papas criollas','$9.000');total('$65.000')}],
+      ['yo','Una limonada de coco'],
+      ['bot','Listo. ¿Domicilio o pasas a recoger?',function(){item('1 × Limonada de coco','$8.500');total('$73.500')}],
+      ['yo','Domicilio a la Cra 15 #82-40'],
+      ['bot','Domicilio $5.000. Total <b>$78.500</b>. ¿Nequi, tarjeta o efectivo?',function(){item('Domicilio','$5.000');v1.textContent='Cra 15 #82-40';total('$78.500')}],
+      ['yo','Nequi, ya pagué'],
+      ['bot','Pago recibido. Pedido <b>#482</b> en cocina, llega en unos 35 min.',function(){tN.textContent='Pedido #482';v2.textContent='Nequi · pagado';estado('En cocina','ok')}],
+      ['bot','Tu pedido salió. Va en camino.',function(){estado('En camino','va')}]]},
+    tienda:{n:'Tu tienda',l:['Envío','Pago'],p:[
+      ['yo','Hola, ¿tienen los tenis blancos en talla 40?'],
+      ['bot','¡Sí! Quedan 3 pares en talla 40:'+lista([['Tenis blancos','$189.000'],['Medias x3','$25.000']]),function(){estado('Cliente escribiendo','')}],
+      ['yo','Los llevo, y unas medias'],
+      ['bot','Perfecto. ¿Te los enviamos?',function(){item('1 × Tenis blancos T40','$189.000');item('1 × Medias x3','$25.000');total('$214.000')}],
+      ['yo','Sí, a Medellín, Calle 10 #43-20'],
+      ['bot','Envío $12.000. Total <b>$226.000</b>. ¿PSE, tarjeta o contraentrega?',function(){item('Envío','$12.000');v1.textContent='Medellín · Cl 10 #43-20';total('$226.000')}],
+      ['yo','Contraentrega'],
+      ['bot','Listo. Pedido <b>#1093</b> confirmado, llega mañana. Te mando la guía.',function(){tN.textContent='Pedido #1093';v2.textContent='Contraentrega';estado('Confirmado','ok')}],
+      ['bot','Tu pedido ya fue despachado. Guía: 7700 1234 5678.',function(){estado('Despachado','va')}]]},
+    salud:{n:'Tu consultorio',l:['Cita','Pago'],p:[
+      ['yo','Hola, necesito una cita de medicina general'],
+      ['bot','Claro. Estos son los horarios de esta semana:'+lista([['Jueves','9:30 a. m.'],['Jueves','3:00 p. m.'],['Viernes','11:00 a. m.']]),function(){estado('Cliente escribiendo','')}],
+      ['yo','El jueves a las 9:30'],
+      ['bot','¿Me confirmas tu nombre y documento?',function(){item('Consulta medicina general','$60.000');v1.textContent='Jue · 9:30 a. m.';total('$60.000')}],
+      ['yo','Laura Gómez, CC 1.020.345.678'],
+      ['bot','Gracias, Laura. ¿Pagas particular o con tu prepagada?',function(){tN.textContent='Laura Gómez'}],
+      ['yo','Particular'],
+      ['bot','Cita agendada para el jueves a las 9:30 a. m. Te recuerdo un día antes.',function(){v2.textContent='Particular';estado('Agendada','ok')}],
+      ['bot','Recordatorio programado para el miércoles 9:30 a. m.',function(){estado('Recordatorio listo','va')}]]},
+    servicios:{n:'Tu empresa',l:['Visita','Pago'],p:[
+      ['yo','Buenas, la nevera no está enfriando'],
+      ['bot','Lo siento. ¿Qué marca es y hace cuánto pasa?',function(){estado('Cliente escribiendo','')}],
+      ['yo','Samsung, desde ayer'],
+      ['bot','Te agendo una visita técnica. Opciones:'+lista([['Hoy','4:00 p. m.'],['Mañana','8:00 a. m.']]),function(){item('Diagnóstico nevera Samsung','$70.000');total('$70.000')}],
+      ['yo','Hoy a las 4'],
+      ['bot','¿A qué dirección va el técnico?',function(){v1.textContent='Hoy · 4:00 p. m.'}],
+      ['yo','Cra 7 #45-12, apto 302'],
+      ['bot','Listo. Orden <b>#OT-221</b>. El técnico Carlos llega hoy a las 4:00 p. m.',function(){tN.textContent='Orden #OT-221';v2.textContent='Al terminar';estado('Técnico asignado','ok')}],
+      ['bot','Carlos va en camino. Llega en 15 minutos.',function(){estado('En camino','va')}]]}
+  };
+  var sector='restaurante',quieto=matchMedia('(prefers-reduced-motion: reduce)').matches,timer,paso=0,empezo=false;
+  function g(){return S[sector].p}
+  function hora(){return '7:'+String(40+paso).padStart(2,'0')+' p. m.'}
   function estado(t,c){tE.textContent=t;tE.className='pill'+(c?' '+c:'')}
   function item(n,v){var v0=items.querySelector('.vacio');if(v0)v0.remove();var li=document.createElement('li');li.innerHTML='<span>'+n+'</span><span>'+v+'</span>';items.appendChild(li)}
   function total(t){tTot.textContent=t}
   function burbuja(q,h){var d=document.createElement('div');d.className='m '+q;d.innerHTML=h+'<small>'+hora()+'</small>';chat.appendChild(d);chat.scrollTop=chat.scrollHeight}
-  function reinicia(){clearTimeout(timer);chat.innerHTML='';items.innerHTML='<li class="vacio">Los productos aparecen aquí mientras el cliente pide.</li>';
-    tN.textContent='Pedido nuevo';tEnt.textContent='—';tPago.textContent='—';total('$0');estado('Esperando pedido','');paso=0;est.textContent='en línea'}
+  function reinicia(){clearTimeout(timer);chat.innerHTML='';items.innerHTML='<li class="vacio">Lo que pide el cliente aparece aquí en tiempo real.</li>';
+    var s=S[sector];nom.textContent=s.n;l1.textContent=s.l[0];l2.textContent=s.l[1];
+    tN.textContent='Solicitud nueva';v1.textContent='—';v2.textContent='—';total('$0');estado('Esperando','');paso=0;est.textContent='en línea'}
   function sigue(){
-    if(paso>=guion.length){est.textContent='en línea';return}
-    var g=guion[paso];
-    if(g[0]==='bot'){
+    var G=g();if(paso>=G.length){est.textContent='en línea';return}
+    var x=G[paso];
+    if(x[0]==='bot'){
       est.textContent='escribiendo…';var e=document.createElement('div');e.className='esc';e.innerHTML='<i></i><i></i><i></i>';chat.appendChild(e);chat.scrollTop=chat.scrollHeight;
-      timer=setTimeout(function(){e.remove();est.textContent='en línea';burbuja('bot',g[1]);g[2]&&g[2]();paso++;timer=setTimeout(sigue,paso===guion.length-1?2600:1300)},900);
-    }else{burbuja('yo',g[1]);paso++;timer=setTimeout(sigue,700)}
+      timer=setTimeout(function(){e.remove();est.textContent='en línea';burbuja('bot',x[1]);x[2]&&x[2]();paso++;timer=setTimeout(sigue,paso===G.length-1?2400:1250)},850);
+    }else{burbuja('yo',x[1]);paso++;timer=setTimeout(sigue,650)}
   }
-  function todo(){reinicia();guion.forEach(function(g){burbuja(g[0],g[1]);g[2]&&g[2]();paso++})}
-  document.getElementById('repetir').addEventListener('click',function(){if(quieto)todo();else{reinicia();sigue()}});
-  // Arranca con los primeros mensajes visibles y sigue cuando la sección está en pantalla
-  if(quieto){todo();return}
-  burbuja('yo',guion[0][1]);burbuja('bot',guion[1][1]);guion[1][2]();paso=2;
-  var empezo=false,io=new IntersectionObserver(function(en){if(en[0].isIntersecting&&!empezo){empezo=true;timer=setTimeout(sigue,600)}},{threshold:.35});
-  io.observe(chat);
+  function todo(){reinicia();g().forEach(function(x){burbuja(x[0],x[1]);x[2]&&x[2]();paso++})}
+  function arranca(){if(quieto){todo();return}reinicia();var G=g();burbuja('yo',G[0][1]);burbuja('bot',G[1][1]);G[1][2]();paso=2;if(empezo)timer=setTimeout(sigue,500)}
+  $('repetir').addEventListener('click',function(){if(quieto)todo();else{reinicia();sigue()}});
+  document.querySelectorAll('.sectores button').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.sectores button').forEach(function(o){o.setAttribute('aria-pressed',o===b?'true':'false')});
+      sector=b.getAttribute('data-s');empezo=true;arranca();
+    });
+  });
+  arranca();
+  if(!quieto){var io=new IntersectionObserver(function(en){if(en[0].isIntersecting&&!empezo){empezo=true;timer=setTimeout(sigue,600)}},{threshold:.35});io.observe(chat)}
 })();
 
 // Llamadas: transcripción y panel de líneas
