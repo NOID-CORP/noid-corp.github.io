@@ -290,7 +290,7 @@ a.serv{text-decoration:none;color:inherit;grid-template-rows:auto auto 1fr auto}
 @media (max-width:1050px){.cifras{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.cifras{grid-template-columns:minmax(0,1fr)}}
 .cifra{margin:0;background:var(--cafe);color:var(--azul);border-radius:20px;padding:24px;display:grid;gap:14px;align-content:start}
-.cifra .grande{font-family:var(--marca);font-size:clamp(44px,5vw,64px);line-height:1;color:var(--azul);display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.cifra .grande{font-family:var(--marca);font-size:clamp(44px,5vw,64px);line-height:1;color:var(--azul);display:flex;align-items:baseline;gap:6px;flex-wrap:nowrap;white-space:nowrap}
 .cifra .grande small{font-family:var(--dato);font-size:16px;color:var(--mant);font-weight:500}
 .cifra figcaption{font-size:16px;line-height:1.45}
 .puntos{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;max-width:240px}
@@ -458,9 +458,9 @@ a.serv{text-decoration:none;color:inherit;grid-template-rows:auto auto 1fr auto}
     </div>
     <div class="cifras">
       <figure class="cifra">
-        <div class="grande">9<small>de cada</small>10</div>
+        <div class="grande">9<small>/</small>10</div>
         <div class="puntos" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="no"></i></div>
-        <figcaption>organizaciones ya usan IA con regularidad en al menos un área de su negocio.</figcaption>
+        <figcaption>Casi 9 de cada 10 organizaciones ya usan IA con regularidad en al menos un área de su negocio.</figcaption>
         <a class="fuente" href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank" rel="noopener">McKinsey · The state of AI in 2026 ↗</a>
       </figure>
       <figure class="cifra">
@@ -477,9 +477,9 @@ a.serv{text-decoration:none;color:inherit;grid-template-rows:auto auto 1fr auto}
         <a class="fuente" href="https://www.nber.org/papers/w31161" target="_blank" rel="noopener">Brynjolfsson, Li y Raymond · Quarterly Journal of Economics, 2025 ↗</a>
       </figure>
       <figure class="cifra">
-        <div class="grande">27<small>→</small>40<small>%</small></div>
+        <div class="grande">40<small>%</small></div>
         <div class="barra-c doble" aria-hidden="true"><span style="width:27%;opacity:.35"></span><span style="width:13%"></span></div>
-        <figcaption>de las organizaciones ya tienen agentes de IA funcionando a escala. Subió en solo un año.</figcaption>
+        <figcaption>de las organizaciones ya tienen agentes de IA funcionando a escala. Un año antes eran 27 %.</figcaption>
         <a class="fuente" href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank" rel="noopener">McKinsey · The state of AI in 2026 ↗</a>
       </figure>
     </div>
