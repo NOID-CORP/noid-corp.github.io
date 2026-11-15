@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>NOID · Desconfiamos por ti</title>
-<meta name="description" content="NOID: automatizamos procesos, cruzamos datos, armamos tableros y alertas, pedidos por WhatsApp y realidad aumentada. Escríbenos al 318 227 2063 o 300 419 8710.">
+<meta name="description" content="NOID: agentes de pedidos por WhatsApp, automatizaciones administrativas, tableros, alertas y realidad aumentada. Escríbenos al 318 227 2063 o 300 419 8710.">
 <meta property="og:title" content="NOID · Desconfiamos por ti">
-<meta property="og:description" content="Tecnología para la operación de tu empresa. Automatizamos, cruzamos y vigilamos tus datos.">
+<meta property="og:description" content="Agentes de pedidos por WhatsApp, automatizaciones administrativas, reportes y alertas.">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Courier+Prime:wght@700&family=DM+Mono:wght@400;500&family=Gloock&family=IM+Fell+English:ital@1&display=swap">
@@ -168,6 +168,68 @@ footer svg{height:26px;width:auto}
 @media (prefers-reduced-motion:no-preference){.estallido{animation:gira 14s linear infinite}}
 @keyframes gira{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.cinta .pista{animation:none}html{scroll-behavior:auto}}
+
+/* tarjetas-enlace */
+a.serv{text-decoration:none;color:inherit;grid-template-rows:auto auto 1fr auto}
+.serv .ir{font-family:var(--dato);font-size:14px;color:var(--mant)}
+
+/* WhatsApp */
+.wa{background:var(--cafe-2)}
+.wa-grid{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:40px;align-items:start}
+@media (max-width:900px){.wa-grid{grid-template-columns:minmax(0,1fr)}.telefono{max-width:380px;justify-self:center;width:100%}}
+.telefono{background:#1f130a;border-radius:34px;padding:10px;box-shadow:0 0 0 1px var(--linea),0 30px 60px rgba(0,0,0,.35)}
+.tel-cab{display:flex;align-items:center;gap:10px;background:var(--tinto);border-radius:26px 26px 0 0;padding:14px 16px}
+.tel-cab div{display:grid;line-height:1.2}
+.tel-cab small{font-family:var(--dato);font-size:12px;color:var(--mant)}
+.tel-av{width:36px;height:36px;border-radius:50%;overflow:hidden;flex:none}
+.tel-av svg{width:100%;height:100%;display:block}
+.tel-chat{height:470px;overflow-y:auto;background:var(--cafe);padding:14px 12px;display:flex;flex-direction:column;gap:8px;scroll-behavior:smooth;
+  background-image:radial-gradient(rgba(199,216,238,.05) 1px,transparent 1px);background-size:14px 14px}
+.tel-chat .m{max-width:84%;padding:8px 12px;border-radius:14px;font-size:15px;line-height:1.38;animation:entra .25s ease both}
+.tel-chat .m small{display:block;text-align:right;font-family:var(--dato);font-size:10px;opacity:.6;margin-top:2px}
+.tel-chat .yo{align-self:flex-end;background:var(--azul);color:var(--cafe);border-bottom-right-radius:4px}
+.tel-chat .bot{align-self:flex-start;background:var(--cafe-3);color:var(--azul);border-bottom-left-radius:4px}
+.tel-chat .carta{display:grid;gap:6px;margin-top:6px}
+.tel-chat .carta div{display:flex;justify-content:space-between;gap:10px;background:var(--cafe);border-radius:8px;padding:6px 9px;font-size:14px}
+.tel-chat .carta em{font-style:normal;font-family:var(--dato);color:var(--mant);font-size:13px}
+.tel-chat .esc{align-self:flex-start;background:var(--cafe-3);border-radius:14px;padding:10px 14px;display:flex;gap:4px}
+.tel-chat .esc i{width:6px;height:6px;border-radius:50%;background:var(--azul);opacity:.5;animation:pun 1s infinite}
+.tel-chat .esc i:nth-child(2){animation-delay:.15s}.tel-chat .esc i:nth-child(3){animation-delay:.3s}
+@keyframes pun{50%{opacity:1;transform:translateY(-3px)}}
+@keyframes entra{from{opacity:0;transform:translateY(6px)}}
+.tel-pie{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--cafe-2);border-radius:0 0 26px 26px;padding:10px 10px 10px 18px;color:var(--suave);font-size:14px}
+.wa-lado{display:grid;gap:24px;min-width:0}
+.ticket{background:var(--cafe);border:1px solid var(--linea);border-radius:18px;padding:20px;display:grid;gap:12px}
+.ticket-cab{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.pill{font-family:var(--dato);font-size:12px;padding:4px 10px;border-radius:999px;background:var(--cafe-3);color:var(--azul);transition:background .3s}
+.pill.ok{background:var(--azul);color:var(--cafe)}.pill.va{background:var(--mant);color:var(--tinto)}
+.ticket-num{font-family:var(--marca);font-size:22px}
+.ticket ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-family:var(--dato);font-size:14px;min-height:30px}
+.ticket li{display:flex;justify-content:space-between;gap:10px;animation:entra .3s ease both}
+.ticket li.vacio{color:var(--suave);font-family:var(--cuerpo);font-size:14px}
+.ticket dl{margin:0;display:grid;gap:6px;border-top:1px dashed var(--linea);padding-top:12px;font-size:14px}
+.ticket dl div{display:flex;justify-content:space-between;gap:10px}
+.ticket dt{color:var(--suave)}.ticket dd{margin:0;font-family:var(--dato);text-align:right}
+.ticket .total dd{font-size:20px;color:var(--mant)}
+.funciones{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 24px}
+@media (max-width:560px){.funciones{grid-template-columns:minmax(0,1fr)}}
+.funciones li{display:grid;gap:2px;font-size:15px;color:var(--suave);padding-left:16px;border-left:2px solid var(--tinto)}
+.funciones b{color:var(--azul);font-weight:600;font-size:16px}
+.wa-cta{margin-top:44px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;background:var(--tinto);border-radius:18px;padding:22px 24px}
+.wa-cta p{font-size:20px;font-weight:600}
+
+/* Administrativas */
+.tareas{display:grid;gap:16px;grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:1050px){.tareas{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.tareas{grid-template-columns:minmax(0,1fr)}}
+.tarea{background:var(--cafe-2);border:1px solid var(--linea);border-radius:16px;padding:20px;display:grid;gap:12px;align-content:start}
+.tarea h3{margin:0;font-size:19px;font-weight:600;line-height:1.25}
+.tarea .ab{display:grid;gap:4px}
+.tarea .ab p{font-size:15px;line-height:1.45}
+.tarea .antes,.tarea .ahora{font-family:var(--dato);font-size:11px;letter-spacing:.12em;text-transform:uppercase;justify-self:start;padding:2px 8px;border-radius:4px}
+.tarea .antes{background:var(--cafe-3);color:var(--suave)}
+.tarea .antes+p{color:var(--suave);text-decoration:line-through;text-decoration-color:rgba(199,216,238,.35)}
+.tarea .ahora{background:var(--azul);color:var(--cafe)}
 </style>
 </head>
 <body>
@@ -176,8 +238,8 @@ footer svg{height:26px;width:auto}
   <div class="ancho">
     <a class="marca" href="#inicio" aria-label="NOID, inicio"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1457 442"><g transform="translate(129.57 291.58)"><path fill="#C7D8EE" d="M54.43 -18.00L0.43 -18.00L14.77 -154.40L76.17 -154.40L166.61 -76.80L174.77 -154.40L228.77 -154.40L214.43 -18.00L154.43 -18.00L62.82 -97.80L54.43 -18.00ZM447.84 -4.20Q421.64 13.00 360.84 13.00Q300.04 13.00 271.44 -4.20Q242.84 -21.40 240.27 -58.20Q237.69 -95.00 263.89 -112.20Q290.09 -129.40 350.89 -129.40Q411.69 -129.40 440.29 -112.20Q468.89 -95.00 471.47 -58.20Q474.04 -21.40 447.84 -4.20ZM357.63 -33.00Q382.63 -33.00 395.07 -35.20Q407.52 -37.40 412.35 -42.70Q417.18 -48.00 416.47 -58.20Q415.75 -68.40 410.18 -73.70Q404.61 -79.00 391.86 -81.20Q379.10 -83.40 354.10 -83.40Q317.50 -83.40 305.36 -78.30Q293.22 -73.20 294.27 -58.20Q295.31 -43.20 308.17 -38.10Q321.03 -33.00 357.63 -33.00ZM546.97 8.00L492.97 8.00L485.82 -128.40L539.82 -128.40L546.97 8.00ZM719.20 0.00L577.20 0.00L577.20 -136.40L719.20 -136.40Q736.20 -136.40 749.30 -133.20Q762.40 -130.00 773.40 -122.60Q784.40 -115.20 790.20 -101.50Q796.00 -87.80 796.00 -68.40Q796.00 -52.20 792.00 -39.90Q788.00 -27.60 781.20 -20.10Q774.40 -12.60 764.30 -8.00Q754.20 -3.40 743.40 -1.70Q732.60 0.00 719.20 0.00ZM631.20 -90.40L631.20 -46.00L713.80 -46.00Q728.60 -46.00 734.30 -50.00Q740.00 -54.00 740.00 -68.40Q740.00 -82.40 734.20 -86.40Q728.40 -90.40 713.80 -90.40L631.20 -90.40Z"/><path fill="none" stroke="#C7D8EE" stroke-width="7.00" d="M-59.57 -146.40V-214.40H8.43M788.00 -214.40H856.00V-146.40M-59.57 5.00V73.00H8.43M788.00 73.00H856.00V5.00"/><polygon fill="#C7D8EE" points="1107.76,-180.79 1113.02,-116.43 1134.96,-157.15 1131.90,-115.92 1200.44,-171.90 1154.64,-105.38 1194.88,-117.30 1156.89,-84.53 1230.42,-80.99 1163.79,-68.02 1228.49,-37.13 1149.48,-50.51 1194.58,-0.32 1143.03,-34.77 1160.62,6.26 1130.67,-13.63 1132.82,56.59 1108.63,-18.85 1086.37,56.31 1090.05,-18.49 1058.15,17.60 1075.31,-35.34 1025.82,-4.32 1063.46,-51.77 981.68,-29.65 1060.12,-64.43 967.74,-79.62 1051.07,-90.24 1005.42,-115.71 1057.64,-103.85 1033.83,-144.36 1074.32,-118.53 1060.55,-206.08 1096.42,-122.23"/></g></svg></a>
     <nav aria-label="Principal">
-      <a class="opc" href="#servicios">Qué hacemos</a>
-      <a class="opc" href="#prueba">Pruébalo</a>
+      <a class="opc" href="#whatsapp">Pedidos WhatsApp</a>
+      <a class="opc" href="#administrativo">Automatizaciones</a>
       <a class="btn azul chico" href="https://wa.me/573182272063?text=Hola%20NOID" target="_blank" rel="noopener"><svg class="icono" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3Z"/></svg>Escríbenos</a>
     </nav>
   </div>
@@ -190,7 +252,7 @@ footer svg{height:26px;width:auto}
     <div>
       <span class="mono">Tecnología para la operación de tu empresa</span>
       <h1 class="titular rescate" data-t="Desconfiamos por ti">Desconfiamos por ti</h1>
-      <p class="bajada">Automatizamos, cruzamos y vigilamos tus datos <b>para que nada falle sin que lo sepas.</b></p>
+      <p class="bajada">Agentes de pedidos por WhatsApp, automatizaciones administrativas y reportes <b>para que tu negocio funcione solo y nada falle sin que lo sepas.</b></p>
 
       <div class="contacto" aria-label="Contacto">
         <div class="canal">
@@ -216,8 +278,8 @@ footer svg{height:26px;width:auto}
 
 <div class="cinta" aria-hidden="true">
   <div class="pista">
-    <span>automatizamos <i></i> cruzamos <i></i> vigilamos <i></i> reportamos <i></i> respondemos <i></i></span>
-    <span>automatizamos <i></i> cruzamos <i></i> vigilamos <i></i> reportamos <i></i> respondemos <i></i></span>
+    <span>pedidos por whatsapp <i></i> automatizamos <i></i> reportes <i></i> alertas <i></i> facturación <i></i></span>
+    <span>pedidos por whatsapp <i></i> automatizamos <i></i> reportes <i></i> alertas <i></i> facturación <i></i></span>
   </div>
 </div>
 
@@ -226,28 +288,31 @@ footer svg{height:26px;width:auto}
     <div class="encabezado">
       <span class="mono">Lo que hacemos</span>
       <h2 class="rescate" data-t="Qué hacemos">Qué hacemos</h2>
-      <p>Nos metemos en el detalle de tu operación. Lo que hoy alguien hace a mano, revisa a ojo o descubre tarde, lo ponemos a trabajar solo.</p>
+      <p>Lo que hoy alguien hace a mano, contesta uno por uno o descubre tarde, lo ponemos a trabajar solo.</p>
     </div>
     <div class="servicios">
-      <article class="serv">
+      <a class="serv dest" href="#whatsapp">
+        <div class="vis chat">
+          <span class="yo">Hola, quiero 2 hamburguesas dobles</span>
+          <span class="bot">¡Listo! ¿Para recoger o domicilio?</span>
+          <span class="yo">Domicilio</span>
+          <span class="bot">Pedido #482 confirmado · 35 min</span>
+        </div>
+        <h3>Agente de pedidos por WhatsApp</h3>
+        <p>Atiende, toma el pedido, cobra y lo manda a cocina. Día y noche, sin que nadie tenga que contestar.</p>
+        <span class="ir">Ver cómo funciona ↓</span>
+      </a>
+      <a class="serv dest" href="#administrativo">
         <div class="vis log">
-          <div><b>07:00 cruce diario</b><em>listo</em></div>
-          <div><b>07:02 facturas vs pagos</b><em>3 dif.</em></div>
-          <div><b>07:03 reporte enviado</b><em>listo</em></div>
+          <div><b>Facturas del día</b><em>enviadas</em></div>
+          <div><b>Recordatorios de cobro</b><em>12 enviados</em></div>
+          <div><b>Nómina de la quincena</b><em>lista</em></div>
+          <div><b>Reporte semanal</b><em>en tu correo</em></div>
         </div>
-        <h3>Automatizamos procesos</h3>
-        <p>Ese cruce que alguien hace cada mañana corre solo. Menos copiar y pegar, más tiempo para decidir.</p>
-      </article>
-      <article class="serv dest">
-        <div class="vis cruce">
-          <div class="cab">SISTEMA</div><div class="cab">REPORTE</div>
-          <div><span>F-1041</span><span>$420</span></div><div><span>F-1041</span><span>$420</span></div>
-          <div class="mal"><span>F-1042</span><span>$310</span></div><div class="mal"><span>F-1042</span><span>$430</span></div>
-          <div><span>F-1043</span><span>$95</span></div><div class="mal"><span>F-1043</span><span>×2</span></div>
-        </div>
-        <h3>Cruzamos tus datos</h3>
-        <p>Ponemos tus fuentes a conversar y encontramos duplicados y diferencias que una sola hoja no muestra.</p>
-      </article>
+        <h3>Automatizaciones administrativas</h3>
+        <p>Facturas, cobros, nómina, inventario y reportes que se hacen solos. Menos papeleo, menos errores.</p>
+        <span class="ir">Ver qué automatizamos ↓</span>
+      </a>
       <article class="serv">
         <div class="vis">
           <svg viewBox="0 0 260 110" width="100%" height="110" aria-label="Tablero de ejemplo">
@@ -255,86 +320,105 @@ footer svg{height:26px;width:auto}
             <rect x="136" y="16" width="22" height="86" rx="3" fill="#C7D8EE"/>
             <polyline points="170,80 190,70 208,74 226,48 248,30" fill="none" stroke="#FAECB2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
             <circle cx="248" cy="30" r="5" fill="#FAECB2"/>
-            <text x="170" y="104" fill="rgba(199,216,238,.7)" font-family="DM Mono,monospace" font-size="11">+18 % semana</text>
+            <text x="170" y="104" fill="rgba(199,216,238,.7)" font-family="DM Mono,monospace" font-size="11">ventas semana</text>
           </svg>
         </div>
         <h3>Tableros y reportes</h3>
-        <p>Tus números en un solo lugar, al día y fáciles de leer. Sin esperar al cierre del mes para saber cómo vas.</p>
+        <p>Ventas, gastos y pedidos en un solo lugar, al día y fáciles de leer. Sin esperar al cierre del mes.</p>
       </article>
       <article class="serv">
         <div class="vis">
-          <div class="alerta"><b>⚠ Fuera de lo esperado</b><span>Pedido 2381 · descuento 38 %</span><span style="color:var(--suave)">Hace 2 min · Ver detalle</span></div>
+          <div class="alerta"><b>⚠ Fuera de lo normal</b><span>Pedido 2381 · descuento 38 %</span><span style="color:var(--suave)">Hace 2 min · Ver detalle</span></div>
           <div class="alerta" style="border-color:var(--azul);opacity:.7"><b style="color:var(--azul)">Inventario bajo</b><span>Queso cheddar · 4 unidades</span></div>
         </div>
-        <h3>Vigilamos y alertamos</h3>
-        <p>Si un dato se sale de lo normal, te enteras en el momento y con el detalle que necesitas para actuar.</p>
+        <h3>Alertas</h3>
+        <p>Si algo se sale de lo normal, te llega un aviso al celular con el detalle para actuar.</p>
       </article>
       <article class="serv">
-        <div class="vis chat">
-          <span class="yo">Hola, quiero 2 hamburguesas dobles</span>
-          <span class="bot">¡Listo! ¿Para recoger o domicilio?</span>
-          <span class="yo">Domicilio</span>
-          <span class="bot">Pedido #482 confirmado · 35 min</span>
+        <div class="vis log">
+          <div><b>Factura F-1042</b><em>no coincide</em></div>
+          <div><b>Pedido 2204</b><em>duplicado</em></div>
+          <div><b>Pago 315</b><em>sin factura</em></div>
         </div>
-        <h3>Pedidos y atención por WhatsApp</h3>
-        <p>Tus clientes piden y preguntan por WhatsApp, y cada pedido queda registrado, ordenado y con historial.</p>
+        <h3>Revisamos tus números</h3>
+        <p>Comparamos lo que dicen tus sistemas, tus hojas de cálculo y el banco, y te mostramos qué no coincide.</p>
       </article>
-      <article class="serv dest">
+      <a class="serv" href="https://noid-corp.github.io/demo-ar/muestra/" target="_blank" rel="noopener">
         <div class="vis ar"><div class="mesa"></div><div class="plato"></div><span class="med">Ø 26 cm</span></div>
         <h3>Realidad aumentada</h3>
         <p>Tu carta en 3D sobre la mesa del cliente, a tamaño real, desde el celular y sin instalar nada.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="bloque" id="prueba" style="background:var(--cafe-2)">
-  <div class="ancho">
-    <div class="encabezado">
-      <span class="mono">Ponlo a prueba</span>
-      <h2 class="rescate" data-t="Algo no cuadra">Algo no cuadra</h2>
-      <p>Dos fuentes del mismo día. A simple vista todo está bien. Haz el cruce y mira lo que aparece.</p>
-    </div>
-    <div class="demo">
-      <div class="tabla"><div class="t"><strong>El sistema</strong><span class="mono">5 registros</span></div>
-        <table><thead><tr><th>Registro</th><th>Valor</th></tr></thead><tbody id="tSistema"></tbody></table></div>
-      <div class="tabla"><div class="t"><strong>El reporte</strong><span class="mono">6 registros</span></div>
-        <table><thead><tr><th>Registro</th><th>Valor</th></tr></thead><tbody id="tReporte"></tbody></table></div>
-    </div>
-    <div class="demo-acc">
-      <button class="btn azul" type="button" id="cruzar">Cruzar datos</button>
-      <p class="resultado" id="resultado" aria-live="polite">Datos de ejemplo. El cruce corre aquí, en tu navegador.</p>
-    </div>
-  </div>
-</section>
-
-<section class="bloque" id="accion">
-  <div class="ancho">
-    <div class="encabezado">
-      <span class="mono">En acción</span>
-      <h2 class="rescate" data-t="Míralo funcionando">Míralo funcionando</h2>
-    </div>
-    <div class="casos">
-      <a class="caso vivo" href="https://noid-corp.github.io/demo-ar/muestra/" target="_blank" rel="noopener">
-        <span class="mono">Demo en vivo</span>
-        <h3>Mesero en realidad aumentada</h3>
-        <p>Platos reales escaneados que aparecen sobre tu mesa. Ábrelo desde el celular.</p>
-        <span class="ir">Abrir demo ↗</span>
+        <span class="ir">Abrir demo en el celular ↗</span>
       </a>
-      <div class="caso">
-        <span class="mono">Prototipo</span>
-        <h3>Pedidos por WhatsApp</h3>
-        <p>Toma de pedidos, simulador de conversación e historial que se puede recuperar.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bloque wa" id="whatsapp">
+  <div class="ancho">
+    <div class="encabezado">
+      <span class="mono">Agente de pedidos por WhatsApp</span>
+      <h2 class="rescate" data-t="Tu mejor mesero">Tu mejor mesero</h2>
+      <p>Un asistente que contesta tu WhatsApp como lo haría tu mejor empleado: muestra la carta, toma el pedido, calcula el domicilio, confirma el pago y lo manda a cocina. Tú solo ves llegar los pedidos ordenados.</p>
+    </div>
+    <div class="wa-grid">
+      <div class="telefono" aria-label="Conversación de ejemplo con el agente de pedidos">
+        <div class="tel-cab">
+          <span class="tel-av"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1088 1088"><rect width="100%" height="100%" fill="#362011"/><g transform="translate(242.04 752.44)"><path fill="#C7D8EE" d="M124.00 0.00L16.00 0.00L16.00 -272.80L138.80 -272.80L336.00 -117.60L336.00 -272.80L444.00 -272.80L444.00 0.00L324.00 0.00L124.00 -159.60L124.00 0.00Z"/><path fill="none" stroke="#C7D8EE" stroke-width="14.00" d="M-104.00 -256.80V-392.80H32.00M-104.00 -16.00V120.00H32.00M428.00 120.00H564.00V-16.00"/><polygon fill="#C7D8EE" points="548.93,-493.54 554.50,-425.29 577.77,-468.48 574.53,-424.75 647.21,-484.11 598.63,-413.57 641.31,-426.22 601.02,-391.47 679.00,-387.71 608.35,-373.95 676.95,-341.20 593.16,-355.39 640.99,-302.17 586.33,-338.70 604.98,-295.19 573.22,-316.28 575.50,-241.82 549.85,-321.82 526.25,-242.11 530.15,-321.43 496.32,-283.16 514.52,-339.30 462.04,-306.41 501.95,-356.72 415.24,-333.27 498.41,-370.16 400.45,-386.26 488.81,-397.52 440.40,-424.53 495.78,-411.95 470.53,-454.91 513.47,-427.52 498.86,-520.36 536.90,-431.44"/></g></svg></span>
+          <div><strong>Tu restaurante</strong><small id="estadoBot">en línea</small></div>
+        </div>
+        <div class="tel-chat" id="telChat"></div>
+        <div class="tel-pie"><span>Escribe un mensaje</span><button type="button" class="btn azul chico" id="repetir">Ver de nuevo</button></div>
       </div>
-      <a class="caso" href="#prueba">
-        <span class="mono">Pruébalo aquí</span>
-        <h3>Cruce de datos</h3>
-        <p>Dos fuentes, un clic y los errores que nadie había visto. Con datos de ejemplo.</p>
-        <span class="ir">Ir al cruce ↑</span>
-      </a>
+      <div class="wa-lado">
+        <div class="ticket" aria-live="polite">
+          <div class="ticket-cab"><span class="mono">Panel del restaurante</span><span class="pill" id="tkEstado">Esperando pedido</span></div>
+          <div class="ticket-num" id="tkNum">Pedido nuevo</div>
+          <ul id="tkItems"><li class="vacio">Los productos aparecen aquí mientras el cliente pide.</li></ul>
+          <dl>
+            <div><dt>Entrega</dt><dd id="tkEntrega">—</dd></div>
+            <div><dt>Pago</dt><dd id="tkPago">—</dd></div>
+            <div class="total"><dt>Total</dt><dd id="tkTotal">$0</dd></div>
+          </dl>
+        </div>
+        <ul class="funciones">
+          <li><b>Atiende 24/7</b>Contesta al instante, también de noche y en hora pico.</li>
+          <li><b>Carta con fotos y precios</b>El cliente ve lo que hay, sin pedir que le manden el menú.</li>
+          <li><b>Suma y cobra</b>Calcula total, domicilio por zona y confirma Nequi, tarjeta o efectivo.</li>
+          <li><b>Directo a cocina</b>Cada pedido llega a tu panel con número, dirección y estado.</li>
+          <li><b>Avisa el estado</b>“Tu pedido salió” sin que nadie tenga que escribirlo.</li>
+          <li><b>Responde preguntas</b>Horarios, ubicación, ingredientes y promociones del día.</li>
+          <li><b>Recuerda al cliente</b>Historial de pedidos y direcciones para pedir otra vez en segundos.</li>
+          <li><b>Pasa a una persona</b>Si algo se complica, le entrega la conversación a tu equipo.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="wa-cta">
+      <p>¿Quieres verlo con tu propia carta?</p>
+      <a class="btn azul" href="https://wa.me/573182272063?text=Hola%20NOID%2C%20quiero%20el%20agente%20de%20pedidos%20por%20WhatsApp" target="_blank" rel="noopener">Pide tu demo por WhatsApp</a>
     </div>
   </div>
 </section>
+
+<section class="bloque" id="administrativo">
+  <div class="ancho">
+    <div class="encabezado">
+      <span class="mono">Automatizaciones administrativas</span>
+      <h2 class="rescate" data-t="Menos papeleo">Menos papeleo</h2>
+      <p>Las tareas de oficina que se repiten cada día, semana o quincena las dejamos corriendo solas, conectadas a las herramientas que ya usas: Excel, Google Sheets, correo, WhatsApp y tu sistema contable.</p>
+    </div>
+    <div class="tareas">
+      <article class="tarea"><h3>Facturas y cuentas de cobro</h3><div class="ab"><span class="antes">Antes</span><p>Alguien las arma una por una y las manda por correo.</p></div><div class="ab"><span class="ahora">Ahora</span><p>Se generan con cada venta y le llegan solas al cliente.</p></div></article>
+      <article class="tarea"><h3>Cartera y cobros</h3><div class="ab"><span class="antes">Antes</span><p>Revisar quién debe y escribirle a cada uno.</p></div><div class="ab"><span class="ahora">Ahora</span><p>Recordatorios automáticos por WhatsApp o correo antes y después del vencimiento.</p></div></article>
+      <article class="tarea"><h3>Nómina y turnos</h3><div class="ab"><span class="antes">Antes</span><p>Sumar horas, recargos y novedades a mano en Excel.</p></div><div class="ab"><span class="ahora">Ahora</span><p>Las horas se consolidan solas y la planilla queda lista para revisar.</p></div></article>
+      <article class="tarea"><h3>Inventario</h3><div class="ab"><span class="antes">Antes</span><p>Contar al final del día y darse cuenta tarde de lo que falta.</p></div><div class="ab"><span class="ahora">Ahora</span><p>Se descuenta con cada venta y te avisa cuando toca pedir.</p></div></article>
+      <article class="tarea"><h3>Reportes</h3><div class="ab"><span class="antes">Antes</span><p>Copiar y pegar de varias hojas cada lunes.</p></div><div class="ab"><span class="ahora">Ahora</span><p>El reporte se arma solo y llega a tu correo a la hora que digas.</p></div></article>
+      <article class="tarea"><h3>Citas y recordatorios</h3><div class="ab"><span class="antes">Antes</span><p>Llamar para confirmar y perder citas por olvido.</p></div><div class="ab"><span class="ahora">Ahora</span><p>Confirmación y recordatorio automático por WhatsApp.</p></div></article>
+      <article class="tarea"><h3>Documentos y formularios</h3><div class="ab"><span class="antes">Antes</span><p>Pasar datos de PDFs, fotos y formularios a una hoja.</p></div><div class="ab"><span class="ahora">Ahora</span><p>Los datos se extraen y quedan organizados en tu hoja o sistema.</p></div></article>
+      <article class="tarea"><h3>Pagos y conciliación</h3><div class="ab"><span class="antes">Antes</span><p>Comparar el extracto del banco contra las ventas, línea por línea.</p></div><div class="ab"><span class="ahora">Ahora</span><p>Se comparan solos y solo revisas lo que no coincide.</p></div></article>
+    </div>
+  </div>
+</section>
+
 
 <section class="bloque" style="padding-top:0">
   <div class="ancho">
@@ -448,33 +532,50 @@ var quieto=matchMedia('(prefers-reduced-motion: reduce)').matches;
   requestAnimationFrame(dibuja);
 })();
 
-// Demo de cruce
+// Agente de pedidos: conversación de ejemplo
 (function(){
-  var sis=[['P-2201','$184.000'],['P-2202','$96.500'],['P-2203','$312.000'],['P-2204','$58.000'],['P-2205','$140.000']];
-  var rep=[['P-2201','$184.000'],['P-2202','$96.500'],['P-2203','$231.000'],['P-2204','$58.000'],['P-2204','$58.000'],['P-2206','$75.000']];
-  var tS=document.getElementById('tSistema'),tR=document.getElementById('tReporte'),res=document.getElementById('resultado'),btn=document.getElementById('cruzar'),hecho=false;
-  function pinta(){
-    tS.innerHTML=sis.map(function(f){return '<tr><td>'+f[0]+'</td><td>'+f[1]+'</td></tr>'}).join('');
-    tR.innerHTML=rep.map(function(f){return '<tr><td>'+f[0]+'</td><td>'+f[1]+'</td></tr>'}).join('');
+  var chat=document.getElementById('telChat'),est=document.getElementById('estadoBot');
+  var items=document.getElementById('tkItems'),tE=document.getElementById('tkEstado'),tN=document.getElementById('tkNum'),
+      tEnt=document.getElementById('tkEntrega'),tPago=document.getElementById('tkPago'),tTot=document.getElementById('tkTotal');
+  var carta='<div class="carta"><div><span>Hamburguesa doble</span><em>$28.000</em></div><div><span>Papas criollas</span><em>$9.000</em></div><div><span>Limonada de coco</span><em>$8.500</em></div><div><span>Combo familiar</span><em>$69.000</em></div></div>';
+  var guion=[
+    ['yo','Hola, ¿qué tienen hoy?'],
+    ['bot','¡Hola! Bienvenido. Esta es la carta de hoy:'+carta,function(){estado('Cliente escribiendo','')}],
+    ['yo','2 hamburguesas dobles y unas papas'],
+    ['bot','Anotado: 2 hamburguesas dobles y 1 papas criollas. ¿Algo de tomar?',function(){item('2 × Hamburguesa doble','$56.000');item('1 × Papas criollas','$9.000');total('$65.000')}],
+    ['yo','Una limonada de coco'],
+    ['bot','Listo. ¿Es para domicilio o pasas a recoger?',function(){item('1 × Limonada de coco','$8.500');total('$73.500')}],
+    ['yo','Domicilio a la Cra 15 #82-40'],
+    ['bot','El domicilio a esa dirección cuesta $5.000. Total: <b>$78.500</b>. ¿Pagas con Nequi, tarjeta o efectivo?',function(){item('Domicilio','$5.000');tEnt.textContent='Cra 15 #82-40';total('$78.500')}],
+    ['yo','Nequi'],
+    ['bot','Te envié el link de pago por Nequi.',function(){tPago.textContent='Nequi'}],
+    ['yo','Ya pagué'],
+    ['bot','Pago recibido. Tu pedido <b>#482</b> está en cocina. Llega en unos 35 minutos.',function(){tN.textContent='Pedido #482';tPago.textContent='Nequi · pagado';estado('En cocina','ok')}],
+    ['bot','Tu pedido salió. Va en camino con Andrés.',function(){estado('En camino','va')}]
+  ];
+  var quieto=matchMedia('(prefers-reduced-motion: reduce)').matches,timer,paso=0;
+  function hora(){return '7:4'+Math.min(9,paso)+' p. m.'}
+  function estado(t,c){tE.textContent=t;tE.className='pill'+(c?' '+c:'')}
+  function item(n,v){var v0=items.querySelector('.vacio');if(v0)v0.remove();var li=document.createElement('li');li.innerHTML='<span>'+n+'</span><span>'+v+'</span>';items.appendChild(li)}
+  function total(t){tTot.textContent=t}
+  function burbuja(q,h){var d=document.createElement('div');d.className='m '+q;d.innerHTML=h+'<small>'+hora()+'</small>';chat.appendChild(d);chat.scrollTop=chat.scrollHeight}
+  function reinicia(){clearTimeout(timer);chat.innerHTML='';items.innerHTML='<li class="vacio">Los productos aparecen aquí mientras el cliente pide.</li>';
+    tN.textContent='Pedido nuevo';tEnt.textContent='—';tPago.textContent='—';total('$0');estado('Esperando pedido','');paso=0;est.textContent='en línea'}
+  function sigue(){
+    if(paso>=guion.length){est.textContent='en línea';return}
+    var g=guion[paso];
+    if(g[0]==='bot'){
+      est.textContent='escribiendo…';var e=document.createElement('div');e.className='esc';e.innerHTML='<i></i><i></i><i></i>';chat.appendChild(e);chat.scrollTop=chat.scrollHeight;
+      timer=setTimeout(function(){e.remove();est.textContent='en línea';burbuja('bot',g[1]);g[2]&&g[2]();paso++;timer=setTimeout(sigue,paso===guion.length-1?2600:1300)},900);
+    }else{burbuja('yo',g[1]);paso++;timer=setTimeout(sigue,700)}
   }
-  pinta();
-  btn.addEventListener('click',function(){
-    if(hecho){hecho=false;pinta();btn.textContent='Cruzar datos';res.textContent='Datos de ejemplo. El cruce corre aquí, en tu navegador.';return}
-    var mapa={};sis.forEach(function(f){mapa[f[0]]=f[1]});
-    var vistos={},n=0,filas=tR.querySelectorAll('tr');
-    rep.forEach(function(f,i){
-      var nota='';
-      if(vistos[f[0]])nota='Duplicado';
-      else if(!(f[0] in mapa))nota='No está en el sistema';
-      else if(mapa[f[0]]!==f[1])nota='Sistema dice '+mapa[f[0]];
-      vistos[f[0]]=1;
-      if(nota){n++;filas[i].classList.add('hallazgo');filas[i].cells[0].innerHTML=f[0]+'<span class="nota">'+nota+'</span>'}
-    });
-    var falta=sis.filter(function(f){return !rep.some(function(g){return g[0]===f[0]})});
-    tS.querySelectorAll('tr').forEach(function(tr,i){if(falta.indexOf(sis[i])>-1){tr.classList.add('hallazgo');tr.cells[0].innerHTML=sis[i][0]+'<span class="nota">Falta en el reporte</span>';n++}});
-    res.innerHTML='<b>'+n+' hallazgos</b> en 11 registros. ¿Firmarías ese reporte sin revisarlo?';
-    btn.textContent='Volver a probar';hecho=true;
-  });
+  function todo(){reinicia();guion.forEach(function(g){burbuja(g[0],g[1]);g[2]&&g[2]();paso++})}
+  document.getElementById('repetir').addEventListener('click',function(){if(quieto)todo();else{reinicia();sigue()}});
+  // Arranca con los primeros mensajes visibles y sigue cuando la sección está en pantalla
+  if(quieto){todo();return}
+  burbuja('yo',guion[0][1]);burbuja('bot',guion[1][1]);guion[1][2]();paso=2;
+  var empezo=false,io=new IntersectionObserver(function(en){if(en[0].isIntersecting&&!empezo){empezo=true;timer=setTimeout(sigue,600)}},{threshold:.35});
+  io.observe(chat);
 })();
 
 // Copiar números
