@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Términos y condiciones · NOID</title>
+<meta name="description" content="Términos y condiciones de NOID: uso de noidcorp.com, demostraciones, contratación de servicios, agentes con inteligencia artificial, voces, datos personales y propiedad intelectual.">
+<meta property="og:title" content="Términos y condiciones · NOID">
+<meta property="og:description" content="Las reglas para usar noidcorp.com y para trabajar con NOID, escritas para que se entiendan.">
+<link rel="canonical" href="https://noidcorp.com/terminos/">
+<link rel="icon" href="../logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Courier+Prime:wght@700&amp;family=DM+Mono:wght@400;500&amp;family=Gloock&amp;family=IM+Fell+English:ital@1&amp;display=swap">
+<style>
+@font-face{font-family:"Switzer";src:url(../fuentes/switzer-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Switzer";src:url(../fuentes/switzer-600.woff2) format("woff2");font-weight:600;font-display:swap}
+:root{
+  --cafe:#362011;--cafe-2:#40271a;--cafe-3:#4e3426;--tinto:#4D0C10;--tinto-2:#5e1217;
+  --azul:#C7D8EE;--mant:#FAECB2;--suave:rgba(199,216,238,.7);--linea:rgba(199,216,238,.16);
+  --cuerpo:"Switzer",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --dato:"DM Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--cafe);color:var(--azul);font:400 17px/1.65 var(--cuerpo);overflow-x:hidden}
+.ancho{max-width:1180px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--mant);outline-offset:3px}
+p{margin:0}
+.mono{font-family:var(--dato);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--suave)}
+.logo-def{position:absolute;width:0;height:0;overflow:hidden}
+
+/* Barra */
+.barra{position:sticky;top:0;z-index:20;background:rgba(54,32,17,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--linea)}
+.barra .ancho{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.barra .marca{display:flex;align-items:center;text-decoration:none}
+.barra .marca svg{height:30px;width:auto}
+.barra nav{display:flex;gap:22px;align-items:center}
+.barra nav a.txt{text-decoration:none;font-family:var(--dato);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--suave)}
+.barra nav a.txt:hover{color:var(--azul)}
+@media (max-width:520px){.barra nav a.txt{display:none}}
+
+/* Botones */
+.btn{display:inline-flex;align-items:center;gap:10px;font:600 16px var(--cuerpo);text-decoration:none;border-radius:999px;padding:13px 20px;border:0;cursor:pointer;transition:transform .15s ease,background .15s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn.azul{background:var(--azul);color:var(--cafe)}
+.btn.linea{background:transparent;color:var(--azul);box-shadow:inset 0 0 0 1.5px var(--linea)}
+.btn.chico{padding:8px 14px;font-size:14px}
+.icono{width:18px;height:18px;flex:none}
+
+/* Letras de rescate (las arma el script) */
+.rescate .esp{width:.3em}
+.rescate .pal{display:inline-flex;flex-wrap:nowrap;gap:3px;white-space:nowrap}
+.rescate span.l{display:inline-block;padding:.07em .13em .09em;clip-path:polygon(2% 6%,30% 0,62% 5%,98% 1%,100% 40%,97% 96%,64% 100%,28% 95%,0 100%,3% 52%)}
+@media (max-width:420px){.rescate .pal{flex-wrap:wrap}}
+
+/* Borrador: se quita al publicar */
+.borrador{background:var(--mant);color:var(--tinto);font:500 14px/1.45 var(--dato)}
+.borrador .ancho{padding-block:10px}
+mark.falta{background:var(--mant);color:var(--tinto);font-family:var(--dato);font-size:.86em;padding:.05em .35em;border-radius:4px;white-space:nowrap}
+.borrador mark.falta{box-shadow:inset 0 0 0 1.5px var(--tinto)}
+
+/* Portada */
+.portada{border-bottom:1px solid var(--linea);background:linear-gradient(180deg,var(--cafe) 0,var(--cafe) 55%,rgba(77,12,16,.55) 100%)}
+.portada .ancho{padding-block:56px 52px;display:grid;gap:20px;justify-items:start}
+.titular{display:flex;flex-wrap:wrap;gap:6px 4px;margin:0;font-size:clamp(32px,6.6vw,74px);line-height:1;font-weight:400}
+.bajada{font-size:clamp(18px,2.2vw,21px);max-width:54ch}
+.vigencia{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px}
+.vigencia .mono{color:var(--mant)}
+
+/* Resumen */
+.resumen{background:var(--tinto);border-radius:20px;padding:26px clamp(20px,4vw,34px);display:grid;gap:16px;margin-top:10px;width:100%}
+.resumen h2{margin:0;font-size:22px;font-weight:600;line-height:1.2}
+.resumen ul{margin:0;padding:0;list-style:none;display:grid;gap:12px 28px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:760px){.resumen ul{grid-template-columns:minmax(0,1fr)}}
+.resumen li{position:relative;padding-left:24px;line-height:1.45}
+.resumen li::before,.articulo li::before{content:"";position:absolute;left:1px;top:.42em;width:12px;height:12px;background:var(--mant);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.resumen .nota{font-family:var(--dato);font-size:13px;color:rgba(199,216,238,.75)}
+
+/* Cuerpo */
+.legal .ancho{display:grid;grid-template-columns:250px minmax(0,1fr);gap:56px;padding-block:56px 88px;align-items:start}
+@media (max-width:900px){.legal .ancho{grid-template-columns:minmax(0,1fr);gap:28px;padding-block:32px 64px}}
+.indice{position:sticky;top:84px;max-height:calc(100vh - 104px);overflow:auto;padding-right:4px}
+.indice summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.indice summary::-webkit-details-marker{display:none}
+.indice summary::after{content:"+";font-family:var(--dato);font-size:18px;color:var(--mant)}
+.indice details[open] summary::after{content:"–"}
+.indice ol{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:2px;counter-reset:i}
+.indice a{display:flex;gap:10px;text-decoration:none;color:var(--suave);font-size:15px;padding:6px 10px;border-radius:8px;line-height:1.35}
+.indice a::before{counter-increment:i;content:counter(i,decimal-leading-zero);font-family:var(--dato);font-size:12px;color:var(--mant);padding-top:2px;flex:none}
+.indice a:hover,.indice a[aria-current="true"]{background:var(--cafe-2);color:var(--azul)}
+@media (max-width:900px){.indice{position:static;max-height:none;overflow:visible;background:var(--cafe-2);border:1px solid var(--linea);border-radius:14px;padding:12px 14px}}
+
+.articulo{min-width:0;max-width:760px;counter-reset:s}
+.articulo section{padding-block:30px;border-top:1px solid var(--linea)}
+.articulo section:first-child{border-top:0;padding-top:0}
+.articulo h2{margin:0 0 14px;font-size:clamp(22px,2.6vw,27px);font-weight:600;line-height:1.2;display:flex;gap:14px;align-items:baseline}
+.articulo h2::before{counter-increment:s;content:counter(s,decimal-leading-zero);font-family:var(--dato);font-size:14px;color:var(--mant);font-weight:500;letter-spacing:.08em;flex:none}
+.articulo p,.articulo ul{margin:0 0 14px;color:rgba(199,216,238,.88)}
+.articulo > section > :last-child{margin-bottom:0}
+.articulo ul{padding:0;list-style:none;display:grid;gap:10px}
+.articulo li{position:relative;padding-left:24px}
+.articulo li::before{width:10px;height:10px;top:.55em}
+.articulo strong{color:var(--azul);font-weight:600}
+.articulo a{color:var(--mant)}
+.aviso{background:var(--cafe-2);border-left:3px solid var(--mant);border-radius:8px;padding:12px 16px;font-size:16px}
+
+/* Contacto */
+.tarjetas{display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr));margin-bottom:14px}
+@media (max-width:560px){.tarjetas{grid-template-columns:minmax(0,1fr)}}
+.tarjeta{background:var(--cafe-2);border:1px solid var(--linea);border-radius:14px;padding:14px 16px;display:grid;gap:2px;text-decoration:none;min-width:0}
+a.tarjeta{transition:border-color .2s ease}
+a.tarjeta:hover{border-color:rgba(199,216,238,.4)}
+.tarjeta .num{font-family:var(--dato);font-weight:500;font-size:19px;color:var(--azul);overflow-wrap:anywhere}
+.articulo .tarjeta{color:var(--azul)}
+
+/* Pie */
+footer{border-top:1px solid var(--linea)}
+footer .ancho{display:flex;flex-wrap:wrap;gap:16px 28px;justify-content:space-between;align-items:center;padding-block:32px 40px}
+footer svg{height:26px;width:auto}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 22px}
+footer nav a{text-decoration:none}
+footer nav a:hover,footer nav a[aria-current="page"]{color:var(--azul)}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+
+/* Impresión y PDF */
+@media print{
+  body{background:#fff;color:#111;font-size:11pt}
+  .barra,.indice,.borrador,footer,#imprimir{display:none!important}
+  .portada{background:none;border-bottom:1px solid #999}
+  .portada .ancho,.legal .ancho{padding-block:12px;display:block}
+  .rescate span.l{background:none!important;color:#111!important;transform:none!important;font-family:inherit!important;font-style:normal!important;clip-path:none;padding:0}
+  .rescate .pal{gap:0}
+  .bajada,.articulo p,.articulo ul,.resumen .nota,.mono,.vigencia .mono{color:#111}
+  .resumen{background:none;border:1px solid #999;color:#111;break-inside:avoid}
+  .resumen li::before,.articulo li::before{background:#111}
+  .articulo h2::before{color:#111}
+  .articulo section{break-inside:avoid-page;border-color:#ccc}
+  .articulo a,.articulo strong,.tarjeta,.tarjeta .num{color:#111}
+  .tarjeta{background:none;border-color:#999}
+  .aviso{background:none;border-left-color:#111}
+}
+</style>
+</head>
+<body>
+
+<svg class="logo-def" aria-hidden="true" focusable="false"><symbol id="logo" viewBox="0 0 1457 442"><g transform="translate(129.57 291.58)"><path fill="#C7D8EE" d="M54.43 -18.00L0.43 -18.00L14.77 -154.40L76.17 -154.40L166.61 -76.80L174.77 -154.40L228.77 -154.40L214.43 -18.00L154.43 -18.00L62.82 -97.80L54.43 -18.00ZM447.84 -4.20Q421.64 13.00 360.84 13.00Q300.04 13.00 271.44 -4.20Q242.84 -21.40 240.27 -58.20Q237.69 -95.00 263.89 -112.20Q290.09 -129.40 350.89 -129.40Q411.69 -129.40 440.29 -112.20Q468.89 -95.00 471.47 -58.20Q474.04 -21.40 447.84 -4.20ZM357.63 -33.00Q382.63 -33.00 395.07 -35.20Q407.52 -37.40 412.35 -42.70Q417.18 -48.00 416.47 -58.20Q415.75 -68.40 410.18 -73.70Q404.61 -79.00 391.86 -81.20Q379.10 -83.40 354.10 -83.40Q317.50 -83.40 305.36 -78.30Q293.22 -73.20 294.27 -58.20Q295.31 -43.20 308.17 -38.10Q321.03 -33.00 357.63 -33.00ZM546.97 8.00L492.97 8.00L485.82 -128.40L539.82 -128.40L546.97 8.00ZM719.20 0.00L577.20 0.00L577.20 -136.40L719.20 -136.40Q736.20 -136.40 749.30 -133.20Q762.40 -130.00 773.40 -122.60Q784.40 -115.20 790.20 -101.50Q796.00 -87.80 796.00 -68.40Q796.00 -52.20 792.00 -39.90Q788.00 -27.60 781.20 -20.10Q774.40 -12.60 764.30 -8.00Q754.20 -3.40 743.40 -1.70Q732.60 0.00 719.20 0.00ZM631.20 -90.40L631.20 -46.00L713.80 -46.00Q728.60 -46.00 734.30 -50.00Q740.00 -54.00 740.00 -68.40Q740.00 -82.40 734.20 -86.40Q728.40 -90.40 713.80 -90.40L631.20 -90.40Z"/><path fill="none" stroke="#C7D8EE" stroke-width="7.00" d="M-59.57 -146.40V-214.40H8.43M788.00 -214.40H856.00V-146.40M-59.57 5.00V73.00H8.43M788.00 73.00H856.00V5.00"/><polygon fill="#C7D8EE" points="1107.76,-180.79 1113.02,-116.43 1134.96,-157.15 1131.90,-115.92 1200.44,-171.90 1154.64,-105.38 1194.88,-117.30 1156.89,-84.53 1230.42,-80.99 1163.79,-68.02 1228.49,-37.13 1149.48,-50.51 1194.58,-0.32 1143.03,-34.77 1160.62,6.26 1130.67,-13.63 1132.82,56.59 1108.63,-18.85 1086.37,56.31 1090.05,-18.49 1058.15,17.60 1075.31,-35.34 1025.82,-4.32 1063.46,-51.77 981.68,-29.65 1060.12,-64.43 967.74,-79.62 1051.07,-90.24 1005.42,-115.71 1057.64,-103.85 1033.83,-144.36 1074.32,-118.53 1060.55,-206.08 1096.42,-122.23"/></g></symbol></svg>
+
+<header class="barra">
+  <div class="ancho">
+    <a class="marca" href="/" aria-label="NOID, ir al inicio"><svg viewBox="0 0 1457 442" aria-hidden="true"><use href="#logo"/></svg></a>
+    <nav aria-label="Principal">
+      <a class="txt" href="/">Inicio</a>
+      <a class="btn azul chico" href="https://wa.me/573182272063?text=Hola%20NOID" target="_blank" rel="noopener"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.03c-.25.69-1.45 1.32-2 1.37-.51.05-1 .24-3.36-.7-2.84-1.12-4.65-4.03-4.79-4.22-.14-.18-1.14-1.52-1.14-2.9 0-1.38.72-2.06.98-2.34.25-.28.56-.35.74-.35l.53.01c.17.01.4-.06.62.48.25.6.85 2.06.92 2.21.07.15.12.32.02.51-.1.19-.15.31-.3.48-.14.17-.3.37-.43.5-.14.14-.29.29-.12.57.17.28.74 1.22 1.59 1.98 1.09.97 2.01 1.27 2.29 1.41.28.14.45.12.61-.07.17-.19.71-.83.9-1.11.19-.28.37-.23.63-.14.25.09 1.62.76 1.9.9.28.14.46.21.53.33.07.11.07.66-.18 1.35z"/></svg>Escríbenos</a>
+    </nav>
+  </div>
+</header>
+
+<div class="borrador" role="note">
+  <div class="ancho">Borrador sin publicar · Antes de publicar faltan los datos <mark class="falta">resaltados</mark> y la revisión de un abogado.</div>
+</div>
+
+<main>
+<section class="portada">
+  <div class="ancho">
+    <span class="mono">Documento legal · Versión 1.0</span>
+    <h1 class="titular rescate" data-t="Términos y condiciones">Términos y condiciones</h1>
+    <p class="bajada">Las reglas para usar este sitio y para trabajar con NOID. Las escribimos para que se entiendan sin abogado, y valen igual que la letra pequeña.</p>
+    <div class="vigencia">
+      <span class="mono">Vigentes desde el 16 de noviembre de 2026</span>
+      <button class="btn linea chico" type="button" id="imprimir" hidden>Imprimir o guardar en PDF</button>
+    </div>
+
+    <div class="resumen" aria-labelledby="corto">
+      <h2 id="corto">En corto</h2>
+      <ul>
+        <li>El sitio y las demos son informativos. Lo que contratas se define en una propuesta escrita.</li>
+        <li>Tú respondes por lo que nos entregas y por tener permiso de tus clientes para escribirles o llamarlos.</li>
+        <li>Los agentes con IA pueden equivocarse: definimos contigo qué hacen solos y cuándo pasan a una persona.</li>
+        <li>No clonamos una voz sin la autorización escrita de su dueño.</li>
+        <li>Tratamos los datos de tus clientes solo para prestarte el servicio. No los vendemos.</li>
+        <li>Se aplican las leyes de Colombia.</li>
+      </ul>
+      <p class="nota">Este resumen ayuda a leer; lo que vale es el texto completo.</p>
+    </div>
+  </div>
+</section>
+
+<div class="legal">
+  <div class="ancho">
+    <nav class="indice" aria-label="Contenido">
+      <details open>
+        <summary class="mono">Contenido</summary>
+        <ol>
+          <li><a href="#quienes">Quiénes somos y cuándo aplican</a></li>
+          <li><a href="#sitio">Uso del sitio</a></li>
+          <li><a href="#demos">Demostraciones</a></li>
+          <li><a href="#contratacion">Cotizaciones, precios y pagos</a></li>
+          <li><a href="#cliente">Lo que te corresponde como cliente</a></li>
+          <li><a href="#ia">Agentes con inteligencia artificial</a></li>
+          <li><a href="#voz">Voces y clonación de voz</a></li>
+          <li><a href="#terceros">Proveedores y plataformas de terceros</a></li>
+          <li><a href="#datos">Datos personales</a></li>
+          <li><a href="#propiedad">Propiedad intelectual</a></li>
+          <li><a href="#servicio">Disponibilidad, soporte y terminación</a></li>
+          <li><a href="#responsabilidad">Responsabilidad</a></li>
+          <li><a href="#cambios">Cambios a estos términos</a></li>
+          <li><a href="#ley">Ley aplicable y desacuerdos</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ol>
+      </details>
+    </nav>
+
+    <article class="articulo">
+      <section id="quienes">
+        <h2>Quiénes somos y cuándo aplican</h2>
+        <p>NOID es la marca con la que <mark class="falta">[razón social]</mark>, identificada con NIT <mark class="falta">[número]</mark> y domiciliada en <mark class="falta">[ciudad]</mark>, Colombia («NOID» o «nosotros»), ofrece agentes de inteligencia artificial para WhatsApp y llamadas, automatizaciones administrativas, software a la medida, tableros, alertas y experiencias de realidad aumentada.</p>
+        <p>Estos términos aplican cuando:</p>
+        <ul>
+          <li>visitas noidcorp.com o cualquiera de sus páginas, incluidas las demostraciones;</li>
+          <li>nos escribes para pedir información o una cotización;</li>
+          <li>contratas un servicio con nosotros, en todo lo que la propuesta o el contrato no regule.</li>
+        </ul>
+        <p>Si una propuesta aceptada, una orden de servicio o un contrato firmado dicen algo distinto, prevalece ese documento. Al usar el sitio o contratar con nosotros aceptas estos términos; si no estás de acuerdo con ellos, no uses el sitio.</p>
+      </section>
+
+      <section id="sitio">
+        <h2>Uso del sitio</h2>
+        <p>El sitio es informativo y gratuito, y no necesitas crear una cuenta. Al usarlo te comprometes a no:</p>
+        <ul>
+          <li>intentar entrar a sistemas, datos o cuentas que no son tuyos;</li>
+          <li>sobrecargar el sitio con tráfico automatizado ni copiar su contenido de forma masiva;</li>
+          <li>usarlo para distribuir código malicioso, suplantar a otra persona o cometer cualquier acto ilegal.</li>
+        </ul>
+        <p>Si encuentras una falla de seguridad, avísanos por WhatsApp sin aprovecharla ni acceder a información de otros; la revisaremos con prioridad.</p>
+        <p>Podemos modificar, pausar o retirar el sitio o cualquiera de sus partes en cualquier momento.</p>
+      </section>
+
+      <section id="demos">
+        <h2>Demostraciones</h2>
+        <p>Las demostraciones, como la carta en realidad aumentada o el asistente que conversa por voz, muestran cómo podría funcionar un servicio. Ten en cuenta que:</p>
+        <ul>
+          <li>los negocios, platos, precios, nombres, números de teléfono y conversaciones que aparecen en el sitio y en las demos son ejemplos, salvo que se indique otra cosa;</li>
+          <li>el tamaño que ves en realidad aumentada es aproximado: depende de cómo se midió el objeto, de tu celular y de qué tan bien reconoce la cámara la superficie;</li>
+          <li>la cámara la activa tu celular para ubicar el modelo sobre la mesa; nosotros no recibimos ni guardamos esas imágenes;</li>
+          <li>lo que le escribas o digas a un asistente se envía a nuestros servidores y a proveedores de inteligencia artificial para generar la respuesta. Si usas el micrófono, el dictado lo hace tu navegador, que puede enviar el audio a su fabricante;</li>
+          <li>las respuestas de un asistente pueden contener errores, y su voz es sintética.</li>
+        </ul>
+        <p>Por eso, no compartas datos personales ni sensibles en una demo. Las demos pueden cambiar o dejar de estar disponibles sin previo aviso.</p>
+      </section>
+
+      <section id="contratacion">
+        <h2>Cotizaciones, precios y pagos</h2>
+        <p>Los precios, ejemplos y descripciones del sitio son de referencia y no constituyen una oferta. Cada servicio se define en una propuesta escrita (por WhatsApp, correo o documento) con su alcance, entregables, plazos, precio, forma de pago y soporte. El servicio queda contratado cuando aceptas esa propuesta por escrito y, si así se acordó, pagas el anticipo.</p>
+        <ul>
+          <li>Los precios están en pesos colombianos, y la propuesta indica si incluyen impuestos.</li>
+          <li>Lo que no esté en la propuesta, como funciones nuevas, integraciones adicionales o cambios de alcance, se cotiza aparte antes de hacerlo.</li>
+          <li>Los costos de terceros que dependen del uso, como las conversaciones que cobra WhatsApp, los minutos de telefonía o el consumo de modelos de inteligencia artificial y de voz, corren por cuenta del cliente, salvo que la propuesta diga que están incluidos.</li>
+          <li>Si un pago se retrasa, te avisaremos. Si sigue pendiente quince (15) días calendario después del aviso, podemos suspender el servicio hasta que se ponga al día.</li>
+        </ul>
+      </section>
+
+      <section id="cliente">
+        <h2>Lo que te corresponde como cliente</h2>
+        <ul>
+          <li>Darnos información veraz y a tiempo, y los accesos que el proyecto necesite. Acordaremos contigo un medio seguro para compartir contraseñas: no las envíes por chat.</li>
+          <li>Tener los derechos sobre lo que nos entregas: logos, fotos, cartas, catálogos, textos, bases de datos, grabaciones y voces.</li>
+          <li>Contar con la autorización de tus clientes y contactos para tratar sus datos y para escribirles o llamarlos, y atender de inmediato a quien pida no ser contactado.</li>
+          <li>Cumplir las normas que aplican a tu negocio, entre ellas las de protección de datos personales (Ley 1581 de 2012), protección al consumidor (Ley 1480 de 2011) y horarios y canales para contactar a los consumidores (Ley 2300 de 2023), además de las políticas de WhatsApp y de los demás proveedores.</li>
+          <li>Revisar y mantener al día lo que informan los agentes: precios, horarios, promociones y condiciones. Esa información es tuya y respondes por ella ante tus clientes.</li>
+        </ul>
+        <p>Los servicios no pueden usarse para enviar mensajes masivos no solicitados, cometer fraude, acosar, suplantar a otra persona o engañar a la gente sobre con quién está hablando. Si detectamos un uso así, podemos suspender el servicio de inmediato.</p>
+      </section>
+
+      <section id="ia">
+        <h2>Agentes con inteligencia artificial</h2>
+        <p>Nuestros agentes de WhatsApp y de voz, y las automatizaciones que usan inteligencia artificial, trabajan con modelos que generan respuestas de forma automática. Por eso:</p>
+        <ul>
+          <li>pueden equivocarse, entender mal una pregunta o responder de forma incompleta, aunque los configuremos y probemos con cuidado;</li>
+          <li>responden con base en las reglas, catálogos e información que tú apruebas, y definimos contigo qué resuelven solos, qué revisa una persona y cuándo pasan la conversación a tu equipo;</li>
+          <li>no los configuramos para tomar solos decisiones con efectos legales, médicos, financieros o laborales importantes sobre una persona: esas decisiones las toma alguien de tu equipo;</li>
+          <li>si alguien pregunta si está hablando con una persona, el agente no lo negará.</li>
+        </ul>
+        <p>Revisamos las conversaciones y los resultados del servicio solo para prestarlo, supervisarlo y mejorarlo.</p>
+      </section>
+
+      <section id="voz">
+        <h2>Voces y clonación de voz</h2>
+        <p>La voz de una persona es un dato personal y puede ser un dato sensible. Por eso:</p>
+        <ul>
+          <li>solo creamos una voz a partir de la de una persona real si esa persona lo autoriza de forma previa, expresa y por escrito, para el uso concreto que se le va a dar;</li>
+          <li>el cliente nos entrega esa autorización y responde por ella;</li>
+          <li>no clonamos voces de figuras públicas ni de terceros sin su permiso, ni usamos voces para suplantar o engañar;</li>
+          <li>si la persona revoca su autorización, dejamos de usar su voz y eliminamos el modelo creado a partir de ella.</li>
+        </ul>
+      </section>
+
+      <section id="terceros">
+        <h2>Proveedores y plataformas de terceros</h2>
+        <p>Para prestar los servicios usamos plataformas de terceros, como WhatsApp Business de Meta, operadores de telefonía, proveedores de modelos de inteligencia artificial y de voz, alojamiento en la nube y medios de pago. En consecuencia:</p>
+        <ul>
+          <li>también aplican sus términos y políticas, y algunos procesan información fuera de Colombia;</li>
+          <li>su disponibilidad, sus precios y sus reglas no dependen de nosotros. Si cambian, te avisaremos y buscaremos alternativas, pero no respondemos por sus fallas, bloqueos o cambios;</li>
+          <li>WhatsApp puede limitar o bloquear un número que incumpla sus políticas, por ejemplo por enviar mensajes no solicitados.</li>
+        </ul>
+        <p>Los enlaces a otros sitios, como WhatsApp, Instagram o los estudios que citamos, se rigen por las reglas de esos sitios.</p>
+      </section>
+
+      <section id="datos">
+        <h2>Datos personales</h2>
+        <p>Tratamos los datos personales de acuerdo con la Ley 1581 de 2012 y sus normas reglamentarias.</p>
+        <ul>
+          <li><strong>En este sitio</strong> no hay formularios, cuentas, cookies de seguimiento ni herramientas de analítica. Algunos recursos, como las tipografías, se cargan desde servicios de terceros como Google Fonts, así que tu navegador se conecta a sus servidores.</li>
+          <li><strong>Cuando nos escribes</strong> por WhatsApp o Instagram recibimos tu nombre, tu número o usuario y lo que nos cuentes. Lo usamos para responderte, cotizar y prestarte el servicio.</li>
+          <li><strong>Cuando nuestros agentes atienden a tus clientes</strong>, tú eres el responsable de esos datos y NOID actúa como encargado: los tratamos solo para prestar el servicio, según tus instrucciones y con medidas de seguridad razonables, y no los vendemos ni los usamos para fines propios. Cuando se requiera, lo formalizamos en un contrato de transmisión de datos.</li>
+        </ul>
+        <p>Como titular puedes conocer, actualizar, rectificar y suprimir tus datos, pedir prueba de tu autorización, revocarla y presentar quejas ante la Superintendencia de Industria y Comercio. Para ejercer estos derechos, escríbenos a <mark class="falta">[correo]</mark> o por WhatsApp. Los detalles están en nuestra <mark class="falta">[Política de Tratamiento de Datos Personales]</mark>.</p>
+      </section>
+
+      <section id="propiedad">
+        <h2>Propiedad intelectual</h2>
+        <ul>
+          <li><strong>Del sitio:</strong> la marca NOID, el logo, los textos, el diseño, el código y los materiales del sitio pertenecen a NOID o se usan con licencia. No puedes copiarlos ni usarlos con fines comerciales sin nuestro permiso. Las cifras y estudios citados pertenecen a sus autores.</li>
+          <li><strong>Tu contenido</strong> sigue siendo tuyo, y nos autorizas a usarlo solo para prestar el servicio. Mostraremos tu marca o tu proyecto como caso de éxito únicamente si nos das permiso.</li>
+          <li><strong>Lo que desarrollamos para ti:</strong> la propuesta o el contrato define a quién pertenece. En todo caso, NOID conserva sus herramientas, componentes reutilizables, plantillas, conocimiento y desarrollos previos o de uso general, y te otorga una licencia no exclusiva para usar los que queden incorporados en tu solución mientras la uses.</li>
+        </ul>
+      </section>
+
+      <section id="servicio">
+        <h2>Disponibilidad, soporte y terminación</h2>
+        <p>Trabajamos para que todo funcione sin interrupciones, pero ningún sistema está libre de fallas: pueden presentarse caídas, mantenimientos o errores, propios o de terceros. Cuando detectemos una falla que afecte tu servicio, te avisaremos.</p>
+        <ul>
+          <li>Los horarios de soporte, los tiempos de respuesta y los niveles de servicio se acuerdan en cada propuesta.</li>
+          <li>Cada servicio dura lo que se pacte, y la propuesta o el contrato dice cómo terminarlo antes de tiempo.</li>
+          <li>Al terminar, si nos lo pides dentro de los treinta (30) días siguientes, te entregamos tus datos en un formato de uso común. Después los eliminamos, salvo lo que la ley nos obligue a conservar.</li>
+        </ul>
+      </section>
+
+      <section id="responsabilidad">
+        <h2>Responsabilidad</h2>
+        <ul>
+          <li>El sitio y las demos se ofrecen tal como están, sin garantía de que sean exactos, completos o estén siempre disponibles.</li>
+          <li>No respondemos por daños causados por información falsa o incompleta que nos entreguen, por usar los servicios en contra de estos términos o de la ley, por cambios hechos por terceros, por fallas de proveedores externos o de internet, ni por fuerza mayor o caso fortuito.</li>
+          <li>Salvo dolo o culpa grave, y en la medida en que la ley lo permita, la responsabilidad total de NOID frente a un cliente por un servicio se limita a lo que ese cliente pagó por él en los tres (3) meses anteriores al hecho que la origina, y no incluye lucro cesante ni daños indirectos.</li>
+        </ul>
+        <p class="aviso">Si contratas como consumidor, nada de lo anterior limita los derechos que te da la Ley 1480 de 2011 (Estatuto del Consumidor).</p>
+      </section>
+
+      <section id="cambios">
+        <h2>Cambios a estos términos</h2>
+        <p>Podemos actualizar estos términos. La versión vigente y su fecha siempre estarán en esta página. Si el cambio es importante y tienes un servicio activo, te avisaremos antes de que empiece a regir. Los cambios no modifican lo que ya pactamos en contratos firmados.</p>
+      </section>
+
+      <section id="ley">
+        <h2>Ley aplicable y desacuerdos</h2>
+        <p>Estos términos se rigen por las leyes de la República de Colombia. Si surge un desacuerdo, primero intentaremos resolverlo directamente durante treinta (30) días desde que una parte le escriba a la otra. Si no lo logramos, cualquiera puede acudir a un centro de conciliación o a los jueces competentes de <mark class="falta">[ciudad]</mark>. Si eres consumidor, también puedes acudir a la Superintendencia de Industria y Comercio.</p>
+      </section>
+
+      <section id="contacto">
+        <h2>Contacto</h2>
+        <div class="tarjetas">
+          <a class="tarjeta" href="https://wa.me/573182272063?text=Hola%20NOID" target="_blank" rel="noopener"><span class="mono">WhatsApp</span><span class="num">318 227 2063</span></a>
+          <a class="tarjeta" href="https://wa.me/573004198710?text=Hola%20NOID" target="_blank" rel="noopener"><span class="mono">WhatsApp</span><span class="num">300 419 8710</span></a>
+          <div class="tarjeta"><span class="mono">Correo</span><span class="num"><mark class="falta">[correo]</mark></span></div>
+          <a class="tarjeta" href="https://www.instagram.com/noidd.corp/" target="_blank" rel="noopener"><span class="mono">Instagram</span><span class="num">@noidd.corp ↗</span></a>
+        </div>
+        <p><mark class="falta">[razón social]</mark> · NIT <mark class="falta">[número]</mark> · <mark class="falta">[ciudad]</mark>, Colombia.</p>
+      </section>
+    </article>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="ancho">
+    <a href="/" aria-label="NOID, ir al inicio"><svg viewBox="0 0 1457 442" aria-hidden="true"><use href="#logo"/></svg></a>
+    <nav class="mono" aria-label="Pie de página">
+      <a href="/">Inicio</a>
+      <a href="/terminos/" aria-current="page">Términos y condiciones</a>
+    </nav>
+    <span class="mono">Colombia · Paranoia aplicada · © 2026 NOID</span>
+  </div>
+</footer>
+
+<script>
+// Títulos de rescate (mismo algoritmo que la portada)
+(function(){
+  var F=[['"Gloock",Georgia,serif','italic','400'],['"Archivo Black",Impact,sans-serif','normal','400'],['"Courier Prime",Courier,monospace','normal','700'],['"IM Fell English",Georgia,serif','italic','400']];
+  var P=[['#C7D8EE','#362011'],['#4D0C10','#C7D8EE'],['#55372a','#C7D8EE'],['#C7D8EE','#4D0C10'],['#362011','#C7D8EE'],['#FAECB2','#4D0C10']];
+  var s=11;function r(){s=(s*9301+49297)%233280;return s/233280}
+  document.querySelectorAll('.rescate').forEach(function(el){
+    var t=el.getAttribute('data-t');el.textContent='';el.setAttribute('aria-label',t);
+    var mant=0;
+    t.split(' ').forEach(function(w,wi){
+      if(wi){var e=document.createElement('span');e.className='esp';el.appendChild(e)}
+      var pal=document.createElement('span');pal.className='pal';pal.setAttribute('aria-hidden','true');
+      w.split('').forEach(function(c){
+        var l=document.createElement('span');l.className='l';l.textContent=c;
+        var f=F[Math.floor(r()*4)],p=Math.floor(r()*P.length);
+        if(p===5&&mant++)p=0;
+        l.style.fontFamily=f[0];l.style.fontStyle=f[1];l.style.fontWeight=f[2];
+        l.style.background=P[p][0];l.style.color=P[p][1];
+        l.style.transform='rotate('+((r()-.5)*9).toFixed(1)+'deg) translateY('+((r()-.5)*6).toFixed(1)+'px)';
+        pal.appendChild(l);
+      });
+      el.appendChild(pal);
+    });
+  });
+})();
+
+// Índice: cerrado en celular y marca la sección visible
+(function(){
+  var d=document.querySelector('.indice details'),mq=matchMedia('(max-width:900px)');
+  function ajusta(){if(d)d.open=!mq.matches}
+  ajusta();
+  if(mq.addEventListener)mq.addEventListener('change',ajusta);
+  var enlaces={};
+  document.querySelectorAll('.indice a').forEach(function(a){
+    enlaces[a.getAttribute('href').slice(1)]=a;
+    a.addEventListener('click',function(){if(d&&mq.matches)d.open=false});
+  });
+  if(!('IntersectionObserver' in window))return;
+  var obs=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting)return;
+      Object.keys(enlaces).forEach(function(k){enlaces[k].removeAttribute('aria-current')});
+      var a=enlaces[e.target.id];if(a)a.setAttribute('aria-current','true');
+    });
+  },{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('.articulo section[id]').forEach(function(s){obs.observe(s)});
+})();
+
+// Imprimir o guardar en PDF
+(function(){
+  var b=document.getElementById('imprimir');if(!b||!window.print)return;
+  b.hidden=false;b.addEventListener('click',function(){window.print()});
+})();
+</script>
+</body>
+</html>
