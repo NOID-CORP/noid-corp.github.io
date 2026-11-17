@@ -1,0 +1,1068 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>NOID · Desconfiamos por ti</title>
+<!-- Borrador en /nuevo/: quitar esta línea al pasar la página a la raíz (y agregar canonical y og:url) -->
+<meta name="robots" content="noindex">
+<meta name="description" content="Te decimos, gratis, qué tareas de tu negocio puede hacer la IA: contestar tu WhatsApp, leer tus facturas, llamar a tus clientes. Cuánto tiempo te ahorra y cuánto cuesta, por escrito en 48 horas.">
+<meta name="theme-color" content="#362011">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<meta property="og:site_name" content="NOID">
+<meta property="og:title" content="NOID · Tu negocio, trabajando solo">
+<meta property="og:description" content="Te decimos, gratis, qué tareas de tu negocio puede hacer la IA, cuánto tiempo te ahorra y cuánto cuesta. Por escrito, en 48 horas.">
+<!-- Ruta provisional: cambiarla cuando la página pase a la raíz del sitio -->
+<meta property="og:image" content="https://noidcorp.com/nuevo/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="NOID: Tu negocio, trabajando solo">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../logo.svg" type="image/svg+xml">
+<!-- Solo se precargan las letras de la portada -->
+<link rel="preload" href="fuentes/switzer-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fuentes/switzer-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fuentes/gloock-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fuentes/archivo-black-400.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* ===== Letras (manual 05): todas locales, con swap. Las de los recortes, reducidas al español ===== */
+@font-face{font-family:"Switzer";src:url(fuentes/switzer-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Switzer";src:url(fuentes/switzer-600.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Panchang";src:url(fuentes/panchang-800.woff2) format("woff2");font-weight:800;font-display:swap}
+@font-face{font-family:"DM Mono";src:url(fuentes/dm-mono-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"DM Mono";src:url(fuentes/dm-mono-500.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Gloock";src:url(fuentes/gloock-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Archivo Black";src:url(fuentes/archivo-black-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Courier Prime";src:url(fuentes/courier-prime-700.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"IM Fell English";src:url(fuentes/im-fell-english-italic.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
+
+/* ===== Colores (manual 04): café 55 %, tinto 20 %, azul 20 %, mantequilla 5 %. Solo los cuatro ===== */
+:root{
+  --cafe:#362011;--tinto:#4D0C10;--azul:#C7D8EE;--mant:#FAECB2;
+  --texto:"Switzer","Helvetica Neue",Arial,sans-serif;
+  --mono:"DM Mono",ui-monospace,Menlo,monospace;
+  --ancha:"Panchang","Arial Black",sans-serif;
+  --curva:cubic-bezier(.23,1,.32,1);
+  --g:18px;
+  /* Tema de cada pantalla: café (por defecto), tinto o azul ("café y tinto sobre azul") */
+  --fondo:var(--cafe);--tinta:var(--azul);--acento:var(--mant);--suave:rgba(199,216,238,.8);--linea:rgba(199,216,238,.22);
+  --btn-fondo:var(--azul);--btn-tinta:var(--cafe);--btn-hover:var(--mant);--foco:var(--mant);
+  color-scheme:dark;
+}
+@media (min-width:600px){:root{--g:28px}}
+@media (min-width:900px){:root{--g:44px}}
+.t-tinto{--fondo:var(--tinto);--suave:rgba(199,216,238,.86)}
+.t-azul{--fondo:var(--azul);--tinta:var(--cafe);--acento:var(--tinto);--suave:rgba(54,32,17,.84);--linea:rgba(54,32,17,.28);
+  --btn-fondo:var(--cafe);--btn-tinta:var(--azul);--btn-hover:var(--tinto);--foco:var(--tinto)}
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--cafe);-webkit-text-size-adjust:100%;text-size-adjust:100%}
+@media (max-width:899px){html{scroll-padding-bottom:96px}}
+@media (min-width:900px){html{scroll-padding-top:80px}}
+body{margin:0;background:var(--cafe);color:var(--azul);font:400 17px/1.55 var(--texto);-webkit-font-smoothing:antialiased;overflow-x:clip}
+h1,h2,h3,p,figure,ol,ul,dl,dd{margin:0}
+ol,ul{padding:0;list-style:none}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--foco);outline-offset:3px}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.saltar{position:fixed;left:12px;top:-60px;z-index:60;background:var(--azul);color:var(--cafe);padding:12px 16px;font-weight:600;text-decoration:none}
+.saltar:focus{top:12px}
+
+/* ===== Piezas de texto ===== */
+.etq{font:500 12px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--acento)}
+h1,h2{font-weight:600;letter-spacing:-.02em;text-wrap:balance}
+h1{font-size:clamp(40px,5.6vw,80px);line-height:1.04}
+h2{font-size:clamp(34px,5vw,66px);line-height:1.06}
+.frase{font-size:clamp(18px,1.6vw,22px);line-height:1.5;max-width:36ch;text-wrap:pretty}
+.apoyo{font-size:16px;line-height:1.5;color:var(--suave);max-width:40ch}
+.num{font-family:var(--ancha);font-weight:800;letter-spacing:.02em;font-size:.92em}
+.cifra{display:block;font-family:var(--ancha);font-weight:800;letter-spacing:.02em;line-height:1;color:var(--mant);font-size:clamp(60px,19vw,138px);margin:.08em 0 .1em;white-space:nowrap}
+.cifra-ch{font-size:clamp(56px,15vw,118px)}
+
+/* Mirilla de la marca alrededor de un dato (manual 11): en la tinta de la pantalla */
+.marcas{position:relative;display:inline-block;padding:.12em .2em}
+.marcas::before{content:"";position:absolute;inset:0;pointer-events:none;--k:.3em;--t:max(2px,.035em);--c:var(--tinta);background:
+ linear-gradient(var(--c) 0 0) top left/var(--k) var(--t) no-repeat,linear-gradient(var(--c) 0 0) top left/var(--t) var(--k) no-repeat,
+ linear-gradient(var(--c) 0 0) top right/var(--k) var(--t) no-repeat,linear-gradient(var(--c) 0 0) top right/var(--t) var(--k) no-repeat,
+ linear-gradient(var(--c) 0 0) bottom left/var(--k) var(--t) no-repeat,linear-gradient(var(--c) 0 0) bottom left/var(--t) var(--k) no-repeat,
+ linear-gradient(var(--c) 0 0) bottom right/var(--k) var(--t) no-repeat,linear-gradient(var(--c) 0 0) bottom right/var(--t) var(--k) no-repeat}
+
+/* Recortes de carta anónima (manual 05): una o dos palabras, sin punto final.
+   La letra va en ::before para que el texto real se lea (y se copie) una sola vez */
+.recorte{display:inline-flex;flex-wrap:wrap;gap:.06em .28em;vertical-align:baseline;letter-spacing:0}
+.palabra{display:inline-flex;gap:.04em;align-items:center}
+.rl{display:inline-grid;place-items:center;line-height:1;padding:.08em .1em .13em;min-width:.6em;background:var(--cb);color:var(--cf);font-size:calc(var(--k,1) * .8em);font-weight:400}
+.rl::before{content:attr(data-l)}
+.f0{font-family:"Gloock",Georgia,serif}
+.f1{font-family:"Archivo Black","Arial Black",sans-serif}
+.f2{font-family:"Courier Prime","Courier New",monospace;font-weight:700}
+.f3{font-family:"IM Fell English",Georgia,serif;font-style:italic}
+.firma{aspect-ratio:1310/304;height:auto}
+
+/* ===== Botones: un solo estilo principal (se invierte solo sobre azul) ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:54px;padding:14px 22px;background:var(--btn-fondo);color:var(--btn-tinta);font:600 17px/1.2 var(--texto);text-decoration:none;border:0;cursor:pointer;transition:background-color .2s var(--curva),color .2s var(--curva),transform .16s var(--curva);-webkit-tap-highlight-color:transparent}
+.btn svg{width:20px;height:20px;flex:none}
+@media (hover:hover){.btn:hover{background:var(--btn-hover)}.t-azul .btn:hover{color:var(--azul)}}
+.btn:active{transform:scale(.97)}
+.btn-sec{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:48px;padding:11px 18px;background:transparent;color:var(--tinta);border:1.5px solid var(--tinta);font:600 16px/1.2 var(--texto);text-decoration:none;cursor:pointer;transition:background-color .2s var(--curva),color .2s var(--curva)}
+@media (hover:hover){.btn-sec:hover{background:var(--azul);color:var(--cafe)}}
+/* La nota de lo que no cuesta: solo en la portada, en "Así empieza" y en el cierre */
+.nota{font:400 13px/1.5 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--suave);margin-top:12px;text-wrap:balance}
+.garantia{font-size:16px;line-height:1.45;color:var(--tinta);margin-top:6px;max-width:34ch}
+.accion{display:grid;justify-items:start;align-content:start}
+.enlace{display:inline-flex;align-items:center;min-height:44px;margin-top:6px;font-size:16px;color:var(--tinta);text-underline-offset:4px}
+
+/* ===== Textura de píxeles (manual 09): celdas de 9 px con tres rayitas ===== */
+.px{background-color:var(--cafe);background-image:
+  radial-gradient(ellipse at 58% 42%,rgba(54,32,17,0) 0,rgba(54,32,17,.25) 45%,rgba(54,32,17,.82) 100%),
+  linear-gradient(to bottom,transparent 0 7px,var(--cafe) 7px 9px),
+  linear-gradient(to right,rgba(77,12,16,.95) 0 2px,transparent 2px 3px,rgba(199,216,238,.26) 3px 5px,transparent 5px 6px,rgba(250,236,178,.17) 6px 8px,transparent 8px 9px);
+  background-size:100% 100%,9px 9px,9px 9px}
+
+/* Huecos de imagen: guardan su proporción; si la imagen no cargara, se ve la textura */
+.marco{position:relative;overflow:hidden;width:100%}
+.marco>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;color:transparent;font-size:0}
+.marco.falta>img{visibility:hidden}
+.marco.cromo>img{object-fit:contain}
+.marco.cromo.lista{background:none}
+
+/* ===== Pantallas ===== */
+.pantalla{position:relative;min-height:100vh;min-height:100svh;display:grid;align-items:center;padding:64px var(--g) 72px;overflow-x:clip;background:var(--fondo);color:var(--tinta)}
+@media (min-width:900px){.pantalla{padding:104px var(--g) 72px}}
+.caja{width:100%;max-width:1200px;margin-inline:auto}
+
+/* Escena: texto, imagen y acción. En celular una debajo de otra (mismo orden que el teclado); en escritorio cambia la composición */
+.escena{display:grid;gap:26px;grid-template-areas:"texto" "imagen" "accion"}
+.escena>.texto{grid-area:texto;display:grid;gap:16px;align-content:start;min-width:0}
+.escena>.imagen{grid-area:imagen;min-width:0}
+.escena>.accion{grid-area:accion}
+@media (min-width:900px){
+  .escena{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"texto imagen" "accion imagen";column-gap:clamp(40px,6vw,96px);row-gap:28px;align-items:center}
+  .escena>.texto{align-self:end}
+  .escena>.accion{align-self:start}
+  .escena.izq{grid-template-areas:"imagen texto" "imagen accion"}
+  .escena.img-grande{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+  .escena.izq.img-grande{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+  .escena.centro{grid-template-columns:minmax(0,1fr);grid-template-areas:"imagen" "texto" "accion";justify-items:center;text-align:center;row-gap:24px}
+  .escena.centro>.texto{justify-items:center;align-self:auto}
+  .escena.centro>.accion{justify-items:center}
+  .escena.centro .frase{margin-inline:auto}
+  .escena.centro>.imagen{width:100%}
+}
+
+/* Objetos de cromo (pantallas 3 y 5): uno por pantalla, nunca junto a la firma */
+.cromo{aspect-ratio:1/1;width:min(100%,560px);margin-inline:auto}
+@media (max-width:899px){.cromo{width:min(86vw,380px)}}
+.centro .cromo{width:min(100%,340px)}
+
+/* ===== Encabezado fino (escritorio), café sólido, y botón fijo (celular) ===== */
+.cabecera{display:none}
+@media (min-width:900px){
+  .cabecera{display:flex;position:fixed;inset:0 0 auto 0;z-index:40;height:64px;align-items:center;justify-content:space-between;padding:0 var(--g);background:var(--cafe);border-bottom:1px solid rgba(199,216,238,.22)}
+  .cabecera .firma{width:132px;color:var(--azul)}
+  .cabecera .btn{min-height:44px;padding:9px 16px;font-size:15px}
+}
+/* Manual 10: el cromado nunca junto a la firma. Mientras se ve un cromado o el cierre, la firma del encabezado se esconde */
+.firma-enlace{display:inline-flex;align-items:center;min-height:44px;transition:opacity .2s var(--curva)}
+.sin-firma .cabecera .firma-enlace{opacity:0;pointer-events:none}
+.barra-fija{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px var(--g) calc(10px + env(safe-area-inset-bottom,0px));background:var(--cafe);border-top:1px solid rgba(199,216,238,.22);transform:translateY(110%);transition:transform .25s var(--curva);visibility:hidden}
+.barra-fija.ver{transform:none;visibility:visible}
+.barra-fija .btn{width:100%}
+@media (min-width:900px){.barra-fija{display:none}}
+
+/* ===== 1 · Portada ===== */
+.portada .firma-movil{width:136px;color:var(--azul);margin-bottom:24px}
+@media (min-width:900px){.portada .firma-movil{display:none}}
+.portada .escena>.texto{gap:20px}
+.portada .frase{max-width:34ch}
+@media (max-width:899px){.portada-escena{grid-template-areas:"texto" "accion" "imagen"}}
+.ojo{position:relative;aspect-ratio:1/1;width:min(100%,600px);margin-inline:auto;outline:1px solid rgba(199,216,238,.22);outline-offset:-1px}
+@media (max-width:899px){.ojo{width:min(100%,420px)}}
+.ojo canvas{position:absolute;inset:0;width:100%;height:100%}
+
+/* ===== 2 · Pruébalo ===== */
+.prueba{display:grid;gap:20px}
+.prueba-cab{display:grid;gap:14px;max-width:760px}
+.negocios{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:44px;padding:10px 14px;background:transparent;border:1.5px solid rgba(199,216,238,.5);color:var(--azul);font:500 13px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;text-align:left;transition:background-color .2s var(--curva),color .2s var(--curva),border-color .2s var(--curva)}
+@media (hover:hover){.chip:hover{border-color:var(--azul)}}
+.chip[aria-pressed="true"],.chip[aria-expanded="true"]{background:var(--azul);color:var(--cafe);border-color:var(--azul)}
+.aviso-demo{font-size:16px;line-height:1.45;color:var(--suave);display:flex;gap:10px;align-items:baseline}
+.aviso-demo b{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mant);border:1px solid var(--mant);padding:.35em .5em;flex:none}
+.demo{display:grid;gap:14px}
+.chat{display:flex;flex-direction:column;background:var(--cafe);border:1.5px solid rgba(199,216,238,.45);min-width:0}
+.chat-cab{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid rgba(199,216,238,.22)}
+.chat-av{width:36px;height:36px;border-radius:50%;background:var(--azul);color:var(--cafe);display:grid;place-items:center;flex:none}
+.chat-av svg{width:22px;height:22px}
+.chat-nom{font-weight:600;font-size:16px;line-height:1.2}
+.chat-est{font:400 12px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--suave)}
+/* En celular el chat crece con los mensajes (sin hueco vacío); en escritorio tiene alto fijo */
+.chat-msgs{min-height:150px;max-height:290px;overflow-y:auto;overscroll-behavior:contain;padding:14px;display:flex;flex-direction:column;gap:8px}
+@media (min-width:900px){.chat-msgs{height:360px;max-height:none}}
+.msg{max-width:86%;padding:.55em .85em;font-size:16px;line-height:1.42;animation:entra .2s var(--curva) both;overflow-wrap:anywhere}
+.msg.ag{align-self:flex-start;background:var(--tinto);color:var(--azul)}
+.msg.yo{align-self:flex-end;background:var(--azul);color:var(--cafe)}
+.msg.escribe{display:flex;gap:5px;padding:.8em .9em}
+.msg.escribe i{width:7px;height:7px;border-radius:50%;background:var(--azul);opacity:.35;animation:punto 1s infinite}
+.msg.escribe i:nth-child(2){animation-delay:.15s}.msg.escribe i:nth-child(3){animation-delay:.3s}
+@keyframes entra{from{opacity:0;transform:translateY(6px)}}
+@keyframes punto{0%,100%{opacity:.3}40%{opacity:1}}
+.chat-sug{padding:0 14px 10px}
+.sug{width:100%;text-align:left;padding:9px 12px;background:transparent;border:1.5px dashed rgba(199,216,238,.55);color:var(--azul);font-size:16px;line-height:1.35;cursor:pointer;min-height:48px}
+.sug .sug-etq{display:block;font:500 11px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mant);margin-bottom:3px}
+@media (hover:hover){.sug:hover{border-color:var(--azul)}}
+.chat-form{display:flex;gap:8px;padding:10px 14px 14px;border-top:1px solid rgba(199,216,238,.22)}
+.chat-form input{flex:1;min-width:0;min-height:48px;padding:10px 12px;background:transparent;border:1.5px solid rgba(199,216,238,.5);font-size:16px;color:var(--azul);border-radius:0}
+.chat-form input::placeholder{color:rgba(199,216,238,.62)}
+.chat-form input:focus-visible{outline-offset:0}
+.chat-form button{width:48px;min-height:48px;flex:none;display:grid;place-items:center;background:var(--azul);color:var(--cafe);border:0;cursor:pointer}
+.chat-form button svg{width:20px;height:20px}
+.chat-form button[aria-disabled="true"],.sug[aria-disabled="true"]{opacity:.45;cursor:default}
+/* Franja pegada al chat (solo celular): lo que se acaba de anotar en el panel, sin tener que bajar */
+.franja{display:none}
+@media (max-width:899px){
+  .franja.ver{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--azul);color:var(--cafe);padding:10px 14px;font:500 12px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;animation:entra .2s var(--curva) both}
+  .franja b{font-weight:500;border:1px solid var(--cafe);padding:.3em .5em}
+  .franja.ok b{background:var(--cafe);color:var(--azul)}
+}
+.panel{background:var(--azul);color:var(--cafe);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0;container-type:inline-size}
+.panel-cab{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.panel-tit{font:500 12px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.panel-vivo{font:400 12px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;display:inline-flex;align-items:center;gap:6px}
+.panel-vivo::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--tinto)}
+.filas{display:grid}
+.fila,.fila-cab{display:grid;grid-template-columns:76px minmax(0,1fr) auto;gap:4px 12px;align-items:center;padding:10px 0;border-top:1px solid rgba(54,32,17,.2);font-size:15px;line-height:1.35}
+.fila-cab{font:500 11px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;border-top:0;padding-top:0}
+.fila .id,.fila .val{font:500 12.5px/1.25 var(--mono);text-transform:uppercase;letter-spacing:.04em}
+.fila .val{white-space:nowrap}
+.fila .est{grid-column:3;justify-self:end;font:500 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:.45em .55em;border:1px solid var(--cafe);white-space:nowrap}
+.fila .que{min-width:0}
+.fila.vieja{opacity:.72}
+.fila.nueva{box-shadow:inset 3px 0 0 var(--tinto);padding-left:10px;margin-left:-10px;animation:entra .2s var(--curva) both}
+.fila.ok .est{background:var(--cafe);color:var(--azul)}
+.fila-cab .c4,.fila .val{grid-column:3}
+.fila .est{grid-row:2}
+.fila-cab .c4{display:none}
+.fila .val{grid-row:1;justify-self:end}
+@container (min-width:440px){
+  .fila,.fila-cab{grid-template-columns:76px minmax(0,1fr) auto auto}
+  .fila .est,.fila-cab .c4{grid-column:4;grid-row:1;display:block}
+}
+.prueba>.accion .apoyo{margin-top:12px}
+@media (min-width:900px){
+  .prueba{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"cab cab" "neg neg" "aviso aviso" "chat panel" "accion accion";column-gap:24px;row-gap:20px}
+  .demo{display:contents}
+  .prueba-cab{grid-area:cab}.negocios{grid-area:neg;align-self:start}.aviso-demo{grid-area:aviso}.chat{grid-area:chat}.panel{grid-area:panel;align-self:start}.prueba>.accion{grid-area:accion}
+  .prueba h2{font-size:clamp(34px,3.8vw,54px)}
+}
+@media (min-width:1140px){
+  .prueba{grid-template-columns:minmax(0,9fr) minmax(0,10fr) minmax(0,10fr);grid-template-areas:"cab aviso aviso" "cab chat panel" "neg chat panel" "accion chat panel";align-content:center;row-gap:20px}
+  .prueba-cab{align-self:end}
+  .aviso-demo{align-self:end}
+  .prueba>.accion{align-self:start}
+}
+
+/* ===== 3 · Audio de la llamada ===== */
+.escucha{margin-top:4px;display:grid;gap:8px;justify-items:start}
+.nota-audio{font:400 13px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--suave)}
+
+/* ===== 4 · Papeleo: la captura del chat en un marco de celular ===== */
+.celular{width:min(78vw,320px);margin-inline:auto;padding:9px;border-radius:44px;background:var(--cafe);border:2px solid var(--azul)}
+.celular .marco{border-radius:35px;aspect-ratio:780/1688}
+
+/* ===== 6 · Y también: fichas; el ejemplo sale justo debajo de la ficha tocada ===== */
+.fichas{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-start}
+.fichas li{display:block}
+.fichas li[hidden]{display:none}
+.ejemplo{flex-basis:100%;border-left:3px solid var(--mant);padding:6px 0 8px 14px;margin:2px 0 6px;display:grid;gap:6px;animation:entra .2s var(--curva) both}
+.ejemplo p{font-size:18px;line-height:1.45;max-width:44ch}
+.ejemplo a{font-size:16px;text-underline-offset:4px;display:inline-flex;align-items:center;min-height:44px}
+.ver-mas{min-height:44px;padding:10px 4px;background:none;border:0;color:var(--azul);font:500 13px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+@media (min-width:900px){.tambien .escena{grid-template-columns:minmax(0,4fr) minmax(0,7fr)}}
+
+/* ===== 7 a 9 · Casos: la captura como evidencia (dirección C) ===== */
+.antes-ahora{display:grid;gap:6px;font-size:clamp(18px,1.6vw,21px);line-height:1.45;max-width:38ch}
+.antes-ahora b{font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mant);margin-right:.6em}
+.evidencia{position:relative;transform:rotate(var(--giro,-1.4deg));margin:18px 10px 0}
+.papel{position:relative;background:var(--azul);padding:7px}
+/* Cinta en mantequilla sólida, con el borde roto del manual */
+.papel::before{content:"";position:absolute;z-index:3;top:-13px;left:12%;width:92px;height:26px;background:var(--mant);transform:rotate(-6deg);pointer-events:none;
+  clip-path:polygon(1% 8%,34% 0,70% 5%,99% 0,100% 52%,97% 100%,60% 95%,26% 100%,0 94%,2% 45%)}
+.sello{position:absolute;z-index:4;right:7%;bottom:9%;font:500 clamp(12px,1.4vw,16px)/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--tinto);background:var(--mant);border:2px solid var(--tinto);box-shadow:inset 0 0 0 3px var(--mant),inset 0 0 0 4.5px var(--tinto);padding:.7em .85em .7em 1em;transform:rotate(-8deg)}
+.nota-caso{margin-top:24px;font-size:16px;line-height:1.5;color:var(--suave);max-width:46ch}
+.retrato{width:min(100%,440px);margin-inline:auto}
+
+/* ===== 10 · Así empieza (café y tinto sobre azul) ===== */
+.pasos{display:grid;gap:0;margin-top:30px}
+.paso{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 18px;padding:22px 0;border-top:1.5px solid var(--cafe);align-items:start;align-content:start}
+.paso-num{font-family:var(--ancha);font-weight:800;font-size:clamp(34px,4vw,52px);line-height:1;color:var(--tinto);min-width:2.2ch}
+.paso p{font-size:clamp(18px,1.5vw,20px);line-height:1.5;max-width:38ch}
+.paso p b{font-weight:600}
+@media (min-width:900px){.pasos{grid-template-columns:repeat(3,minmax(0,1fr));gap:36px}.paso{grid-template-columns:1fr;gap:14px}}
+.empieza .accion{margin-top:30px}
+
+/* ===== 11 · Dudas ===== */
+.dudas-lista{display:grid;gap:0;margin-top:34px}
+.duda{padding:22px 0;border-top:1px solid var(--linea);display:grid;gap:8px}
+.duda h3{font-size:20px;font-weight:600;line-height:1.3}
+.duda p{max-width:44ch}
+@media (min-width:900px){.dudas-lista{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:56px}}
+
+/* ===== 12 · Cierre: la portada del manual. Firma en movimiento sobre las ondas, sin cromado ===== */
+.cierre{overflow:hidden;text-align:center}
+.cierre canvas.ondas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.cierre .caja{position:relative;z-index:1;display:grid;justify-items:center;gap:22px}
+.firma-viva{width:min(84vw,620px);height:auto;overflow:visible;color:var(--azul)}
+.firma-viva .lt,.firma-viva .gira,.firma-viva .late{transform-box:fill-box;transform-origin:50% 50%}
+.firma-viva .lt{animation:ola 2.6s ease-in-out infinite}
+.firma-viva .l-n,.firma-viva .l-o{--amp:16px;--ska:5deg}
+.firma-viva .l-o{animation-delay:-.33s}
+.firma-viva .l-i{--amp:10px;--ska:2deg;animation-delay:-.66s}
+.firma-viva .l-d{--amp:6px;--ska:0deg;animation-delay:-.99s}
+@keyframes ola{0%,100%{transform:translateY(calc(var(--amp) * -1)) skewX(calc(var(--ska) * -1))}50%{transform:translateY(var(--amp)) skewX(var(--ska))}}
+.gira{animation:gira 14s linear infinite}
+.late{animation:late 1.6s ease-in-out infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+@keyframes late{0%,100%{transform:scale(.88)}50%{transform:scale(1.06)}}
+.lema{font:500 14px/1.3 var(--mono);letter-spacing:.2em;text-transform:uppercase;background:var(--cafe);color:var(--azul);padding:.5em .8em}
+.cierre h2{margin-top:18px}
+.cierre .accion{justify-items:center}
+.cierre .garantia{margin-inline:auto;text-align:center}
+
+/* ===== Pie ===== */
+.pie{padding:36px var(--g) calc(36px + env(safe-area-inset-bottom,0px));border-top:1px solid rgba(199,216,238,.22);background:var(--cafe)}
+.pie .caja{display:grid;gap:14px}
+.pie-filas{display:flex;flex-wrap:wrap;gap:4px 36px;font-size:16px}
+.pie-filas a,.pie-legal a{display:inline-flex;align-items:center;min-height:44px;text-underline-offset:4px}
+.pie .etq{color:var(--azul)}
+.pie-legal{display:flex;flex-wrap:wrap;align-items:center;gap:0 28px;font:400 13px/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:rgba(199,216,238,.8)}
+
+/* ===== Reducir movimiento: todo quieto ===== */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {"@type":"Organization","name":"NOID","url":"https://noidcorp.com/","logo":"https://noidcorp.com/logo.svg","areaServed":"CO",
+     "description":"Ponemos la IA a contestar el WhatsApp, leer las facturas, llamar a los clientes y revisar que nada falle en negocios pequeños y medianos.",
+     "sameAs":["https://instagram.com/noidd.corp"],
+     "contactPoint":[{"@type":"ContactPoint","telephone":"+57 318 227 2063","contactType":"sales","availableLanguage":"es"}]},
+    {"@type":"FAQPage","mainEntity":[
+      {"@type":"Question","name":"¿Y si la IA se equivoca?","acceptedAnswer":{"@type":"Answer","text":"Cuando duda, pregunta o le pasa la conversación a una persona de tu equipo."}},
+      {"@type":"Question","name":"¿Qué pasa con mis datos?","acceptedAnswer":{"@type":"Answer","text":"Solo se usan para tu negocio y nunca los compartimos."}},
+      {"@type":"Question","name":"¿Tengo que saber de tecnología?","acceptedAnswer":{"@type":"Answer","text":"No. Lo usas desde WhatsApp o una pantalla sencilla."}},
+      {"@type":"Question","name":"¿Cuánto cuesta?","acceptedAnswer":{"@type":"Answer","text":"Depende de lo que haga. En el diagnóstico te damos el precio exacto, por escrito, antes de empezar."}}
+    ]}
+  ]
+}
+</script>
+</head>
+<body>
+<a class="saltar" href="#pruebalo">Saltar a la prueba</a>
+
+<!-- Firma y glifo, dibujados una vez -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="firma" viewBox="62 70 1310 304">
+    <g transform="translate(129.57 291.58)" fill="currentColor"><path d="M54.43 -18.00L0.43 -18.00L14.77 -154.40L76.17 -154.40L166.61 -76.80L174.77 -154.40L228.77 -154.40L214.43 -18.00L154.43 -18.00L62.82 -97.80L54.43 -18.00ZM447.84 -4.20Q421.64 13.00 360.84 13.00Q300.04 13.00 271.44 -4.20Q242.84 -21.40 240.27 -58.20Q237.69 -95.00 263.89 -112.20Q290.09 -129.40 350.89 -129.40Q411.69 -129.40 440.29 -112.20Q468.89 -95.00 471.47 -58.20Q474.04 -21.40 447.84 -4.20ZM357.63 -33.00Q382.63 -33.00 395.07 -35.20Q407.52 -37.40 412.35 -42.70Q417.18 -48.00 416.47 -58.20Q415.75 -68.40 410.18 -73.70Q404.61 -79.00 391.86 -81.20Q379.10 -83.40 354.10 -83.40Q317.50 -83.40 305.36 -78.30Q293.22 -73.20 294.27 -58.20Q295.31 -43.20 308.17 -38.10Q321.03 -33.00 357.63 -33.00ZM546.97 8.00L492.97 8.00L485.82 -128.40L539.82 -128.40L546.97 8.00ZM719.20 0.00L577.20 0.00L577.20 -136.40L719.20 -136.40Q736.20 -136.40 749.30 -133.20Q762.40 -130.00 773.40 -122.60Q784.40 -115.20 790.20 -101.50Q796.00 -87.80 796.00 -68.40Q796.00 -52.20 792.00 -39.90Q788.00 -27.60 781.20 -20.10Q774.40 -12.60 764.30 -8.00Q754.20 -3.40 743.40 -1.70Q732.60 0.00 719.20 0.00ZM631.20 -90.40L631.20 -46.00L713.80 -46.00Q728.60 -46.00 734.30 -50.00Q740.00 -54.00 740.00 -68.40Q740.00 -82.40 734.20 -86.40Q728.40 -90.40 713.80 -90.40L631.20 -90.40Z"/><path fill="none" stroke="currentColor" stroke-width="7" d="M-59.57 -146.40V-214.40H8.43M788.00 -214.40H856.00V-146.40M-59.57 5.00V73.00H8.43M788.00 73.00H856.00V5.00"/><polygon points="1107.76,-180.79 1113.02,-116.43 1134.96,-157.15 1131.90,-115.92 1200.44,-171.90 1154.64,-105.38 1194.88,-117.30 1156.89,-84.53 1230.42,-80.99 1163.79,-68.02 1228.49,-37.13 1149.48,-50.51 1194.58,-0.32 1143.03,-34.77 1160.62,6.26 1130.67,-13.63 1132.82,56.59 1108.63,-18.85 1086.37,56.31 1090.05,-18.49 1058.15,17.60 1075.31,-35.34 1025.82,-4.32 1063.46,-51.77 981.68,-29.65 1060.12,-64.43 967.74,-79.62 1051.07,-90.24 1005.42,-115.71 1057.64,-103.85 1033.83,-144.36 1074.32,-118.53 1060.55,-206.08 1096.42,-122.23"/></g>
+  </symbol>
+  <symbol id="globo" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 5h16v11H9l-5 4z"/><path stroke="currentColor" stroke-width="2" d="M8 9.5h8M8 12.5h5"/></symbol>
+</svg>
+
+<!-- Encabezado fino (solo escritorio) -->
+<header class="cabecera">
+  <a class="firma-enlace" href="#inicio" aria-label="NOID, ir al inicio"><svg class="firma" aria-hidden="true"><use href="#firma"/></svg></a>
+  <a class="btn" href="https://wa.me/573182272063?text=Hola%2C%20quiero%20el%20diagn%C3%B3stico%20gratis.%20Mi%20negocio%20es%20___" target="_blank" rel="noopener" data-wa="Hola, quiero el diagnóstico gratis. Mi negocio es ___" data-pantalla="encabezado"><svg aria-hidden="true"><use href="#globo"/></svg>Quiero mi diagnóstico</a>
+</header>
+
+<main id="contenido">
+
+<!-- 1 · Portada -->
+<section class="pantalla portada" id="inicio" data-n="1" data-nombre="portada" aria-labelledby="t1">
+  <div class="caja escena portada-escena">
+    <div class="texto">
+      <svg class="firma firma-movil" role="img" aria-label="NOID"><use href="#firma"/></svg>
+      <h1 id="t1">Tu negocio, <span class="recorte">trabajando solo</span></h1>
+      <p class="frase">Te decimos, gratis, qué tareas de tu negocio puede hacer la IA, cuánto tiempo te ahorra y cuánto cuesta. Por escrito, en 48 horas.</p>
+    </div>
+    <div class="accion">
+      <a class="btn" href="https://wa.me/573182272063?text=Hola%2C%20quiero%20el%20diagn%C3%B3stico%20gratis.%20Mi%20negocio%20es%20___" target="_blank" rel="noopener" data-wa="Hola, quiero el diagnóstico gratis. Mi negocio es ___" data-pantalla="1"><svg aria-hidden="true"><use href="#globo"/></svg>Quiero mi diagnóstico gratis</a>
+      <p class="nota">Gratis · 20 minutos · Por WhatsApp</p>
+      <p class="garantia">Y si algo falla el primer mes, lo arreglamos sin costo.</p>
+      <a class="enlace" href="#pruebalo">o pruébalo aquí abajo <span aria-hidden="true">&nbsp;↓</span></a>
+    </div>
+    <div class="imagen">
+      <!-- El ojo dibujado: parpadea una vez al abrir y sigue el cursor (manual 06) -->
+      <figure class="ojo px" id="ojo" data-modo="vivo" role="img" aria-label="El ojo de NOID, con la mirilla sobre el iris">
+        <canvas id="ojoCv" aria-hidden="true"></canvas>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · Pruébalo -->
+<section class="pantalla" id="pruebalo" data-n="2" data-nombre="la prueba del chat" aria-labelledby="t2">
+  <div class="caja prueba">
+    <div class="prueba-cab">
+      <p class="etq">Pruébalo</p>
+      <h2 id="t2">Así contestaría tu <span class="recorte">WhatsApp</span></h2>
+      <p class="frase">Escoge tu negocio y toca los mensajes de abajo, como si fueras tu cliente.</p>
+    </div>
+    <div class="negocios" role="group" aria-label="Tipo de negocio">
+      <button type="button" class="chip" data-neg="restaurante" aria-pressed="true">Restaurante</button>
+      <button type="button" class="chip" data-neg="consultorio" aria-pressed="false">Consultorio</button>
+      <button type="button" class="chip" data-neg="ferreteria" aria-pressed="false">Tienda o ferretería</button>
+      <button type="button" class="chip" data-neg="taller" aria-pressed="false">Taller</button>
+      <button type="button" class="chip" data-neg="otro" aria-pressed="false">Otro</button>
+    </div>
+    <div class="demo">
+      <p class="aviso-demo"><b>Demostración</b><span>Con datos de ejemplo. Así contestaría el agente; no es una IA en vivo.</span></p>
+      <div class="chat">
+        <div class="chat-cab">
+          <span class="chat-av" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#globo"/></svg></span>
+          <div><p class="chat-nom" id="chatNom">Tu restaurante</p><p class="chat-est">Asistente · en línea</p></div>
+        </div>
+        <div class="chat-msgs" id="msgs" role="log" aria-live="polite" aria-label="Conversación de prueba"></div>
+        <div class="chat-sug"><button type="button" class="sug" id="sug"><span class="sug-etq" id="sugEtq">Toca para responder</span><span id="sugTxt"></span></button></div>
+        <form class="chat-form" id="chatForm" autocomplete="off">
+          <label class="sr" for="chatIn">O escribe tú, como si fueras el cliente</label>
+          <input id="chatIn" type="text" maxlength="160" placeholder="O escribe tú…" enterkeyhint="send">
+          <button type="submit" id="chatEnviar" aria-label="Enviar"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 20.5 21 12 3 3.5 3 10l12 2-12 2z"/></svg></button>
+        </form>
+        <p class="franja" id="franja" aria-hidden="true"></p>
+      </div>
+      <div class="panel" role="region" aria-labelledby="panelTit">
+        <div class="panel-cab"><p class="panel-tit" id="panelTit">Tu panel · Pedidos de hoy</p><p class="panel-vivo">En vivo</p></div>
+        <div class="filas" id="filas" role="table" aria-labelledby="panelTit"></div>
+      </div>
+    </div>
+    <div class="accion">
+      <a class="btn" id="btnPrueba" href="https://wa.me/573182272063?text=Hola%2C%20prob%C3%A9%20el%20agente%20de%20restaurante%20en%20su%20p%C3%A1gina.%20Mi%20negocio%20es%20___" target="_blank" rel="noopener" data-wa="Hola, probé el agente de restaurante en su página. Mi negocio es ___" data-pantalla="2"><svg aria-hidden="true"><use href="#globo"/></svg>Lo quiero para mi negocio</a>
+      <p class="apoyo">En el diagnóstico te mostramos uno con tus productos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · Llamar -->
+<section class="pantalla" id="llamadas" data-n="3" data-nombre="llamadas" aria-labelledby="t3">
+  <div class="caja escena">
+    <div class="texto">
+      <p class="etq">Lo que podemos hacer · Llamar</p>
+      <h2 id="t3"><span class="num">300</span> llamadas en <span class="recorte">una hora</span></h2>
+      <p class="frase">Una voz natural confirma citas, cobra o pregunta, y anota cada respuesta.</p>
+      <div class="escucha" id="escucha">
+        <button type="button" class="btn-sec" id="btnEscucha"><span aria-hidden="true">▶</span> <span>Escucha cómo suena</span></button>
+        <audio id="audioMuestra" src="audio/llamada-muestra.mp3" preload="none"></audio>
+        <p class="nota-audio">Llamada de ejemplo · 23 s · voces hechas con IA</p>
+      </div>
+    </div>
+    <div class="imagen">
+      <div class="marco cromo px" data-cromo><img src="img/telefono.webp" width="900" height="900" loading="lazy" decoding="async" sizes="(min-width:900px) 560px, min(86vw,380px)" alt="Teléfono fijo de cromo que brilla en café, tinto y azul"></div>
+    </div>
+    <div class="accion">
+      <a class="btn" href="https://wa.me/573182272063?text=Hola%2C%20quiero%20escuchar%20una%20llamada%20de%20prueba.%20Mi%20negocio%20es%20___" target="_blank" rel="noopener" data-wa="Hola, quiero escuchar una llamada de prueba. Mi negocio es ___" data-pantalla="3"><svg aria-hidden="true"><use href="#globo"/></svg>Quiero una llamada de prueba</a>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · Papeleo (con el caso de las facturas) -->
+<section class="pantalla" id="papeleo" data-n="4" data-nombre="papeleo y facturas" aria-labelledby="t4">
+  <div class="caja escena izq">
+    <div class="texto">
+      <p class="etq">Lo que podemos hacer · Papeleo</p>
+      <h2 id="t4">Mandas la foto.<br>Queda en <span class="recorte">tu hoja</span></h2>
+      <p class="frase">Facturas, cuentas de cobro y comprobantes se leen solos. Si no entiende un dato, te pregunta.</p>
+      <p class="apoyo">Ya funciona en pruebas con una empresa de transporte de carga.</p>
+    </div>
+    <div class="imagen">
+      <figure class="celular">
+        <div class="marco px"><img src="capturas/factura-chat-720.webp" srcset="capturas/factura-chat-720.webp 720w, capturas/factura-chat.webp 780w" sizes="(min-width:900px) 300px, min(78vw,320px)" width="780" height="1688" loading="lazy" decoding="async" alt="Chat de WhatsApp con datos ficticios: el conductor manda la foto de un recibo de peaje, el asistente lo registra y pregunta el NIT que no pudo leer"></div>
+      </figure>
+    </div>
+    <div class="accion">
+      <a class="btn" href="https://wa.me/573182272063?text=Hola%2C%20quiero%20automatizar%20facturas%20o%20cuentas%20de%20cobro.%20Mi%20negocio%20es%20___" target="_blank" rel="noopener" data-wa="Hola, quiero automatizar facturas o cuentas de cobro. Mi negocio es ___" data-pantalla="4"><svg aria-hidden="true"><use href="#globo"/></svg>Quiero dejar de transcribir</a>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · Seguimiento -->
+<section class="pantalla" id="seguimiento" data-n="5" data-nombre="seguimiento" aria-labelledby="t5">
+  <div class="caja escena centro">
+    <div class="imagen">
+      <div class="marco cromo px" data-cromo><img src="img/portapapeles.webp" width="900" height="900" loading="lazy" decoding="async" sizes="(min-width:900px) 340px, min(86vw,380px)" alt="Portapapeles de cromo con tres casillas, una marcada"></div>
+    </div>
+    <div class="texto">
+      <p class="etq">Lo que podemos hacer · Seguimiento</p>
+      <h2 id="t5">Cada mañana, cada quien sabe qué <span class="recorte">le falta</span></h2>
+      <p class="frase">Cruzamos lo programado con lo hecho y a cada responsable le llega su lista.</p>
+    </div>
+    <div class="accion">
+      <a class="btn" href="https://wa.me/573182272063?text=Hola%2C%20quiero%20un%20seguimiento%20diario%20de%20mi%20equipo.%20Mi%20negocio%20es%20___" target="_blank" rel="noopener" data-wa="Hola, quiero un seguimiento diario de mi equipo. Mi negocio es ___" data-pantalla="5"><svg aria-hidden="true"><use href="#globo"/></svg>Quiero saber qué quedó pendiente</a>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · Y también -->
+<section class="pantalla tambien" id="tambien" data-n="6" data-nombre="y también" aria-labelledby="t6">
+  <div class="caja escena">
+    <div class="texto">
+      <p class="etq">Y también</p>
+      <h2 id="t6">Y lo que necesites, <span class="recorte">en días</span></h2>
+      <p class="frase">Toca uno y te mostramos un ejemplo.</p>
+    </div>
+    <div class="imagen">
+      <ul class="fichas" id="fichas">
+        <li><button type="button" class="chip" aria-expanded="false" aria-controls="ejemplo" data-ej="Una ferretería recibe la foto de una lista de materiales y responde con la cotización en minutos.">Cotizador</button></li>
+        <li><button type="button" class="chip" aria-expanded="false" aria-controls="ejemplo" data-ej="Una barbería deja que el cliente escoja la hora por WhatsApp y le recuerda la cita el día antes.">Reservas y turnos</button></li>
+        <li><button type="button" class="chip" aria-expanded="false" aria-controls="ejemplo" data-ej="Te llega un aviso al celular si lo que vendiste en el día no cuadra con lo que entró al banco.">Alertas cuando algo no cuadra</button></li>
+        <li><button type="button" class="chip" aria-expanded="false" aria-controls="ejemplo" data-ej="Un colegio le recuerda el pago a cada familia 3 días antes. Tú solo llamas a quien no responde.">Cobro de cartera</button></li>
+        <li><button type="button" class="chip" aria-expanded="false" aria-controls="ejemplo" data-ej="Un minimercado recibe en el celular: «Quedan 5 cajas de leche, pide hoy».">Inventario</button></li>
+        <li><button type="button" class="chip" aria-expanded="false" aria-controls="ejemplo" data-ej="El comensal ve la hamburguesa a tamaño real sobre su mesa antes de pedirla, sin instalar nada." data-enlace="https://noidcorp.com/demo-ar/muestra/" data-enlace-txt="Ábrela en tu celular (demo de muestra)">Carta en 3D para restaurantes</button></li>
+        <li class="extra" hidden><button type="button" class="chip" aria-expanded="false" aria-controls="ejemplo" data-ej="Una tienda en línea cruza el extracto con sus ventas y ve solo los 7 pagos que no cuadran.">Cuadre con el banco</button></li>
+        <li class="extra" hidden><button type="button" class="chip" aria-expanded="false" aria-controls="ejemplo" data-ej="Una inmobiliaria llena un formulario y sale el contrato de arriendo listo para firmar.">Contratos y documentos</button></li>
+        <li class="extra" hidden><button type="button" class="chip" aria-expanded="false" aria-controls="ejemplo" data-ej="Un vendedor ve cada mañana a quién llamar hoy y qué le prometió a cada cliente.">Lista de clientes</button></li>
+        <li class="extra" hidden><button type="button" class="chip" aria-expanded="false" aria-controls="ejemplo" data-ej="Los clientes de una mensajería consultan solos dónde va su envío, sin llamar.">Página para tus clientes</button></li>
+        <li class="extra" hidden><button type="button" class="chip" aria-expanded="false" aria-controls="ejemplo" data-ej="Una tienda de ropa publica su catálogo y cada pedido le llega a su WhatsApp, armado y con total.">Catálogo con pedidos</button></li>
+        <li class="extra" hidden><button type="button" class="chip" aria-expanded="false" aria-controls="ejemplo" data-ej="Una clínica dental le escribe a cada paciente al día siguiente y te avisa si alguien quedó molesto.">Encuestas</button></li>
+        <li class="extra" hidden><button type="button" class="chip" aria-expanded="false" aria-controls="ejemplo" data-ej="Un empleado nuevo pregunta «¿cómo se hace una devolución?» y le responde con el manual de la empresa.">Respuestas con tus manuales</button></li>
+        <li class="extra" hidden><button type="button" class="chip" aria-expanded="false" aria-controls="ejemplo" data-ej="Después de cada reunión, a cada persona le llega lo que prometió hacer y para cuándo.">Resumen de reuniones</button></li>
+        <li class="extra" hidden><button type="button" class="chip" aria-expanded="false" aria-controls="ejemplo" data-ej="Una distribuidora ve en un mapa qué clientes no ha visitado este mes.">Mapa de clientes</button></li>
+        <li class="extra" hidden><button type="button" class="chip" aria-expanded="false" aria-controls="ejemplo" data-ej="Un gimnasio descubre que tiene 1.200 clientes, no 1.500: el resto eran repetidos mal escritos.">Limpiar tu lista de clientes</button></li>
+        <li class="extra" hidden><button type="button" class="chip" aria-expanded="false" aria-controls="ejemplo" data-ej="Un consultorio nuevo tiene su página en días: rápida en el celular y con botón de WhatsApp.">Página web</button></li>
+        <li class="extra" hidden><button type="button" class="chip" aria-expanded="false" aria-controls="ejemplo" data-ej="Una macro que tardaba media hora y fallaba a fin de mes ahora corre en un minuto.">Arreglar lo que ya tienes</button></li>
+        <li class="li-mas"><button type="button" class="ver-mas" id="verMas" aria-expanded="false">Ver más (12)</button></li>
+        <li class="ejemplo" id="ejemplo" aria-live="polite" hidden><p id="ejemploTxt"></p></li>
+      </ul>
+    </div>
+    <div class="accion">
+      <a class="btn" href="https://wa.me/573182272063?text=Hola%2C%20necesito%20algo%20que%20no%20vi%20en%20la%20lista%3A%20___" target="_blank" rel="noopener" data-wa="Hola, necesito algo que no vi en la lista: ___" data-pantalla="6"><svg aria-hidden="true"><use href="#globo"/></svg>¿No está lo tuyo? Cuéntanos</a>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · Caso: citas -->
+<section class="pantalla t-tinto" id="caso-citas" data-n="7" data-nombre="el caso de las citas" aria-labelledby="t7">
+  <div class="caja escena img-grande">
+    <div class="texto">
+      <p class="etq">Lo que ya hicimos · Salud domiciliaria</p>
+      <h2 id="t7"><span class="cifra"><span class="marcas">163</span></span> citas en 9 minutos</h2>
+      <p class="antes-ahora"><span><b>Antes</b>una por una, a mano.</span><span><b>Ahora</b>solas, y revisadas contra la agenda.</span></p>
+    </div>
+    <div class="imagen">
+      <figure class="evidencia">
+        <div class="papel"><div class="marco px" style="aspect-ratio:1440/900"><img src="capturas/citas-plan-1440.webp" srcset="capturas/citas-plan-720.webp 720w, capturas/citas-plan-1440.webp 1440w" sizes="(min-width:900px) 690px, calc(100vw - 56px)" width="1440" height="900" loading="lazy" decoding="async" alt="Captura con datos ficticios del plan de citas: crearía 129 y movería 34"></div></div>
+        <span class="sello" aria-hidden="true">Revisado</span>
+      </figure>
+      <p class="nota-caso">Sin nombres: protegemos a nuestros clientes. Los datos de la imagen son ficticios.</p>
+    </div>
+    <div class="accion">
+      <a class="btn" href="https://wa.me/573182272063?text=Hola%2C%20vi%20el%20caso%20de%20las%20163%20citas.%20Mi%20negocio%20es%20___" target="_blank" rel="noopener" data-wa="Hola, vi el caso de las 163 citas. Mi negocio es ___" data-pantalla="7"><svg aria-hidden="true"><use href="#globo"/></svg>Quiero esto en mi sistema</a>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · Caso: exámenes -->
+<section class="pantalla t-tinto" id="caso-examenes" data-n="8" data-nombre="el caso de los exámenes" aria-labelledby="t8">
+  <div class="caja escena izq img-grande">
+    <div class="texto">
+      <p class="etq">Lo que ya hicimos · Salud domiciliaria</p>
+      <h2 id="t8"><span class="cifra"><span class="marcas">115</span></span> exámenes que se ordenaron y nadie anotó</h2>
+      <p class="frase">Un botón hace el cruce de cada mañana en 7 regiones. Y ve lo que se escapa.</p>
+    </div>
+    <div class="imagen">
+      <figure class="evidencia" style="--giro:1.2deg">
+        <div class="papel"><div class="marco px" style="aspect-ratio:1440/900"><img src="capturas/hallazgos-1440.webp" srcset="capturas/hallazgos-720.webp 720w, capturas/hallazgos-1440.webp 1440w" sizes="(min-width:900px) 690px, calc(100vw - 56px)" width="1440" height="900" loading="lazy" decoding="async" alt="Tabla con datos ficticios de exámenes ordenados que nadie anotó, con las filas marcadas"></div></div>
+        <span class="sello" aria-hidden="true">Revisado</span>
+      </figure>
+      <p class="nota-caso">Sin nombres: protegemos a nuestros clientes. Los datos de la imagen son ficticios.</p>
+    </div>
+    <div class="accion">
+      <a class="btn" href="https://wa.me/573182272063?text=Hola%2C%20vi%20el%20caso%20de%20los%20ex%C3%A1menes%20que%20nadie%20anot%C3%B3.%20Mi%20negocio%20es%20___" target="_blank" rel="noopener" data-wa="Hola, vi el caso de los exámenes que nadie anotó. Mi negocio es ___" data-pantalla="8"><svg aria-hidden="true"><use href="#globo"/></svg>Quiero que revisen lo mío</a>
+    </div>
+  </div>
+</section>
+
+<!-- 9 · Caso: GPS -->
+<section class="pantalla t-tinto" id="caso-gps" data-n="9" data-nombre="el caso del GPS" aria-labelledby="t9">
+  <div class="caja escena">
+    <div class="texto">
+      <p class="etq">Lo que ya hicimos · Personal en campo</p>
+      <h2 id="t9"><span class="cifra cifra-ch"><span class="marcas">5.739</span></span> visitas revisadas con GPS</h2>
+      <p class="frase">En 26 días, 2.670 se marcaron a más de 200 metros de donde debían.</p>
+    </div>
+    <div class="imagen">
+      <figure class="evidencia retrato" style="--giro:-1.8deg">
+        <div class="papel"><div class="marco px" style="aspect-ratio:4/5"><img src="img/mapa-gps.webp" width="800" height="1000" loading="lazy" decoding="async" sizes="(min-width:900px) 440px, calc(100vw - 56px)" alt="Mapa en píxeles con una casa, el círculo de 200 metros y marcas de visitas dentro y fuera; la mirilla sobre una marca de afuera"></div></div>
+        <span class="sello" aria-hidden="true">Revisado</span>
+      </figure>
+      <p class="nota-caso">Sin nombres: protegemos a nuestros clientes. Los datos de la imagen son ficticios.</p>
+    </div>
+    <div class="accion">
+      <a class="btn" href="https://wa.me/573182272063?text=Hola%2C%20vi%20el%20caso%20del%20GPS.%20Tengo%20personal%20en%20campo%3A%20___" target="_blank" rel="noopener" data-wa="Hola, vi el caso del GPS. Tengo personal en campo: ___" data-pantalla="9"><svg aria-hidden="true"><use href="#globo"/></svg>Quiero controlar mis visitas</a>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · Así empieza (tu diagnóstico) -->
+<section class="pantalla t-azul empieza" id="empieza" data-n="10" data-nombre="el diagnóstico" aria-labelledby="t10">
+  <div class="caja">
+    <p class="etq">Tu diagnóstico</p>
+    <h2 id="t10" style="margin-top:16px">Así empieza: <span class="recorte" data-fondo="azul">gratis</span></h2>
+    <ol class="pasos">
+      <li class="paso"><span class="paso-num" aria-hidden="true">01</span><p><span class="sr">Paso 1: </span><b>Hablamos 20 minutos por WhatsApp.</b></p></li>
+      <li class="paso"><span class="paso-num" aria-hidden="true">02</span><p><span class="sr">Paso 2: </span>En 48 horas recibes por escrito <b>3 tareas que podemos automatizar</b>, cuánto tiempo te ahorra cada una y cuánto cuesta.</p></li>
+      <li class="paso"><span class="paso-num" aria-hidden="true">03</span><p><span class="sr">Paso 3: </span>Si quieres, lo construimos: primera versión en 1 a 3 semanas y, <b>si algo falla el primer mes, lo arreglamos sin costo.</b></p></li>
+    </ol>
+    <div class="accion">
+      <a class="btn" href="https://wa.me/573182272063?text=Hola%2C%20quiero%20el%20diagn%C3%B3stico%20gratis.%20Mi%20negocio%20es%20___" target="_blank" rel="noopener" data-wa="Hola, quiero el diagnóstico gratis. Mi negocio es ___" data-pantalla="10"><svg aria-hidden="true"><use href="#globo"/></svg>Quiero mi diagnóstico gratis</a>
+      <p class="nota">Gratis · 20 minutos · Por WhatsApp</p>
+    </div>
+  </div>
+</section>
+
+<!-- 11 · Dudas -->
+<section class="pantalla" id="dudas" data-n="11" data-nombre="las dudas" aria-labelledby="t11">
+  <div class="caja">
+    <p class="etq">Dudas</p>
+    <h2 id="t11" style="margin-top:16px">Lo que todos <span class="recorte">preguntan</span></h2>
+    <div class="dudas-lista">
+      <div class="duda"><h3>¿Y si la IA se equivoca?</h3><p>Cuando duda, pregunta o le pasa la conversación a una persona de tu equipo.</p></div>
+      <div class="duda"><h3>¿Qué pasa con mis datos?</h3><p>Solo se usan para tu negocio y nunca los compartimos.</p></div>
+      <div class="duda"><h3>¿Tengo que saber de tecnología?</h3><p>No. Lo usas desde WhatsApp o una pantalla sencilla.</p></div>
+      <div class="duda"><h3>¿Cuánto cuesta?</h3><p>Depende de lo que haga. En el diagnóstico te damos el precio exacto, por escrito, antes de empezar.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 · Cierre: la firma en movimiento sobre las ondas (manual, portada). Sin cromado -->
+<section class="pantalla cierre" id="cierre" data-n="12" data-nombre="el cierre" aria-labelledby="t12">
+  <canvas class="ondas" id="ondas" aria-hidden="true"></canvas>
+  <div class="caja">
+    <svg class="firma-viva" viewBox="62 40 1310 360" role="img" aria-label="NOID">
+      <g transform="translate(129.57 291.58)" fill="currentColor">
+        <g class="lt l-n"><path d="M54.43 -18.00L0.43 -18.00L14.77 -154.40L76.17 -154.40L166.61 -76.80L174.77 -154.40L228.77 -154.40L214.43 -18.00L154.43 -18.00L62.82 -97.80L54.43 -18.00Z"/></g>
+        <g class="lt l-o"><path d="M447.84 -4.20Q421.64 13.00 360.84 13.00Q300.04 13.00 271.44 -4.20Q242.84 -21.40 240.27 -58.20Q237.69 -95.00 263.89 -112.20Q290.09 -129.40 350.89 -129.40Q411.69 -129.40 440.29 -112.20Q468.89 -95.00 471.47 -58.20Q474.04 -21.40 447.84 -4.20ZM357.63 -33.00Q382.63 -33.00 395.07 -35.20Q407.52 -37.40 412.35 -42.70Q417.18 -48.00 416.47 -58.20Q415.75 -68.40 410.18 -73.70Q404.61 -79.00 391.86 -81.20Q379.10 -83.40 354.10 -83.40Q317.50 -83.40 305.36 -78.30Q293.22 -73.20 294.27 -58.20Q295.31 -43.20 308.17 -38.10Q321.03 -33.00 357.63 -33.00Z"/></g>
+        <g class="lt l-i"><path d="M546.97 8.00L492.97 8.00L485.82 -128.40L539.82 -128.40L546.97 8.00Z"/></g>
+        <g class="lt l-d"><path d="M719.20 0.00L577.20 0.00L577.20 -136.40L719.20 -136.40Q736.20 -136.40 749.30 -133.20Q762.40 -130.00 773.40 -122.60Q784.40 -115.20 790.20 -101.50Q796.00 -87.80 796.00 -68.40Q796.00 -52.20 792.00 -39.90Q788.00 -27.60 781.20 -20.10Q774.40 -12.60 764.30 -8.00Q754.20 -3.40 743.40 -1.70Q732.60 0.00 719.20 0.00ZM631.20 -90.40L631.20 -46.00L713.80 -46.00Q728.60 -46.00 734.30 -50.00Q740.00 -54.00 740.00 -68.40Q740.00 -82.40 734.20 -86.40Q728.40 -90.40 713.80 -90.40L631.20 -90.40Z"/></g>
+        <path fill="none" stroke="currentColor" stroke-width="7" d="M-59.57 -146.40V-214.40H8.43M788.00 -214.40H856.00V-146.40M-59.57 5.00V73.00H8.43M788.00 73.00H856.00V5.00"/>
+        <g class="gira"><g class="late"><polygon points="1107.76,-180.79 1113.02,-116.43 1134.96,-157.15 1131.90,-115.92 1200.44,-171.90 1154.64,-105.38 1194.88,-117.30 1156.89,-84.53 1230.42,-80.99 1163.79,-68.02 1228.49,-37.13 1149.48,-50.51 1194.58,-0.32 1143.03,-34.77 1160.62,6.26 1130.67,-13.63 1132.82,56.59 1108.63,-18.85 1086.37,56.31 1090.05,-18.49 1058.15,17.60 1075.31,-35.34 1025.82,-4.32 1063.46,-51.77 981.68,-29.65 1060.12,-64.43 967.74,-79.62 1051.07,-90.24 1005.42,-115.71 1057.64,-103.85 1033.83,-144.36 1074.32,-118.53 1060.55,-206.08 1096.42,-122.23"/></g></g>
+      </g>
+    </svg>
+    <p class="lema">Desconfiamos por ti</p>
+    <h2 id="t12">Tu negocio, <span class="recorte">trabajando solo</span></h2>
+    <div class="accion">
+      <a class="btn" href="https://wa.me/573182272063?text=Hola%2C%20quiero%20el%20diagn%C3%B3stico%20gratis.%20Mi%20negocio%20es%20___" target="_blank" rel="noopener" data-wa="Hola, quiero el diagnóstico gratis. Mi negocio es ___" data-pantalla="12"><svg aria-hidden="true"><use href="#globo"/></svg>Quiero mi diagnóstico gratis</a>
+      <p class="nota">Gratis · 20 minutos · Por WhatsApp</p>
+      <p class="garantia">Y si algo falla el primer mes, lo arreglamos sin costo.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie" id="pie">
+  <div class="caja">
+    <p class="etq">NOID</p>
+    <div class="pie-filas">
+      <a href="https://wa.me/573182272063?text=Hola%2C%20quiero%20el%20diagn%C3%B3stico%20gratis.%20Mi%20negocio%20es%20___" target="_blank" rel="noopener" data-wa="Hola, quiero el diagnóstico gratis. Mi negocio es ___" data-pantalla="pie">WhatsApp 318 227 2063</a>
+      <a href="https://instagram.com/noidd.corp" target="_blank" rel="noopener">Instagram @noidd.corp</a>
+    </div>
+    <div class="pie-legal"><a href="../terminos/">Términos</a><a href="../privacidad/">Política de datos</a><span>© 2026 NOID</span></div>
+  </div>
+</footer>
+
+<!-- Botón fijo del celular: desde la pantalla 2, nunca a la vez que el botón propio de la pantalla -->
+<div class="barra-fija" id="barraFija" inert>
+  <a class="btn" href="https://wa.me/573182272063?text=Hola%2C%20quiero%20el%20diagn%C3%B3stico%20gratis.%20Mi%20negocio%20es%20___" target="_blank" rel="noopener" data-wa="Hola, quiero el diagnóstico gratis. Mi negocio es ___" data-pantalla="fijo"><svg aria-hidden="true"><use href="#globo"/></svg>Quiero mi diagnóstico</a>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+/* El único WhatsApp del sitio: todos los botones salen de aquí */
+var NUMERO='573182272063';
+
+var quieto=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function $(id){return document.getElementById(id);}
+function todos(sel,raiz){return Array.prototype.slice.call((raiz||document).querySelectorAll(sel));}
+function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function hash(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+
+/* ---------- Enlaces de WhatsApp (el href completo ya viene en el HTML; aquí se rearma si cambia el mensaje) ---------- */
+function armarWa(a){a.href='https://wa.me/'+NUMERO+'?text='+encodeURIComponent(a.getAttribute('data-wa'));}
+todos('a[data-wa]').forEach(armarWa);
+/* Medición: si luego se agrega GoatCounter, cada clic cuenta con su pantalla */
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('a[data-pantalla]');if(!a)return;
+  var p=a.getAttribute('data-pantalla');
+  try{if(window.goatcounter&&goatcounter.count)goatcounter.count({path:'clic-'+p,title:a.textContent.trim(),event:true});}catch(err){}
+  try{document.dispatchEvent(new CustomEvent('noid:clic',{detail:{pantalla:p}}));}catch(err){}
+});
+
+/* ---------- Recortes de carta anónima (manual 05) ---------- */
+var PARES=[['azul','cafe'],['tinto','azul'],['mant','cafe'],['azul','tinto'],['tinto','mant'],['mant','tinto']],PESO=[3,3,1.3,2,1.6,1.1],KF=[1,.86,1.12,1.15];
+function roto(R){function j(a,b){return(a+R()*(b-a)).toFixed(1)+'%';}
+  return 'polygon('+[[j(0,6),j(0,10)],[j(26,40),j(0,6)],[j(60,74),j(0,8)],[j(94,100),j(0,7)],[j(94,100),j(38,56)],[j(95,100),j(93,100)],[j(58,72),j(92,100)],[j(22,38),j(95,100)],[j(0,6),j(91,100)],[j(0,6),j(40,58)]].map(function(p){return p.join(' ');}).join(',')+')';}
+todos('.recorte').forEach(function(el){
+  var txt=el.textContent.trim(),R=rng(hash(txt)+7),fPrev=-1,cPrev='',fondo=el.getAttribute('data-fondo')||'cafe';
+  var pares=[],pesos=[];PARES.forEach(function(p,i){if(p[0]!==fondo){pares.push(p);pesos.push(PESO[i]);}});
+  var total=pesos.reduce(function(s,w){return s+w;},0);
+  el.textContent='';
+  /* El texto real, una sola vez, para lectores de pantalla, buscadores y al copiar */
+  var sr=document.createElement('span');sr.className='sr';sr.textContent=txt;el.appendChild(sr);
+  txt.split(/\s+/).forEach(function(w){
+    var pal=document.createElement('span');pal.className='palabra';pal.setAttribute('aria-hidden','true');
+    Array.from(w).forEach(function(ch){
+      var f;do{f=Math.floor(R()*4);}while(f===fPrev);fPrev=f;
+      var par,int=0;do{var x=R()*total;par=null;for(var i=0;i<pares.length;i++){x-=pesos[i];if(x<=0){par=pares[i];break;}}if(!par)par=pares[pares.length-1];int++;}while(par[0]===cPrev&&int<8);
+      cPrev=par[0];
+      var s=document.createElement('span');s.className='rl f'+f;s.setAttribute('data-l',ch);
+      s.style.cssText='--cb:var(--'+par[0]+');--cf:var(--'+par[1]+');--k:'+KF[f]+';clip-path:'+roto(R)+';transform:rotate('+((R()-.5)*12).toFixed(1)+'deg) translateY('+((R()-.5)*.1).toFixed(3)+'em)';
+      pal.appendChild(s);
+    });
+    el.appendChild(pal);
+  });
+});
+
+/* ---------- Imágenes: si alguna no cargara, queda el hueco con su textura ---------- */
+function vigilarImagen(img,alCargar,alFallar){
+  function ok(){if(img.naturalWidth>0){alCargar&&alCargar();}else{alFallar&&alFallar();}}
+  if(img.complete&&img.getAttribute('src')){ok();}
+  img.addEventListener('load',ok);img.addEventListener('error',function(){alFallar&&alFallar();});
+}
+todos('.marco>img').forEach(function(img){
+  var m=img.parentNode;
+  vigilarImagen(img,function(){m.classList.remove('falta');m.classList.add('lista');},function(){m.classList.add('falta');});
+});
+
+/* ---------- Botón fijo del celular, pantalla actual y firma del encabezado ---------- */
+var barra=$('barraFija'),barraBtn=barra.querySelector('a'),vistos={inicio:true,cierre:false,pie:false},escribiendo=false,ctaVisible=false;
+function pintarBarra(){var ver=!vistos.inicio&&!vistos.cierre&&!vistos.pie&&!escribiendo&&!ctaVisible;barra.classList.toggle('ver',ver);if(ver)barra.removeAttribute('inert');else barra.setAttribute('inert','');}
+if('IntersectionObserver' in window){
+  new IntersectionObserver(function(es){es.forEach(function(e){vistos[e.target.id]=e.isIntersecting;});pintarBarra();},{rootMargin:'0px 0px -1px 0px'})
+    .observe($('inicio'));
+  var ioFin=new IntersectionObserver(function(es){es.forEach(function(e){vistos[e.target.id]=e.isIntersecting;});pintarBarra();});
+  ioFin.observe($('cierre'));ioFin.observe($('pie'));
+  /* Nunca dos botones azules a la vez: si se ve el botón de la pantalla, el fijo se esconde */
+  /* El chat de la pantalla 2 cuenta igual: mientras se usa, el botón fijo no lo tapa */
+  var ctas=todos('.pantalla .accion .btn').concat(todos('.chat')),verCta=[];
+  var ioCta=new IntersectionObserver(function(es){es.forEach(function(e){verCta[ctas.indexOf(e.target)]=e.isIntersecting;});ctaVisible=verCta.some(Boolean);pintarBarra();});
+  ctas.forEach(function(b){ioCta.observe(b);});
+  /* El mensaje del botón fijo dice de qué pantalla viene */
+  var ioActual=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;
+    barraBtn.setAttribute('data-pantalla','fijo-'+e.target.getAttribute('data-n'));
+    barraBtn.setAttribute('data-wa','Hola, quiero el diagnóstico gratis (vengo de: '+e.target.getAttribute('data-nombre')+'). Mi negocio es ___');armarWa(barraBtn);});},{rootMargin:'-50% 0px -50% 0px'});
+  todos('.pantalla').forEach(function(s){ioActual.observe(s);});
+  /* Manual 10: la firma del encabezado se esconde mientras se ve un cromado o el cierre */
+  var conCromo=[],piezas=todos('[data-cromo]').concat([$('cierre')]);
+  var ioFirma=new IntersectionObserver(function(es){es.forEach(function(e){conCromo[piezas.indexOf(e.target)]=e.isIntersecting;});document.body.classList.toggle('sin-firma',conCromo.some(Boolean));},{threshold:.2});
+  piezas.forEach(function(p){ioFirma.observe(p);});
+}else{vistos.inicio=false;pintarBarra();}
+/* Mientras la persona escribe en el chat, el botón fijo no tapa el teclado */
+var prueba=$('pruebalo');
+prueba.addEventListener('focusin',function(e){if(e.target.tagName==='INPUT'){escribiendo=true;pintarBarra();}});
+prueba.addEventListener('focusout',function(e){if(e.target.tagName==='INPUT'){escribiendo=false;pintarBarra();}});
+
+/* ---------- 1 · El ojo: parpadea una vez al abrir y sigue el cursor (manual 06) ---------- */
+(function(){
+  var fig=$('ojo'),cv=$('ojoCv'),ctx=cv.getContext('2d');
+  var C={cafe:'#362011',tinto:'#4D0C10',azul:'#C7D8EE',mant:'#FAECB2'};
+  var W=0,H=0,DPR=1,cols=60,visible=true,corriendo=false;
+  var mir={x:0,y:.08,tx:0,ty:.08},px=null,py=null,ultMov=-1e4,parpIni=-1;
+  var fino=window.matchMedia&&matchMedia('(pointer:fine)').matches;
+  var IRX=.08,IRY=.1,IRR=.27,MIH=.31,LID=1;
+
+  /* Brillo del semitono en cada punto del ojo (adaptado de la película) */
+  function fOjo(x,y){
+    var v=.07,ax=Math.abs(x);
+    if(ax<1.1){var yb=-.8+.26*x*x,th=.085*(1-.55*ax);if(Math.abs(y-yb)<th)v=1;}
+    if(ax<1.02){
+      var k=1-x*x/1.04,yu=-.47*k*LID,yl=.33*k*LID;
+      if(Math.abs(y-yu)<.045*(.35+.65*k))v=1;
+      if(Math.abs(y-yl)<.024*(.35+.65*k))v=Math.max(v,.85);
+      if(Math.abs(y+.62*k)<.013&&k>.08)v=Math.max(v,.6);
+      if(Math.abs(y-.44*k)<.011&&k>.08)v=Math.max(v,.45);
+      if(y>yu+.045&&y<yl-.024){
+        var dx=x-IRX,dy=y-IRY,r=Math.sqrt(dx*dx+dy*dy);
+        if(r<IRR){if(r>.205)v=.92;else if(r>.105)v=.3+.22*Math.sin(Math.atan2(dy,dx)*14);else v=1;
+          var hx=x-(IRX+.045),hy=y-(IRY-.05);if(hx*hx+hy*hy<.0013)v=0;}
+        else v=.05;
+        return v;
+      }
+    }
+    if(v===.07){var e=Math.sqrt(x*x/1.9+(y+.2)*(y+.2)/1.6);v=.07*clamp(1.35-e*.75,0,1);}
+    return v;
+  }
+  function medir(){
+    var r=cv.getBoundingClientRect();if(!r.width)return;
+    DPR=Math.min(2,window.devicePixelRatio||1);cv.width=Math.round(r.width*DPR);cv.height=Math.round(r.height*DPR);
+    W=cv.width;H=cv.height;cols=r.width<460?54:70;
+  }
+  function pintar(){
+    if(!W)return;
+    var s=W/2.6,cx=0,cy=-.18;
+    function X(a){return W/2+(a-cx)*s;}function Y(b){return H/2+(b-cy)*s;}
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle=C.cafe;ctx.globalAlpha=.55;ctx.fillRect(0,0,W,H);ctx.globalAlpha=1;
+    var mh=MIH*Math.max(.15,Math.min(1,LID));
+    /* La mirilla tinto siempre sobre el iris */
+    ctx.fillStyle=C.tinto;ctx.fillRect(X(IRX-MIH),Y(IRY-mh),2*MIH*s,2*mh*s);
+    ctx.strokeStyle='rgba(199,216,238,.26)';ctx.lineWidth=DPR;ctx.beginPath();
+    ctx.moveTo(0,Y(IRY+.03));ctx.lineTo(W,Y(IRY+.03));ctx.moveTo(X(IRX+.02),0);ctx.lineTo(X(IRX+.02),H);ctx.stroke();
+    var d=2.6/cols,x0=cx-W/2/s-d,x1=cx+W/2/s+d,y0=cy-H/2/s-d,y1=cy+H/2/s+d,dy=d*.866,j0=Math.floor(y0/dy),j1=Math.ceil(y1/dy),min=.4*DPR;
+    ctx.fillStyle=C.azul;ctx.beginPath();
+    for(var j=j0;j<=j1;j++){var wy=j*dy,off=(j&1)?d/2:0,i0=Math.floor((x0-off)/d),i1=Math.ceil((x1-off)/d);
+      for(var i=i0;i<=i1;i++){var wx=i*d+off,v=fOjo(wx,wy);if(v<=0)continue;var r=.5*d*Math.sqrt(v)*s;if(r<min)continue;var sx=X(wx),sy=Y(wy);ctx.moveTo(sx+r,sy);ctx.arc(sx,sy,r,0,6.2832);}}
+    ctx.fill();
+    ctx.strokeStyle=C.mant;ctx.lineWidth=2*DPR;ctx.strokeRect(X(IRX-MIH),Y(IRY-mh),2*MIH*s,2*mh*s);
+  }
+  function tick(){
+    corriendo=false;
+    var ahora=performance.now(),activo=fino&&px!==null&&ahora-ultMov<2500;
+    if(activo){var r=cv.getBoundingClientRect(),ax=r.left+r.width*.53,ay=r.top+r.height*.45;
+      mir.tx=clamp((px-ax)/(r.width*1.1),-1,1)*.22;mir.ty=.02+clamp((py-ay)/(r.height*.9),-1,1)*.1;}
+    else{mir.tx=0;mir.ty=.08;}/* sin cursor mira hacia abajo, hacia el resto de la página */
+    mir.x+=(mir.tx-mir.x)*.14;mir.y+=(mir.ty-mir.y)*.14;
+    var parp=0;if(parpIni>0){var t=(ahora-parpIni)/240;if(t<1)parp=Math.sin(Math.PI*t);else parpIni=-1;}
+    IRX=.08+mir.x;IRY=.02+mir.y;LID=1-parp*.92;
+    pintar();
+    var falta=Math.abs(mir.tx-mir.x)>.001||Math.abs(mir.ty-mir.y)>.001||parpIni>0||activo;
+    if(falta&&visible)pedir();
+  }
+  function pedir(){if(!corriendo&&!quieto){corriendo=true;requestAnimationFrame(tick);}}
+  medir();IRX=.08;IRY=.1;LID=1;pintar();
+  if(!quieto)setTimeout(function(){parpIni=performance.now();pedir();},650);
+  if(fino&&!quieto)addEventListener('pointermove',function(e){if(e.pointerType!=='mouse'&&e.pointerType!=='pen')return;px=e.clientX;py=e.clientY;ultMov=performance.now();if(visible)pedir();},{passive:true});
+  if('IntersectionObserver' in window)new IntersectionObserver(function(es){visible=es[0].isIntersecting;if(visible)pedir();}).observe(fig);
+  if('ResizeObserver' in window){var rpend=false;new ResizeObserver(function(){if(rpend)return;rpend=true;requestAnimationFrame(function(){rpend=false;medir();pintar();});}).observe(cv);}
+})();
+
+/* ---------- 2 · Pruébalo: chat con guion por negocio, sin IA en vivo.
+   Lo que escribe la persona solo avanza el guion si encaja; si no, el asistente lo dice con amabilidad
+   y la invita a tocar el mensaje sugerido. Nunca contesta algo que no tenga que ver. ---------- */
+(function(){
+  function norm(t){return t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/\s+/g,' ').trim();}
+  function corto(t,n){t=t.trim().replace(/[.!?¡¿]+$/,'');t=t.charAt(0).toUpperCase()+t.slice(1);return t.length>n?t.slice(0,n-1).trim()+'…':t;}
+  var SI=/^(si|sí|dale|ok|okay|listo|de una|claro|va|bueno|perfecto|hagale|hágale|por favor|agend|envi|mand)/;
+  var NO=/^(no|mejor no|todavia no|ahora no|despues)/;
+  var NEG={
+    restaurante:{nom:'Tu restaurante',panel:'Pedidos de hoy',cab:['Pedido','Detalle','Total','Estado'],wa:'restaurante',
+      viejas:[['#480','1 pizza mediana','$38.000','Entregado'],['#481','3 empanadas y una gaseosa','$14.500','En camino']],
+      hola:'¡Hola! Soy el asistente de tu restaurante. ¿Pides a domicilio o reservas mesa?',
+      nolo:['¡Claro! En esta prueba el menú es de ejemplo: toca el mensaje de abajo para pedir y ver cómo se anota solo.'],
+      pasos:[
+        {cli:'Quiero 2 hamburguesas dobles a domicilio',ag:['Listo: 2 hamburguesas dobles, $56.000.','¿A qué dirección te las llevo?'],fila:{id:'#482',que:'2 hamburguesas dobles',val:'$56.000',est:'Nuevo'},
+          libre:function(n){return /hamburgues/.test(n)&&/(\b2\b|dos)/.test(n)?'guion':null;}},
+        {cli:'Calle 10 # 4-21, apartamento 302',ag:['El domicilio vale $5.000. Total: $61.000. Llega en unos 35 minutos.','¿Pagas con Nequi o en efectivo?'],fila:{que:'2 hamburguesas dobles · domicilio',val:'$61.000',est:'Por pagar'},
+          libre:function(n){return /(calle|carrera|cra|\bcl\b|\bkr\b|avenida|\bav\b|diagonal|transversal|#|barrio|apto|apartamento|casa|torre|conjunto|manzana|edificio)/.test(n)?'guion':null;}},
+        {cli:'Nequi',ag:['Te envié el enlace de pago de Nequi.','Pedido #482 confirmado. Te aviso cuando salga.'],fila:{est:'Confirmado',ok:true},
+          libre:function(n){
+            if(/nequi/.test(n))return 'guion';
+            if(/(efectivo|cash|billete)/.test(n))return {ag:['Listo: pagas en efectivo cuando llegue.','Pedido #482 confirmado. Te aviso cuando salga.'],fila:{est:'Confirmado',ok:true}};
+            if(/(tarjeta|datafono|daviplata|transfer)/.test(n))return {ag:['Listo: el domiciliario lleva datáfono.','Pedido #482 confirmado. Te aviso cuando salga.'],fila:{est:'Confirmado',ok:true}};
+            return null;}}]},
+    consultorio:{nom:'Tu consultorio',panel:'Citas de la semana',cab:['Cita','Detalle','Hora','Estado'],wa:'consultorio',
+      viejas:[['C-213','Control · Pedro R.','Jue 8:00 a. m.','Agendada'],['C-214','Pediatría · Ana M.','Jue 9:00 a. m.','Agendada']],
+      hola:'Hola, te habla el asistente del consultorio. ¿En qué te ayudo?',
+      pasos:[
+        {cli:'Quiero una cita de medicina general',ag:['Tengo el jueves a las 10:00 a. m. o el viernes a las 3:00 p. m.','¿Cuál te sirve?'],fila:{id:'C-215',que:'Medicina general',val:'Por definir',est:'Nueva'},
+          libre:function(n){if(!/(cita|consulta|agend|turno|medic|doctor|control|cupo)/.test(n))return null;
+            return /general/.test(n)?'guion':{ag:['Tengo el jueves a las 10:00 a. m. o el viernes a las 3:00 p. m.','¿Cuál te sirve?'],fila:{id:'C-215',que:'Consulta',val:'Por definir',est:'Nueva'}};}},
+        {cli:'El jueves',ag:['Perfecto: jueves a las 10:00 a. m.','¿A nombre de quién la dejo?'],fila:{val:'Jue 10:00 a. m.',est:'Por confirmar'},
+          libre:function(n){
+            if(/(jueves|primer|cualquiera|la que sea|10)/.test(n))return 'guion';
+            if(/(viernes|segund|\b3\b|tarde)/.test(n))return {ag:['Perfecto: viernes a las 3:00 p. m.','¿A nombre de quién la dejo?'],fila:{val:'Vie 3:00 p. m.',est:'Por confirmar'}};
+            return null;}},
+        {cli:'Laura Gómez',ag:['Listo, Laura. Quedó agendada.','Un día antes te la recuerdo por aquí.'],fila:{que:'Medicina general · Laura G.',est:'Agendada',ok:true},
+          libre:function(n,t,fila){
+            var limpio=t.trim().replace(/^(soy|me llamo|a nombre de|es)\s+/i,'');
+            if(!/^[a-záéíóúüñ' ]{3,40}$/i.test(limpio)||limpio.split(/\s+/).length>4)return null;
+            var p=limpio.split(/\s+/).map(function(w){return w.charAt(0).toUpperCase()+w.slice(1).toLowerCase();});
+            var nom=p[0]+(p[1]?' '+p[1].charAt(0)+'.':'');
+            return {ag:['Listo, '+p[0]+'. Quedó agendada.','Un día antes te la recuerdo por aquí.'],fila:{que:fila.que.split(' · ')[0]+' · '+nom,est:'Agendada',ok:true}};}}]},
+    ferreteria:{nom:'Tu ferretería',panel:'Cotizaciones y pedidos',cab:['Nº','Detalle','Total','Estado'],wa:'tienda o ferretería',
+      viejas:[['COT-206','Tubo PVC y pegante','$84.000','Entregado'],['COT-207','Pintura blanca · 5 galones','$295.000','Pagado']],
+      hola:'Hola, bienvenido a la ferretería. ¿Qué necesitas? Si quieres, mándame tu lista de materiales.',
+      nolo:['Te lo cotizo con los precios de tu ferretería. En esta prueba usamos una lista de ejemplo: toca el mensaje de abajo para ver cómo sale el total.'],
+      pasos:[
+        {cli:'Te mando mi lista: 10 bultos de cemento, 20 varillas de 1/2 y 2 galones de pintura',ag:['Listo, la revisé con los precios de hoy:','10 bultos de cemento $295.000 · 20 varillas de 1/2 $260.000 · 2 galones de pintura $118.000.','Total: $673.000. ¿Te lo llevamos o pasas a recoger?'],fila:{id:'COT-208',que:'Cemento, varillas y pintura',val:'$673.000',est:'Cotizada'},
+          libre:function(n){return /cemento/.test(n)&&/varilla/.test(n)?'guion':null;}},
+        {cli:'Llévamelo mañana',ag:['El domicilio vale $25.000 y llega mañana antes de las 11:00 a. m. Total: $698.000.','¿Pagas contra entrega o por transferencia?'],fila:{que:'Cemento, varillas y pintura · domicilio',val:'$698.000',est:'Por pagar'},
+          libre:function(n){
+            if(/(lleva|llevar|domicilio|envi|mand|traig|traer)/.test(n))return 'guion';
+            if(/(recog|paso por|voy por|yo paso|yo voy)/.test(n))return {ag:['Te lo dejo listo para recoger mañana desde las 8:00 a. m. Total: $673.000.','¿Pagas al recoger o por transferencia?'],fila:{que:'Cemento, varillas y pintura · recoge',est:'Por pagar'}};
+            return null;}},
+        {cli:'Contra entrega',ag:['Listo, pagas al recibir.','Pedido COT-208 confirmado. Te escribo cuando esté listo.'],fila:{est:'Confirmado',ok:true},
+          libre:function(n){
+            if(/(contra|entrega|efectivo|al recoger|al recibir|cuando llegue)/.test(n))return 'guion';
+            if(/(transfer|nequi|daviplata|pse|tarjeta|consign)/.test(n))return {ag:['Te envié los datos para la transferencia.','Pedido COT-208 confirmado. Te escribo cuando esté listo.'],fila:{est:'Confirmado',ok:true}};
+            return null;}}]},
+    taller:{nom:'Tu taller',panel:'Órdenes de servicio',cab:['Orden','Detalle','Cita','Estado'],wa:'taller',
+      viejas:[['OS-316','Cambio de aceite · moto','Hoy 2:00 p. m.','Listo'],['OS-317','Alineación y balanceo','Hoy 4:00 p. m.','En taller']],
+      hola:'Hola, bienvenido al taller. Cuéntame qué le pasa a tu carro.',
+      pasos:[
+        {cli:'Los frenos están sonando',ag:['Te lo revisamos. ¿Qué carro es y de qué año?'],fila:{id:'OS-318',que:'Frenos que suenan',val:'—',est:'Nueva'},
+          libre:function(n,t){return /(freno|motor|carro|moto|ruido|suena|sonando|aceite|llanta|revis|falla|prende|arranca|bateria|choque|luz|luces|cambio|mantenimiento|alinea|calienta|bota|fuga|embrague|caja)/.test(n)
+            ?{ag:['Te lo revisamos. ¿Qué carro es y de qué año?'],fila:{id:'OS-318',que:corto(t,34),val:'—',est:'Nueva'}}:null;}},
+        {cli:'Un Spark 2016',ag:['Te recibo mañana a las 8:00 a. m. La revisión vale $40.000 y se descuenta si haces el arreglo.','¿Te lo agendo?'],fila:{que:'Frenos que suenan · Spark 2016',val:'Mañana 8:00 a. m.',est:'Por confirmar'},
+          libre:function(n,t,fila){return (/\b(19[89]\d|20[0-3]\d)\b/.test(n)||/(spark|mazda|renault|chevrolet|kia|toyota|nissan|hyundai|ford|mercedes|bmw|volkswagen|suzuki|honda|jeep|logan|sandero|duster|twingo|aveo|picanto|rio|yamaha|pulsar|camioneta|carro|moto)/.test(n))
+            ?{ag:['Te recibo mañana a las 8:00 a. m. La revisión vale $40.000 y se descuenta si haces el arreglo.','¿Te lo agendo?'],fila:{que:fila.que.split(' · ')[0]+' · '+corto(t.replace(/^(es )?(un|una)\s+/i,''),22),val:'Mañana 8:00 a. m.',est:'Por confirmar'}}:null;}},
+        {cli:'Sí, agéndalo',ag:['Orden OS-318 creada.','Te escribo cuando el mecánico tenga el diagnóstico.'],fila:{est:'Agendada',ok:true},
+          libre:function(n){if(SI.test(n))return 'guion';if(NO.test(n))return {ag:['Sin problema. Si cambias de idea, me escribes y te busco otro horario.'],fila:{est:'Pendiente'}};return null;}}]},
+    otro:{nom:'Tu negocio',panel:'Solicitudes',cab:['Nº','Detalle','Valor','Estado'],wa:'',
+      viejas:[['S-55','Tarjetas de presentación','$90.000','Aprobada'],['S-56','Pendón de 1 × 2 m','$120.000','Enviada']],
+      hola:'Hola, gracias por escribir. ¿En qué te puedo ayudar?',
+      pasos:[
+        {cli:'Necesito una cotización',ag:['Claro. ¿Qué necesitas y para cuándo?'],fila:{id:'S-57',que:'Cotización',val:'—',est:'Nueva'},
+          libre:function(n){return /(cotiz|precio|cuanto|necesito|quiero|informacion|info|servicio|pedido|comprar|tienen|hacen|venden)/.test(n)
+            ?{ag:['Claro, te ayudo con eso. ¿Qué necesitas exactamente y para cuándo?'],fila:{id:'S-57',que:'Solicitud nueva',val:'—',est:'Nueva'}}:null;}},
+        {cli:'500 volantes a color para el viernes',ag:['Anotado. Te preparo la cotización y te la mando en PDF en unos minutos.','¿Te la envío por aquí mismo?'],fila:{que:'500 volantes a color · viernes',val:'Por cotizar',est:'En cotización'},
+          libre:function(n,t){return t.trim().length>=3?{ag:['Anotado. Te preparo la cotización y te la mando en PDF en unos minutos.','¿Te la envío por aquí mismo?'],fila:{que:corto(t,40),val:'Por cotizar',est:'En cotización'}}:null;}},
+        {cli:'Sí, envíala',ag:['Listo, te llegó la cotización S-57.','Si la apruebas, empezamos hoy mismo.'],fila:{est:'Enviada',ok:true},
+          libre:function(n){if(SI.test(n))return 'guion';if(NO.test(n))return {ag:['Listo, queda guardada. Si la quieres después, me escribes.'],fila:{est:'Guardada'}};return null;}}]}
+  };
+  var SALUDO=/^(hola|holi|buenas|buenos dias|buenas tardes|buenas noches|buen dia|hey|que tal|saludos|alo)\b[\s,!.]*/;
+  var META=/(me sirve|sirve para|es real|eres (un )?robot|es un robot|inteligencia artificial|\bia\b|quienes son|quien eres|cuanto cuesta (esto|el servicio|el agente|el asistente)|como funciona)/;
+  var R_META=['Sí: esto es una prueba de cómo contestaría tu WhatsApp, con datos de ejemplo. En el diagnóstico gratis te mostramos uno con tus productos.','Para ver cómo sigue, toca el mensaje sugerido de abajo.'];
+  var R_NOLO=['Esta es una prueba con un guion fijo, así que eso todavía no lo sé responder.','Toca el mensaje sugerido de abajo para ver cómo sigue. Con tu negocio, contesto con tus productos y tus precios.'];
+  var R_NOLO2=['Para seguir la prueba, toca el mensaje sugerido de abajo.'];
+  var R_HOLA=['¡Hola! Toca el mensaje sugerido de abajo y te muestro cómo sigue la conversación.'];
+  var R_FIN=['Esta prueba ya terminó. Toca «Empezar de nuevo» o escoge otro negocio.','Con tu negocio, contesto con tus productos y tus precios.'];
+
+  var msgs=$('msgs'),filas=$('filas'),sug=$('sug'),sugTxt=$('sugTxt'),sugEtq=$('sugEtq'),form=$('chatForm'),inp=$('chatIn'),env=$('chatEnviar'),btn=$('btnPrueba'),franja=$('franja');
+  var neg='restaurante',paso=0,ocupado=false,turno=0,filaNueva=null,fallos=0;
+
+  function bajar(){msgs.scrollTop=msgs.scrollHeight;}
+  function burbuja(cls,txt){var d=document.createElement('p');d.className='msg '+cls;
+    var q=document.createElement('span');q.className='sr';q.textContent=cls==='yo'?'Tú, como cliente: ':'Asistente: ';d.appendChild(q);
+    d.appendChild(document.createTextNode(txt));msgs.appendChild(d);bajar();}
+  function celda(cls,txt,rol){var s=document.createElement('span');s.className=cls;s.textContent=txt;s.setAttribute('role',rol||'cell');return s;}
+  function crearFila(f,cls){var li=document.createElement('div');li.className='fila '+(cls||'');li.setAttribute('role','row');
+    li.appendChild(celda('id',f[0]));li.appendChild(celda('que',f[1]));li.appendChild(celda('val',f[2]));li.appendChild(celda('est',f[3]));return li;}
+  function filaActual(){return filaNueva?{que:filaNueva.querySelector('.que').textContent}:{que:''};}
+  function pintarFranja(){
+    if(!filaNueva){franja.className='franja';franja.textContent='';return;}
+    var ok=filaNueva.classList.contains('ok');
+    franja.className='franja ver'+(ok?' ok':'');
+    franja.innerHTML='';franja.appendChild(document.createTextNode('✓ Anotado en tu panel · '+filaNueva.querySelector('.id').textContent+' · '+filaNueva.querySelector('.val').textContent));
+    var b=document.createElement('b');b.textContent=filaNueva.querySelector('.est').textContent;franja.appendChild(b);
+  }
+  function panel(f){
+    if(!f)return;
+    if(f.id){filaNueva=crearFila([f.id,f.que,f.val,f.est],'nueva');var cab=filas.querySelector('.fila-cab');filas.insertBefore(filaNueva,cab.nextSibling);pintarFranja();return;}
+    if(!filaNueva)return;
+    if(f.que)filaNueva.querySelector('.que').textContent=f.que;
+    if(f.val)filaNueva.querySelector('.val').textContent=f.val;
+    if(f.est)filaNueva.querySelector('.est').textContent=f.est;
+    if(f.ok)filaNueva.classList.add('ok');
+    pintarFranja();
+  }
+  function sugerencia(){var p=NEG[neg].pasos[paso];sugTxt.textContent=p?'«'+p.cli+'»':'Empezar de nuevo';sugEtq.textContent=p?'Toca para responder':'Se terminó la prueba';}
+  function ocupar(si){ocupado=si;[env,sug].forEach(function(b){if(si)b.setAttribute('aria-disabled','true');else b.removeAttribute('aria-disabled');});}
+  function decir(lista,fin){
+    var i=0,mio=turno;
+    (function sig(){
+      if(mio!==turno)return;
+      if(i>=lista.length){fin();return;}
+      if(quieto){burbuja('ag',lista[i++]);sig();return;}
+      var e=document.createElement('p');e.className='msg ag escribe';e.innerHTML='<span class="sr">El asistente está escribiendo</span><i></i><i></i><i></i>';msgs.appendChild(e);bajar();
+      setTimeout(function(){e.remove();if(mio!==turno)return;burbuja('ag',lista[i++]);setTimeout(sig,220);},i===0?650:500);
+    })();
+  }
+  /* Decide qué contesta el asistente a lo que escribió la persona */
+  function leer(t){
+    var N=NEG[neg],p=N.pasos[paso],n=norm(t);
+    if(!p)return {ag:R_FIN};
+    if(n===norm(p.cli))return {ag:p.ag,fila:p.fila,avanza:true};
+    if(META.test(n))return {ag:R_META};
+    var resto=n.replace(SALUDO,'');
+    if(!resto)return {ag:R_HOLA};
+    var r=p.libre?p.libre(resto,t.replace(/^\s*(hola|buenas|buenos días|buen día)[\s,!.]*/i,''),filaActual()):null;
+    if(r==='guion')return {ag:p.ag,fila:p.fila,avanza:true};
+    if(r)return {ag:r.ag,fila:r.fila,avanza:true};
+    fallos++;
+    if(fallos>1)return {ag:R_NOLO2};
+    return {ag:(paso===0&&N.nolo)?N.nolo:R_NOLO};
+  }
+  function enviar(txt,sugerido){
+    if(ocupado)return;
+    txt=(txt||'').trim();if(!txt)return;
+    ocupar(true);
+    burbuja('yo',txt);
+    var p=NEG[neg].pasos[paso],r=sugerido&&p?{ag:p.ag,fila:p.fila,avanza:true}:leer(txt);
+    setTimeout(function(){decir(r.ag,function(){if(r.avanza){panel(r.fila);paso++;fallos=0;}ocupar(false);sugerencia();});},quieto?0:250);
+  }
+  function iniciar(n){
+    turno++;neg=n;paso=0;fallos=0;ocupar(false);filaNueva=null;
+    var N=NEG[n];
+    $('chatNom').textContent=N.nom;$('panelTit').textContent='Tu panel · '+N.panel;
+    msgs.textContent='';filas.textContent='';
+    var cab=document.createElement('div');cab.className='fila-cab';cab.setAttribute('role','row');
+    N.cab.forEach(function(c,i){cab.appendChild(celda('c'+(i+1),c,'columnheader'));});filas.appendChild(cab);
+    N.viejas.slice().reverse().forEach(function(f){filas.appendChild(crearFila(f,'vieja'));});
+    pintarFranja();
+    todos('.negocios .chip').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-neg')===n?'true':'false');});
+    btn.setAttribute('data-wa',N.wa?'Hola, probé el agente de '+N.wa+' en su página. Mi negocio es ___':'Hola, probé el agente de ejemplo en su página. Mi negocio es ___');
+    armarWa(btn);
+    burbuja('ag',N.hola);sugerencia();
+  }
+  todos('.negocios .chip').forEach(function(b){b.addEventListener('click',function(){iniciar(b.getAttribute('data-neg'));});});
+  sug.addEventListener('click',function(){if(ocupado)return;var p=NEG[neg].pasos[paso];if(p)enviar(p.cli,true);else iniciar(neg);});
+  form.addEventListener('submit',function(e){e.preventDefault();var t=inp.value;if(!t.trim()||ocupado)return;inp.value='';enviar(t,false);});
+  iniciar('restaurante');
+})();
+
+/* ---------- 6 · Fichas: una abierta a la vez; el ejemplo sale justo debajo de la ficha tocada ---------- */
+(function(){
+  var lista=$('fichas'),fichas=todos('#fichas .chip'),ej=$('ejemplo'),txt=$('ejemploTxt'),mas=$('verMas');
+  function abrir(b,mover){
+    var abrirla=b.getAttribute('aria-expanded')!=='true';
+    fichas.forEach(function(x){x.setAttribute('aria-expanded','false');});
+    if(!abrirla){ej.hidden=true;return;}
+    b.setAttribute('aria-expanded','true');
+    txt.textContent=b.getAttribute('data-ej');
+    var viejo=ej.querySelector('a');if(viejo)viejo.remove();
+    if(b.getAttribute('data-enlace')){var a=document.createElement('a');a.href=b.getAttribute('data-enlace');a.target='_blank';a.rel='noopener';a.textContent=b.getAttribute('data-enlace-txt')+' →';a.setAttribute('data-pantalla','6-demo-ar');ej.appendChild(a);}
+    lista.insertBefore(ej,b.parentNode.nextSibling);ej.hidden=false;
+    if(mover&&ej.scrollIntoView){ej.scrollIntoView({block:'nearest',behavior:quieto?'auto':'smooth'});}
+  }
+  fichas.forEach(function(b){b.addEventListener('click',function(){abrir(b,true);});});
+  mas.addEventListener('click',function(){todos('#fichas li.extra').forEach(function(li){li.hidden=false;});mas.setAttribute('aria-expanded','true');mas.parentNode.hidden=true;var p=lista.querySelector('li.extra .chip');if(p)p.focus();});
+  abrir(fichas[0],false);
+})();
+
+/* ---------- 3 · Escucha cómo suena ---------- */
+(function(){
+  var b=$('btnEscucha'),au=$('audioMuestra');if(!b||!au)return;
+  var et=b.querySelectorAll('span');
+  function pintar(){var on=!au.paused;et[0].textContent=on?'❚❚':'▶';et[1].textContent=on?'Pausar':'Escucha cómo suena';}
+  b.addEventListener('click',function(){if(au.paused){au.play().catch(function(){});}else au.pause();});
+  au.addEventListener('play',pintar);au.addEventListener('pause',pintar);au.addEventListener('ended',pintar);
+})();
+
+/* ---------- 12 · Ondas del cierre: tinto sobre café, quietas (manual 07) ---------- */
+(function(){
+  var cv=$('ondas');if(!cv)return;
+  function dibujar(){
+    var dpr=Math.min(2,window.devicePixelRatio||1),r=cv.getBoundingClientRect(),w=Math.max(1,r.width),h=Math.max(1,r.height);
+    cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);var c=cv.getContext('2d');c.setTransform(dpr,0,0,dpr,0,0);
+    c.fillStyle='#362011';c.fillRect(0,0,w,h);
+    var cx=w*1.08,cy=h*-.08,maxR=Math.hypot(w,h)*1.15,vueltas=6,tope=vueltas*6.2832;
+    c.strokeStyle='#4D0C10';c.lineWidth=maxR/vueltas*.5;c.lineCap='round';c.lineJoin='round';c.beginPath();
+    for(var t=0;t<=tope;t+=.012){var rr=maxR*(t/tope)+maxR*.015,wob=1+.07*Math.sin(5*t+1.3)+.045*Math.sin(9*t+.4),x=cx+Math.cos(t)*rr*wob,y=cy+Math.sin(t)*rr*wob*.94;t?c.lineTo(x,y):c.moveTo(x,y);}
+    c.stroke();
+  }
+  dibujar();
+  if('ResizeObserver' in window){var p=false,ancho=0;new ResizeObserver(function(){var w=cv.clientWidth;if(p||w===ancho)return;ancho=w;p=true;requestAnimationFrame(function(){p=false;dibujar();});}).observe(cv);}
+})();
+
+})();
+</script>
+</body>
+</html>
