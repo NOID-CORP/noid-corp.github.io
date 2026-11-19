@@ -116,3 +116,22 @@ qué pantalla trajo a cada cliente.
 - Solo se escribe en `nuevo/`. No tocar `index.html`, `pelicula/`, `privacidad/`, `terminos/`
   ni otros repos. Sin commits ni push: eso lo hace Claude.
 - Cada dato de la investigación lleva fuente, fecha y enlace.
+
+## 6. Ronda 3 (19-nov-2026, pedido de DON: "marca premium")
+
+- **Negro** (`#0A0A0B`) entra a la paleta: portada, llamadas, seguimiento, carta 3D, encabezado, pie y botón fijo.
+  El **plateado** existe solo dentro de los cromados 3D (el logo), nunca como color plano.
+- **Logo cromado en 3D arriba a la izquierda**, en todos los tamaños: la misma pieza de
+  `NOID-Marca/logo/cromado-3d/logo.py`, dibujada en vivo con three.js r128 (`vendor/three.min.js`, se carga después
+  de la página). Flota, sigue el cursor, da una vuelta al abrir, al pasar por encima y cada 14 s; el estallido late
+  (1,6 s) y gira (14 s). Mientras carga, o sin WebGL, se ve `img/logo-cromado.webp`. Se esconde en el cierre (firma 2D).
+- **Fuera los recortes de carta anónima** ("quitan formalidad"). En su lugar, el **foco**: la palabra clave en el
+  acento dentro de la mirilla, que se cierra sobre ella al entrar en pantalla.
+- **Frase nueva**: portada "Deja de hacerlo a mano"; cierre "Tu tiempo vale más que copiar y pegar"
+  (DON: "no tu negocio trabajando solo"). Falta rehacer `img/og.jpg`, que aún dice la frase vieja.
+- **Pantalla 6 nueva, carta en 3D**: la demo real (`/demo-ar/muestra/carta.html?r=muestra-noid`) dentro de un
+  teléfono; en escritorio se usa ahí y trae un QR; en celular un toque la abre completa (ahí funciona la cámara).
+  Se carga solo cuando la pantalla se acerca. La ficha "Carta en 3D" de "Y también" salió.
+- La muestra con el kit de NOID (colores, logo cromado, Switzer) está en la rama local `marca-noid-muestra` del repo
+  `noid` (de Carlos): hasta que Carlos la revise y se publique con `npm run demo:publicar`, noidcorp.com muestra la
+  carta naranja de antes. Vista local de todo junto: `servidor.py` del scratchpad de la sesión (sitio + demo).
