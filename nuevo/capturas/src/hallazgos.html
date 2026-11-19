@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>Seguimiento diario</title>
+<!-- Maqueta con DATOS FICTICIOS para el sitio de NOID (pantalla 9). Se captura a 1440x900, 2x. -->
+<style>
+/* ===== KIT NOID (igual en las cuatro maquetas) ===== */
+@font-face{font-family:"Switzer";src:url(fuentes/switzer-400.woff2) format("woff2");font-weight:400;font-display:block}
+@font-face{font-family:"Switzer";src:url(fuentes/switzer-600.woff2) format("woff2");font-weight:600;font-display:block}
+@font-face{font-family:"DM Mono";src:url(fuentes/dmmono-400.woff2) format("woff2");font-weight:400;font-display:block}
+@font-face{font-family:"DM Mono";src:url(fuentes/dmmono-500.woff2) format("woff2");font-weight:500;font-display:block}
+:root{
+  --cafe:#362011;--tinto:#4D0C10;--azul:#C7D8EE;--mant:#FAECB2;
+  --hondo:#2a180c;
+  --panel:rgba(77,12,16,.42);
+  --linea:rgba(199,216,238,.13);
+  --linea-2:rgba(199,216,238,.07);
+  --suave:rgba(199,216,238,.70);
+  --tenue:rgba(199,216,238,.46);
+  --texto:"Switzer","Helvetica Neue",Arial,sans-serif;
+  --mono:"DM Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1440px;height:900px;overflow:hidden}
+body{background:var(--cafe);color:var(--azul);font-family:var(--texto);font-size:14px;line-height:1.4;
+  -webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(1200px 600px at 0% -10%,rgba(77,12,16,.55),transparent 60%),
+                   radial-gradient(900px 500px at 110% 110%,rgba(77,12,16,.35),transparent 60%)}
+.ic{width:16px;height:16px;flex:none;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.chip{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.07em;
+  text-transform:uppercase;padding:4px 9px;border-radius:999px;border:1px solid var(--linea);color:var(--suave);white-space:nowrap}
+.chip.lleno{background:var(--azul);color:var(--cafe);border-color:var(--azul)}
+.chip.mant{border-color:rgba(250,236,178,.6);color:var(--mant)}
+.chip.mant-lleno{background:var(--mant);color:var(--cafe);border-color:var(--mant)}
+.chip.tenue{color:var(--tenue);border-color:var(--linea-2)}
+.boton{display:inline-flex;align-items:center;gap:9px;font-family:var(--texto);font-weight:600;font-size:15px;border-radius:999px;
+  padding:12px 22px;border:1px solid var(--azul);background:var(--azul);color:var(--cafe);white-space:nowrap}
+.boton.sec{background:transparent;color:var(--azul);border-color:var(--linea)}
+.panel{background:var(--panel);border:1px solid var(--linea);border-radius:16px}
+.ficticio{position:fixed;right:18px;bottom:14px;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.12em;
+  color:var(--suave);border:1px solid var(--linea);border-radius:6px;padding:4px 8px;background:rgba(42,24,12,.85);z-index:9}
+/* ===== fin del KIT ===== */
+
+.barra{height:62px;display:flex;align-items:center;gap:14px;padding:0 32px;border-bottom:1px solid var(--linea);background:rgba(42,24,12,.55)}
+.barra .sello{width:30px;height:30px;border-radius:9px;background:var(--tinto);border:1px solid var(--linea);display:grid;place-items:center}
+.barra h1{font-size:17px;font-weight:600;letter-spacing:-.01em}
+.barra .sub{color:var(--tenue);font-size:13.5px}
+.barra .der{margin-left:auto;display:flex;gap:8px;align-items:center}
+
+main{padding:22px 32px 0;display:grid;grid-template-columns:1fr 330px;grid-template-rows:auto auto 1fr;gap:14px 16px;height:calc(900px - 62px - 50px)}
+
+.estado{grid-column:1/-1;display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+.estado h2{font-size:30px;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+.estado p{color:var(--suave);font-size:14.5px;margin-top:6px}
+.pasos{display:flex;align-items:center;gap:6px}
+.paso{display:flex;align-items:center;gap:10px;padding:8px 14px 8px 9px;border-radius:14px;border:1px solid var(--linea);background:rgba(42,24,12,.5)}
+.paso .bola{width:24px;height:24px;border-radius:50%;background:var(--azul);color:var(--cafe);display:grid;place-items:center}
+.paso .bola .ic{width:14px;height:14px;stroke-width:2.6}
+.paso b{display:block;font-weight:600;font-size:14px;line-height:1.15}
+.paso small{display:block;font-family:var(--mono);font-size:10.5px;color:var(--tenue);letter-spacing:.05em;text-transform:uppercase}
+.flecha{color:var(--tenue)}
+
+/* Cifras grandes */
+.cifras{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:14px}
+.cifra{padding:18px 24px 18px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.cifra .l{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--suave)}
+.cifra .n{font-size:58px;font-weight:600;letter-spacing:-.04em;line-height:.95;font-variant-numeric:tabular-nums;margin-top:10px}
+.cifra .d{font-size:13px;color:var(--tenue);text-align:right;max-width:230px}
+.cifra.clave{background:linear-gradient(120deg,rgba(77,12,16,.95),rgba(77,12,16,.55));border-color:rgba(250,236,178,.38)}
+.cifra.clave .n{color:var(--mant)}
+.cifra.clave .l{color:var(--mant)}
+.mira{position:relative;display:inline-block;padding:6px 12px;margin:4px -12px -6px}
+.mira i{position:absolute;width:14px;height:14px;border:0 solid var(--mant)}
+.mira i:nth-child(1){left:0;top:0;border-left-width:2px;border-top-width:2px}
+.mira i:nth-child(2){right:0;top:0;border-right-width:2px;border-top-width:2px}
+.mira i:nth-child(3){left:0;bottom:0;border-left-width:2px;border-bottom-width:2px}
+.mira i:nth-child(4){right:0;bottom:0;border-right-width:2px;border-bottom-width:2px}
+
+/* Tabla */
+.lista{overflow:hidden;display:flex;flex-direction:column}
+.lista-cab{display:flex;align-items:center;gap:22px;padding:0 22px;height:48px;border-bottom:1px solid var(--linea);flex:none}
+.tab{font-size:13.5px;color:var(--tenue);height:48px;display:flex;align-items:center;gap:8px;border-bottom:2px solid transparent}
+.tab.on{color:var(--azul);font-weight:600;border-bottom-color:var(--azul)}
+.tab .num{font-family:var(--mono);font-size:10.5px;padding:2px 7px;border-radius:999px;background:rgba(199,216,238,.12)}
+.tab .num.m{background:var(--mant);color:var(--cafe)}
+.lista-cab .der{margin-left:auto;display:flex;gap:8px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{font-family:var(--mono);font-weight:500;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--tenue);text-align:left;padding:10px 12px;border-bottom:1px solid var(--linea-2)}
+td{padding:0 12px;height:50px;border-bottom:1px solid var(--linea-2);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+th:first-child,td:first-child{padding-left:22px}
+th:last-child,td:last-child{padding-right:22px}
+.fecha{font-family:var(--mono);font-size:12.5px}
+.dias{font-family:var(--mono);font-size:12.5px;color:var(--tenue)}
+td .doc{display:block;font-family:var(--mono);font-size:10.5px;color:var(--tenue);letter-spacing:.04em}
+td.paciente{line-height:1.2}
+tr.nunca td{background:rgba(250,236,178,.075)}
+tr.nunca td:first-child{box-shadow:inset 3px 0 0 var(--mant)}
+tr.nunca .dias{color:var(--mant)}
+tr.ya td{color:var(--suave)}
+.lista-pie{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding:0 22px;height:46px;border-top:1px solid var(--linea);font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--tenue)}
+.lista-pie .pags{display:flex;gap:6px}
+.lista-pie .pags span{padding:3px 8px;border:1px solid var(--linea-2);border-radius:5px}
+.lista-pie .pags span.on{border-color:var(--linea);color:var(--azul)}
+.prio{font-family:var(--mono);font-size:11px;letter-spacing:.06em}
+.prio.p{color:var(--azul)}
+.prio.c{color:var(--tenue)}
+
+/* Columna por región */
+.regiones{padding:18px 20px;display:flex;flex-direction:column}
+.regiones h3{font-size:16px;font-weight:600;letter-spacing:-.01em}
+.regiones .sub{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--tenue);text-transform:uppercase;margin-top:3px}
+.reg{display:grid;grid-template-columns:1fr auto;gap:5px 10px;align-items:center;margin-top:13px}
+.reg span{font-size:13.5px}
+.reg b{font-family:var(--mono);font-weight:500;font-size:13px;color:var(--mant)}
+.barra-r{grid-column:1/-1;height:6px;border-radius:3px;background:rgba(199,216,238,.09);overflow:hidden}
+.barra-r i{display:block;height:100%;background:var(--mant);border-radius:3px}
+.regiones .pie{margin-top:auto;padding-top:14px;border-top:1px solid var(--linea-2);display:flex;flex-direction:column;gap:10px}
+.regiones .pie p{font-size:12.5px;color:var(--suave)}
+.regiones .boton{justify-content:center;font-size:14px;padding:11px 18px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="i-lupa" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20 20"/></symbol>
+  <symbol id="i-ok" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-flecha" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-hoja" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2.5"/><path d="M4 9.5h16M4 15h16M10 4v16"/></symbol>
+  <symbol id="i-filtro" viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></symbol>
+</svg>
+
+<header class="barra">
+  <div class="sello"><svg class="ic"><use href="#i-lupa"/></svg></div>
+  <h1>Seguimiento diario</h1>
+  <span class="sub">Exámenes ordenados &nbsp;vs.&nbsp; hoja de seguimiento</span>
+  <div class="der">
+    <span class="chip">Corte · 1 al 16 nov</span>
+    <span class="chip">7 regiones</span>
+    <span class="chip lleno">Hecho hoy 06:12 · solo</span>
+  </div>
+</header>
+
+<main>
+  <section class="estado">
+    <div>
+      <h2>Seguimiento listo. Encontró lo que se escapaba.</h2>
+      <p>Cruzó cada examen ordenado con la hoja. Lo que faltaba quedó marcado.</p>
+    </div>
+    <div class="pasos">
+      <div class="paso"><span class="bola"><svg class="ic"><use href="#i-ok"/></svg></span><div><b>Descargar</b><small>11 reportes · 3 min</small></div></div>
+      <svg class="ic flecha"><use href="#i-flecha"/></svg>
+      <div class="paso"><span class="bola"><svg class="ic"><use href="#i-ok"/></svg></span><div><b>Cruzar</b><small>4 s</small></div></div>
+      <svg class="ic flecha"><use href="#i-flecha"/></svg>
+      <div class="paso"><span class="bola"><svg class="ic"><use href="#i-ok"/></svg></span><div><b>Resultados</b><small>en la hoja</small></div></div>
+    </div>
+  </section>
+
+  <section class="cifras">
+    <div class="panel cifra"><div><div class="l">Revisados</div><div class="n">3.700</div></div><div class="d">ordenados en el corte</div></div>
+    <div class="panel cifra"><div><div class="l">Nuevos</div><div class="n">1.440</div></div><div class="d">agregados al final de la hoja</div></div>
+    <div class="panel cifra clave"><div><div class="l">Nunca pasados</div><div class="n"><span class="mira"><i></i><i></i><i></i><i></i>115</span></div></div><div class="d">ordenados y cerrados, pero nadie los pasó a la hoja</div></div>
+  </section>
+
+  <section class="panel lista">
+    <div class="lista-cab">
+      <span class="tab on">Resultado del cruce</span>
+      <span class="tab">Nunca se pasó <span class="num m">115</span></span>
+      <span class="tab">Nuevos <span class="num">1.440</span></span>
+      <span class="tab">Por profesional</span>
+      <div class="der"><span class="chip"><svg class="ic" style="width:13px;height:13px"><use href="#i-filtro"/></svg>Todas las regiones</span></div>
+    </div>
+    <table>
+      <thead><tr><th>Ordenado</th><th>Paciente</th><th>Región</th><th>Examen</th><th>Profesional</th><th>Prioridad</th><th>Sin pasar</th><th>Estado</th></tr></thead>
+      <tbody>
+        <tr><td class="fecha">03-NOV</td><td class="paciente">Rosa Gómez<span class="doc">CC 51.***.302</span></td><td>Norte</td><td>Hemograma</td><td>Dra. Paula Ríos</td><td><span class="prio c">CONTROL</span></td><td class="dias">—</td><td><span class="chip lleno">Nuevo</span></td></tr>
+        <tr class="nunca"><td class="fecha">04-NOV</td><td class="paciente">Luis Herrera<span class="doc">CC 17.***.845</span></td><td>Centro</td><td>Glicemia</td><td>Dr. Tomás Vera</td><td><span class="prio p">PRIORITARIO</span></td><td class="dias">13 DÍAS</td><td><span class="chip mant-lleno">Nunca se pasó</span></td></tr>
+        <tr class="ya"><td class="fecha">05-NOV</td><td class="paciente">Marta Silva<span class="doc">CC 43.***.619</span></td><td>Sur</td><td>Perfil lipídico</td><td>Dra. Sara León</td><td><span class="prio c">CONTROL</span></td><td class="dias">—</td><td><span class="chip tenue">Ya en la hoja</span></td></tr>
+        <tr><td class="fecha">06-NOV</td><td class="paciente">Pablo Núñez<span class="doc">CC 88.***.230</span></td><td>Oriente</td><td>Creatinina</td><td>Dr. Iván Mejía</td><td><span class="prio p">PRIORITARIO</span></td><td class="dias">—</td><td><span class="chip lleno">Nuevo</span></td></tr>
+        <tr class="nunca"><td class="fecha">07-NOV</td><td class="paciente">Inés Duarte<span class="doc">CC 32.***.507</span></td><td>Norte</td><td>TSH</td><td>Dra. Paula Ríos</td><td><span class="prio c">CONTROL</span></td><td class="dias">10 DÍAS</td><td><span class="chip mant-lleno">Nunca se pasó</span></td></tr>
+        <tr class="ya"><td class="fecha">10-NOV</td><td class="paciente">Raúl Cano<span class="doc">CC 70.***.914</span></td><td>Occidente</td><td>Uroanálisis</td><td>Dr. Tomás Vera</td><td><span class="prio c">CONTROL</span></td><td class="dias">—</td><td><span class="chip tenue">Ya en la hoja</span></td></tr>
+        <tr class="nunca"><td class="fecha">11-NOV</td><td class="paciente">Gloria Paz<span class="doc">CC 60.***.183</span></td><td>Centro</td><td>Hemoglobina glicosilada</td><td>Dra. Sara León</td><td><span class="prio p">PRIORITARIO</span></td><td class="dias">6 DÍAS</td><td><span class="chip mant-lleno">Nunca se pasó</span></td></tr>
+        <tr><td class="fecha">12-NOV</td><td class="paciente">Diego Ortiz<span class="doc">CC 94.***.476</span></td><td>Sur</td><td>Hemograma</td><td>Dr. Iván Mejía</td><td><span class="prio c">CONTROL</span></td><td class="dias">—</td><td><span class="chip lleno">Nuevo</span></td></tr>
+      </tbody>
+    </table>
+    <div class="lista-pie"><span>Mostrando 8 de 3.700 · el cruce tomó 4 s</span><div class="pags"><span class="on">1</span><span>2</span><span>3</span><span>…</span><span>463</span></div></div>
+  </section>
+
+  <aside class="panel regiones">
+    <h3>Nunca pasados, por región</h3>
+    <div class="sub">115 en 7 regiones</div>
+    <div class="reg"><span>Norte</span><b>28</b><div class="barra-r"><i style="width:100%"></i></div></div>
+    <div class="reg"><span>Centro</span><b>22</b><div class="barra-r"><i style="width:78.6%"></i></div></div>
+    <div class="reg"><span>Sur</span><b>19</b><div class="barra-r"><i style="width:67.9%"></i></div></div>
+    <div class="reg"><span>Oriente</span><b>17</b><div class="barra-r"><i style="width:60.7%"></i></div></div>
+    <div class="reg"><span>Occidente</span><b>12</b><div class="barra-r"><i style="width:42.9%"></i></div></div>
+    <div class="reg"><span>Nororiente</span><b>10</b><div class="barra-r"><i style="width:35.7%"></i></div></div>
+    <div class="reg"><span>Suroccidente</span><b>7</b><div class="barra-r"><i style="width:25%"></i></div></div>
+    <div class="pie">
+      <p>Cada profesional recibe su lista de pendientes lista para copiar.</p>
+      <span class="boton"><svg class="ic"><use href="#i-hoja"/></svg>Abrir la hoja</span>
+    </div>
+  </aside>
+</main>
+
+<div class="ficticio">DATOS FICTICIOS</div>
+</body>
+</html>

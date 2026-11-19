@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>Carga de citas</title>
+<!-- Maqueta con DATOS FICTICIOS para el sitio de NOID (pantalla 8). Se captura a 1440x900, 2x. -->
+<style>
+/* ===== KIT NOID (igual en las cuatro maquetas) ===== */
+@font-face{font-family:"Switzer";src:url(fuentes/switzer-400.woff2) format("woff2");font-weight:400;font-display:block}
+@font-face{font-family:"Switzer";src:url(fuentes/switzer-600.woff2) format("woff2");font-weight:600;font-display:block}
+@font-face{font-family:"DM Mono";src:url(fuentes/dmmono-400.woff2) format("woff2");font-weight:400;font-display:block}
+@font-face{font-family:"DM Mono";src:url(fuentes/dmmono-500.woff2) format("woff2");font-weight:500;font-display:block}
+:root{
+  --cafe:#362011;--tinto:#4D0C10;--azul:#C7D8EE;--mant:#FAECB2;
+  --hondo:#2a180c;            /* café en sombra, para hundir paneles */
+  --panel:rgba(77,12,16,.42); /* tinto sobre café */
+  --linea:rgba(199,216,238,.13);
+  --linea-2:rgba(199,216,238,.07);
+  --suave:rgba(199,216,238,.70);
+  --tenue:rgba(199,216,238,.46);
+  --texto:"Switzer","Helvetica Neue",Arial,sans-serif;
+  --mono:"DM Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1440px;height:900px;overflow:hidden}
+body{background:var(--cafe);color:var(--azul);font-family:var(--texto);font-size:14px;line-height:1.4;
+  -webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(1200px 600px at 0% -10%,rgba(77,12,16,.55),transparent 60%),
+                   radial-gradient(900px 500px at 110% 110%,rgba(77,12,16,.35),transparent 60%)}
+.mono{font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em}
+.ic{width:16px;height:16px;flex:none;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.chip{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.07em;
+  text-transform:uppercase;padding:4px 9px;border-radius:999px;border:1px solid var(--linea);color:var(--suave);white-space:nowrap}
+.chip.lleno{background:var(--azul);color:var(--cafe);border-color:var(--azul)}
+.chip.mant{border-color:rgba(250,236,178,.6);color:var(--mant)}
+.chip.mant-lleno{background:var(--mant);color:var(--cafe);border-color:var(--mant)}
+.chip.tenue{color:var(--tenue);border-color:var(--linea-2)}
+.boton{display:inline-flex;align-items:center;gap:9px;font-family:var(--texto);font-weight:600;font-size:15px;border-radius:999px;
+  padding:12px 22px;border:1px solid var(--azul);background:var(--azul);color:var(--cafe);white-space:nowrap}
+.boton.sec{background:transparent;color:var(--azul);border-color:var(--linea)}
+.panel{background:var(--panel);border:1px solid var(--linea);border-radius:16px}
+.ficticio{position:fixed;right:18px;bottom:14px;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.12em;
+  color:var(--suave);border:1px solid var(--linea);border-radius:6px;padding:4px 8px;background:rgba(42,24,12,.85);z-index:9}
+.ok{color:var(--azul)}
+/* ===== fin del KIT ===== */
+
+/* Barra de arriba */
+.barra{height:62px;display:flex;align-items:center;gap:14px;padding:0 32px;border-bottom:1px solid var(--linea);background:rgba(42,24,12,.55)}
+.barra .sello{width:30px;height:30px;border-radius:9px;background:var(--tinto);border:1px solid var(--linea);display:grid;place-items:center}
+.barra h1{font-size:17px;font-weight:600;letter-spacing:-.01em}
+.barra .sub{color:var(--tenue);font-size:13.5px}
+.barra .der{margin-left:auto;display:flex;gap:8px}
+
+main{padding:22px 32px 0;display:flex;flex-direction:column;gap:14px}
+
+/* Estado */
+.estado{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+.estado h2{font-size:30px;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+.estado p{color:var(--suave);font-size:14.5px;margin-top:6px}
+.pasos{display:flex;align-items:center;gap:6px}
+.paso{display:flex;align-items:center;gap:8px;padding:7px 12px 7px 8px;border-radius:999px;border:1px solid var(--linea);background:rgba(42,24,12,.5)}
+.paso .bola{width:20px;height:20px;border-radius:50%;background:var(--azul);color:var(--cafe);display:grid;place-items:center}
+.paso .bola .ic{width:12px;height:12px;stroke-width:2.6}
+.paso b{font-weight:600;font-size:13px}
+.paso small{font-family:var(--mono);font-size:10.5px;color:var(--tenue);letter-spacing:.05em;text-transform:uppercase}
+.flecha{color:var(--tenue)}
+
+/* Plan */
+.plan{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:34px;padding:20px 26px}
+.plan .etq{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;color:var(--suave);text-transform:uppercase;line-height:1.7}
+.plan .etq b{display:block;font-family:var(--texto);text-transform:none;letter-spacing:-.01em;color:var(--azul);font-size:18px;font-weight:600}
+.cifras{display:flex;align-items:center;gap:8px}
+.cifra{padding:4px 22px;border-left:1px solid var(--linea)}
+.cifra:first-child{border-left:0}
+.cifra .n{font-size:54px;font-weight:600;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.cifra .l{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--suave);margin-bottom:6px}
+.cifra.igual .n{color:var(--suave)}
+.cifra.mover .n{color:var(--mant)}
+.acciones{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.acciones .fila{display:flex;gap:10px}
+.acciones .nota{font-size:12.5px;color:var(--tenue);text-align:right}
+
+/* Tabla */
+.lista{padding:0;overflow:hidden}
+.lista-cab{display:flex;align-items:center;gap:22px;padding:0 22px;height:48px;border-bottom:1px solid var(--linea)}
+.tab{font-size:13.5px;color:var(--tenue);height:48px;display:flex;align-items:center;gap:8px;border-bottom:2px solid transparent}
+.tab.on{color:var(--azul);font-weight:600;border-bottom-color:var(--azul)}
+.tab .num{font-family:var(--mono);font-size:10.5px;padding:2px 7px;border-radius:999px;background:rgba(199,216,238,.12)}
+.lista-cab .der{margin-left:auto;display:flex;gap:8px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{font-family:var(--mono);font-weight:500;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--tenue);text-align:left;padding:11px 14px;border-bottom:1px solid var(--linea-2)}
+td{padding:0 14px;height:44px;border-bottom:1px solid var(--linea-2);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+th:first-child,td:first-child{padding-left:22px}
+th:last-child,td:last-child{padding-right:22px}
+td .doc{display:block;font-family:var(--mono);font-size:10.5px;color:var(--tenue);letter-spacing:.04em;margin-top:1px}
+td.paciente{line-height:1.2}
+.fecha{font-family:var(--mono);font-size:12.5px;letter-spacing:.02em}
+.antes{font-family:var(--mono);font-size:12.5px;color:var(--tenue);text-decoration:line-through;text-decoration-color:rgba(250,236,178,.55)}
+.vacio{color:var(--tenue);font-family:var(--mono)}
+.der-t{text-align:right}
+.seg{font-family:var(--mono);font-size:12px;color:var(--suave)}
+.vent{font-family:var(--mono);font-size:11px;color:var(--tenue);border:1px solid var(--linea-2);border-radius:5px;padding:2px 6px}
+tr.igual td{color:var(--suave)}
+
+/* Resultado */
+.resultado{display:flex;align-items:center;gap:22px;padding:20px 26px;background:linear-gradient(90deg,rgba(77,12,16,.85),rgba(77,12,16,.45));border-color:rgba(199,216,238,.22)}
+.resultado .glifo{width:52px;height:52px;border-radius:50%;background:var(--azul);color:var(--cafe);display:grid;place-items:center;flex:none}
+.resultado .glifo .ic{width:26px;height:26px;stroke-width:2.4}
+.resultado h3{font-size:27px;font-weight:600;letter-spacing:-.02em;line-height:1.15}
+.resultado h3 .cero{color:var(--mant)}
+.resultado .det{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--suave);text-transform:uppercase;margin-top:6px}
+.resultado .der{margin-left:auto;display:flex;gap:10px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M8 14h2M14 14h2M8 17.5h2"/></symbol>
+  <symbol id="i-ok" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-sube" viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></symbol>
+  <symbol id="i-ensayo" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M10 9l5 3-5 3z"/></symbol>
+  <symbol id="i-flecha" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-copiar" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5.5A1.5 1.5 0 0014.5 4h-9A1.5 1.5 0 004 5.5v9A1.5 1.5 0 005.5 16H8"/></symbol>
+  <symbol id="i-baja" viewBox="0 0 24 24"><path d="M12 4v12M7 11l5 5 5-5M4 20h16"/></symbol>
+  <symbol id="i-filtro" viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></symbol>
+</svg>
+
+<header class="barra">
+  <div class="sello"><svg class="ic"><use href="#i-cal"/></svg></div>
+  <h1>Carga de citas</h1>
+  <span class="sub">Agenda del mes &nbsp;↔&nbsp; sistema de citas</span>
+  <div class="der">
+    <span class="chip">Agenda · Noviembre 2026</span>
+    <span class="chip">Perfil · Coordinación</span>
+    <span class="chip lleno">Plan revisado 07:42</span>
+  </div>
+</header>
+
+<main>
+  <section class="estado">
+    <div>
+      <h2>La agenda y el sistema quedaron iguales.</h2>
+      <p>Comparó cita por cita, cargó solo lo que faltaba y revisó que quedara bien.</p>
+    </div>
+    <div class="pasos">
+      <div class="paso"><span class="bola"><svg class="ic"><use href="#i-ok"/></svg></span><b>Agenda</b><small>741 citas</small></div>
+      <svg class="ic flecha"><use href="#i-flecha"/></svg>
+      <div class="paso"><span class="bola"><svg class="ic"><use href="#i-ok"/></svg></span><b>Plan</b><small>07:42</small></div>
+      <svg class="ic flecha"><use href="#i-flecha"/></svg>
+      <div class="paso"><span class="bola"><svg class="ic"><use href="#i-ok"/></svg></span><b>Sistema</b><small>6 ventanas</small></div>
+      <svg class="ic flecha"><use href="#i-flecha"/></svg>
+      <div class="paso"><span class="bola"><svg class="ic"><use href="#i-ok"/></svg></span><b>Registro</b><small>en la hoja</small></div>
+    </div>
+  </section>
+
+  <section class="panel plan">
+    <div class="etq">1 · El plan<b>Lo que haría</b>sin tocar nada aún</div>
+    <div class="cifras">
+      <div class="cifra"><div class="l">Crearía</div><div class="n">129</div></div>
+      <div class="cifra mover"><div class="l">Movería</div><div class="n">34</div></div>
+      <div class="cifra igual"><div class="l">Iguales</div><div class="n">578</div></div>
+    </div>
+    <div class="acciones">
+      <div class="fila">
+        <span class="boton sec"><svg class="ic"><use href="#i-ensayo"/></svg>Hacer ensayo</span>
+        <span class="boton"><svg class="ic"><use href="#i-sube"/></svg>Cargar en el sistema</span>
+      </div>
+      <div class="nota">No toca nada hasta que lo cargas · se frena solo con 3 errores seguidos</div>
+    </div>
+  </section>
+
+  <section class="panel lista">
+    <div class="lista-cab">
+      <span class="tab on">Citas del plan <span class="num">163</span></span>
+      <span class="tab">Iguales <span class="num">578</span></span>
+      <span class="tab">Por día</span>
+      <span class="tab">Reporte del día</span>
+      <span class="tab">Log</span>
+      <div class="der">
+        <span class="chip"><svg class="ic" style="width:13px;height:13px"><use href="#i-filtro"/></svg>Todos los servicios</span>
+        <span class="chip">18 – 21 nov</span>
+      </div>
+    </div>
+    <table>
+      <thead><tr>
+        <th>Paciente</th><th>Profesional</th><th>Servicio</th><th>Agenda dice</th><th>Sistema tenía</th><th>Estado</th><th>Ventana</th><th class="der-t">Tiempo</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="paciente">Ana Torres<span class="doc">CC 52.***.418</span></td><td>Dra. Paula Ríos</td><td>Visita domiciliaria</td><td class="fecha">18-NOV · 08:00</td><td class="vacio">— sin cita</td><td><span class="chip lleno">Creada</span></td><td><span class="vent">V1</span></td><td class="der-t seg">17 s</td></tr>
+        <tr><td class="paciente">Jorge Díaz<span class="doc">CC 79.***.205</span></td><td>Dr. Tomás Vera</td><td>Videoconsulta</td><td class="fecha">18-NOV · 10:30</td><td class="antes">21-NOV · 10:30</td><td><span class="chip mant">Movida</span></td><td><span class="vent">V2</span></td><td class="der-t seg">14 s</td></tr>
+        <tr><td class="paciente">Carmen Ruiz<span class="doc">CC 41.***.736</span></td><td>Nut. Laura Peña</td><td>Nutrición</td><td class="fecha">19-NOV · 07:30</td><td class="vacio">— sin cita</td><td><span class="chip lleno">Creada</span></td><td><span class="vent">V3</span></td><td class="der-t seg">18 s</td></tr>
+        <tr class="igual"><td class="paciente">Pedro Mora<span class="doc">CC 19.***.552</span></td><td>Dra. Paula Ríos</td><td>Visita domiciliaria</td><td class="fecha">19-NOV · 09:00</td><td class="fecha" style="color:var(--tenue)">19-NOV · 09:00</td><td><span class="chip tenue">Igual</span></td><td><span class="vacio">—</span></td><td class="der-t seg" style="color:var(--tenue)">—</td></tr>
+        <tr><td class="paciente">Lucía Vega<span class="doc">CC 63.***.091</span></td><td>Psic. Diego Sanz</td><td>Psicología</td><td class="fecha">20-NOV · 14:00</td><td class="antes">24-NOV · 14:00</td><td><span class="chip mant">Movida</span></td><td><span class="vent">V4</span></td><td class="der-t seg">13 s</td></tr>
+        <tr><td class="paciente">Mario Castro<span class="doc">CC 80.***.347</span></td><td>Dr. Tomás Vera</td><td>Visita domiciliaria</td><td class="fecha">20-NOV · 08:00</td><td class="vacio">— sin cita</td><td><span class="chip lleno">Creada</span></td><td><span class="vent">V5</span></td><td class="der-t seg">16 s</td></tr>
+        <tr><td class="paciente">Elena Rojas<span class="doc">CC 39.***.664</span></td><td>Dra. Sara León</td><td>Medicina interna</td><td class="fecha">21-NOV · 11:00</td><td class="vacio">— sin cita</td><td><span class="chip lleno">Creada</span></td><td><span class="vent">V6</span></td><td class="der-t seg">18 s</td></tr>
+        <tr class="igual"><td class="paciente">Hugo Pardo<span class="doc">CC 71.***.128</span></td><td>Dr. Tomás Vera</td><td>Videoconsulta</td><td class="fecha">21-NOV · 15:30</td><td class="fecha" style="color:var(--tenue)">21-NOV · 15:30</td><td><span class="chip tenue">Igual</span></td><td><span class="vacio">—</span></td><td class="der-t seg" style="color:var(--tenue)">—</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="panel resultado">
+    <div class="glifo"><svg class="ic"><use href="#i-ok"/></svg></div>
+    <div>
+      <h3>163 citas en 8,8 min</h3>
+      <div class="det">129 creadas · 34 movidas · 6 ventanas a la vez</div>
+    </div>
+    <div class="der">
+      <span class="boton sec"><svg class="ic"><use href="#i-baja"/></svg>Excel del día</span>
+      <span class="boton sec"><svg class="ic"><use href="#i-copiar"/></svg>Copiar correo</span>
+    </div>
+  </section>
+</main>
+
+<div class="ficticio">DATOS FICTICIOS</div>
+</body>
+</html>

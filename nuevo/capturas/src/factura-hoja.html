@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>Facturas de la flota</title>
+<!-- Maqueta con DATOS FICTICIOS para el sitio de NOID (pantalla 11). Se captura a 1440x900, 2x. -->
+<style>
+/* ===== KIT NOID (igual en las cuatro maquetas) ===== */
+@font-face{font-family:"Switzer";src:url(fuentes/switzer-400.woff2) format("woff2");font-weight:400;font-display:block}
+@font-face{font-family:"Switzer";src:url(fuentes/switzer-600.woff2) format("woff2");font-weight:600;font-display:block}
+@font-face{font-family:"DM Mono";src:url(fuentes/dmmono-400.woff2) format("woff2");font-weight:400;font-display:block}
+@font-face{font-family:"DM Mono";src:url(fuentes/dmmono-500.woff2) format("woff2");font-weight:500;font-display:block}
+:root{
+  --cafe:#362011;--tinto:#4D0C10;--azul:#C7D8EE;--mant:#FAECB2;
+  --hondo:#2a180c;
+  --panel:rgba(77,12,16,.42);
+  --linea:rgba(199,216,238,.13);
+  --linea-2:rgba(199,216,238,.07);
+  --suave:rgba(199,216,238,.70);
+  --tenue:rgba(199,216,238,.46);
+  --texto:"Switzer","Helvetica Neue",Arial,sans-serif;
+  --mono:"DM Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1440px;height:900px;overflow:hidden}
+body{background:var(--cafe);color:var(--azul);font-family:var(--texto);font-size:14px;line-height:1.4;
+  -webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(1200px 600px at 0% -10%,rgba(77,12,16,.55),transparent 60%),
+                   radial-gradient(900px 500px at 110% 110%,rgba(77,12,16,.35),transparent 60%)}
+.ic{width:16px;height:16px;flex:none;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.chip{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.07em;
+  text-transform:uppercase;padding:4px 9px;border-radius:999px;border:1px solid var(--linea);color:var(--suave);white-space:nowrap}
+.chip.lleno{background:var(--azul);color:var(--cafe);border-color:var(--azul)}
+.chip.mant{border-color:rgba(250,236,178,.6);color:var(--mant)}
+.chip.mant-lleno{background:var(--mant);color:var(--cafe);border-color:var(--mant)}
+.chip.tenue{color:var(--tenue);border-color:var(--linea-2)}
+.boton{display:inline-flex;align-items:center;gap:9px;font-family:var(--texto);font-weight:600;font-size:15px;border-radius:999px;
+  padding:12px 22px;border:1px solid var(--azul);background:var(--azul);color:var(--cafe);white-space:nowrap}
+.boton.sec{background:transparent;color:var(--azul);border-color:var(--linea)}
+.panel{background:var(--panel);border:1px solid var(--linea);border-radius:16px}
+.ficticio{position:fixed;right:18px;bottom:14px;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.12em;
+  color:var(--suave);border:1px solid var(--linea);border-radius:6px;padding:4px 8px;background:rgba(42,24,12,.85);z-index:9}
+/* ===== fin del KIT ===== */
+
+body{display:grid;grid-template-columns:228px 1fr}
+.lateral{background:rgba(42,24,12,.72);border-right:1px solid var(--linea);padding:20px 14px;display:flex;flex-direction:column;gap:4px}
+.marca{display:flex;align-items:center;gap:10px;padding:2px 8px 18px}
+.marca .sello{width:32px;height:32px;border-radius:9px;background:var(--tinto);border:1px solid var(--linea);display:grid;place-items:center}
+.marca b{font-size:15px;font-weight:600;line-height:1.15}
+.marca small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--tenue);text-transform:uppercase}
+.menu a{display:flex;align-items:center;gap:11px;padding:9px 10px;border-radius:10px;color:var(--suave);font-size:14px;text-decoration:none}
+.menu a.on{background:rgba(199,216,238,.10);color:var(--azul);font-weight:600}
+.menu a .cuenta{margin-left:auto;font-family:var(--mono);font-size:10.5px;padding:1px 7px;border-radius:999px;background:var(--mant);color:var(--cafe)}
+.menu hr{border:0;border-top:1px solid var(--linea-2);margin:10px 4px}
+.lateral .pie{margin-top:auto;padding:12px 10px;border:1px solid var(--linea-2);border-radius:12px;font-size:12.5px;color:var(--suave)}
+.lateral .pie b{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--azul);text-transform:uppercase;font-weight:500;margin-bottom:4px}
+.punto{width:7px;height:7px;border-radius:50%;background:var(--azul);box-shadow:0 0 0 3px rgba(199,216,238,.18)}
+
+.principal{display:flex;flex-direction:column;min-width:0}
+.barra{height:62px;display:flex;align-items:center;gap:14px;padding:0 28px;border-bottom:1px solid var(--linea)}
+.barra h1{font-size:20px;font-weight:600;letter-spacing:-.01em}
+.barra .der{margin-left:auto;display:flex;gap:10px;align-items:center}
+.mes{display:flex;align-items:center;gap:4px;border:1px solid var(--linea);border-radius:999px;padding:4px 6px}
+.mes span{font-size:13.5px;padding:0 8px}
+.mes .ic{width:14px;height:14px;color:var(--suave)}
+.buscar{display:flex;align-items:center;gap:8px;border:1px solid var(--linea);border-radius:999px;padding:7px 12px;color:var(--tenue);font-size:13.5px;width:270px;white-space:nowrap}
+.buscar kbd{margin-left:auto;font-family:var(--mono);font-size:10.5px;border:1px solid var(--linea-2);border-radius:5px;padding:1px 6px}
+
+.cuerpo{display:grid;grid-template-columns:1fr 340px;gap:16px;padding:20px 28px 0;height:calc(900px - 62px - 46px)}
+.izq{display:flex;flex-direction:column;gap:14px;min-width:0}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi{padding:14px 18px}
+.kpi .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--suave)}
+.kpi .n{font-size:28px;font-weight:600;letter-spacing:-.03em;margin-top:6px;line-height:1.05;font-variant-numeric:tabular-nums}
+.kpi .d{font-size:12px;color:var(--tenue);margin-top:3px}
+.kpi.m .n{color:var(--mant)}
+
+.lista{overflow:hidden;flex:1;display:flex;flex-direction:column}
+.lista-cab{display:flex;align-items:center;gap:20px;padding:0 20px;height:48px;border-bottom:1px solid var(--linea);flex:none}
+.tab{font-size:13.5px;color:var(--tenue);height:48px;display:flex;align-items:center;gap:8px;border-bottom:2px solid transparent}
+.tab.on{color:var(--azul);font-weight:600;border-bottom-color:var(--azul)}
+.tab .num{font-family:var(--mono);font-size:10.5px;padding:2px 7px;border-radius:999px;background:rgba(199,216,238,.12)}
+.lista-cab .der{margin-left:auto;display:flex;gap:8px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{font-family:var(--mono);font-weight:500;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--tenue);text-align:left;padding:10px 10px;border-bottom:1px solid var(--linea-2)}
+td{padding:0 10px;height:50px;border-bottom:1px solid var(--linea-2);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+th:first-child,td:first-child{padding-left:20px}
+th:last-child,td:last-child{padding-right:20px}
+.der-t{text-align:right}
+.fecha{font-family:var(--mono);font-size:12px;line-height:1.25}
+.fecha small{display:block;color:var(--tenue);font-size:10.5px}
+td.prov{line-height:1.25}
+td.prov small{display:block;font-size:12px;color:var(--tenue)}
+.nit{font-family:var(--mono);font-size:12.5px;color:var(--suave)}
+.placa{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.06em;border:1px solid var(--linea);border-radius:5px;padding:3px 7px;color:var(--azul)}
+.total{font-family:var(--mono);font-size:13.5px;font-weight:500;font-variant-numeric:tabular-nums}
+tr.nueva td{background:rgba(250,236,178,.09)}
+tr.nueva td:first-child{box-shadow:inset 3px 0 0 var(--mant)}
+tr.nueva .nit,tr.nueva .total{color:var(--mant)}
+tr.nueva .placa{border-color:rgba(250,236,178,.55);color:var(--mant)}
+.recien{display:inline-block;margin-left:8px;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.08em;color:var(--cafe);background:var(--mant);border-radius:4px;padding:1px 5px;vertical-align:1px}
+
+/* Detalle */
+.detalle{padding:18px 20px;display:flex;flex-direction:column;gap:12px;border-color:rgba(250,236,178,.30)}
+.detalle .cab{display:flex;align-items:center;justify-content:space-between}
+.detalle h3{font-size:16px;font-weight:600;letter-spacing:-.01em}
+.origen{display:flex;gap:12px;align-items:center;padding:10px;border:1px solid var(--linea-2);border-radius:12px;background:rgba(42,24,12,.45)}
+.mini{width:52px;height:64px;border-radius:6px;background:var(--hondo);display:grid;place-items:center;flex:none;overflow:hidden}
+.mini i{display:block;width:34px;height:52px;background:var(--mant);transform:rotate(-6deg);border-radius:2px;
+  background-image:repeating-linear-gradient(180deg,transparent 0 6px,rgba(54,32,17,.35) 6px 7px);background-size:24px 100%;background-repeat:no-repeat;background-position:5px 6px}
+.origen b{display:block;font-size:13.5px}
+.origen small{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--tenue);text-transform:uppercase}
+.campos{display:flex;flex-direction:column}
+.campo{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:8px 0;border-bottom:1px solid var(--linea-2)}
+.campo:last-child{border-bottom:0}
+.campo span{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--tenue)}
+.campo b{font-weight:400;font-size:13.5px;text-align:right}
+.campo b.m{font-family:var(--mono);font-size:13px}
+.campo em{display:block;font-style:normal;font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;color:var(--mant);text-transform:uppercase;margin-top:2px}
+.leida{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--suave);padding-top:2px}
+.leida .ic{color:var(--azul)}
+.pregunta{padding:10px 12px;border-radius:12px;border:1px dashed rgba(250,236,178,.35);font-size:12.5px;color:var(--suave)}
+.pregunta b{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;font-weight:500;color:var(--mant);text-transform:uppercase;margin-bottom:4px}
+.pregunta q{color:var(--azul);quotes:"“" "”"}
+.manif{margin-top:auto;padding:12px 14px;border-radius:12px;border:1px solid var(--linea-2);background:rgba(42,24,12,.45)}
+.manif .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--suave);text-transform:uppercase;display:flex;justify-content:space-between}
+.manif .n{font-size:20px;font-weight:600;letter-spacing:-.02em;margin-top:4px}
+.manif .n small{font-size:12.5px;font-weight:400;color:var(--tenue);letter-spacing:0;margin-left:6px}
+.prog{height:6px;border-radius:3px;background:rgba(199,216,238,.09);margin-top:8px;overflow:hidden}
+.prog i{display:block;height:100%;width:57%;background:var(--azul);border-radius:3px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="i-camion" viewBox="0 0 24 24"><path d="M3 6.5h11v9H3zM14 9.5h4l3 3.2v2.8h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></symbol>
+  <symbol id="i-cuadros" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></symbol>
+  <symbol id="i-recibo" viewBox="0 0 24 24"><path d="M6 3.5h12v17l-2-1.3-2 1.3-2-1.3-2 1.3-2-1.3-2 1.3z"/><path d="M9 8h6M9 11.5h6M9 15h4"/></symbol>
+  <symbol id="i-revisar" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 1 3.3 6.5L4 19.5l1-3.3A8 8 0 0 1 4 12z"/></symbol>
+  <symbol id="i-barras" viewBox="0 0 24 24"><path d="M5 20V11M10 20V5M15 20v-7M20 20V9"/></symbol>
+  <symbol id="i-lista" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2.8h6V4M8.5 10h7M8.5 13.5h7M8.5 17h4"/></symbol>
+  <symbol id="i-persona" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2"/><circle cx="9" cy="11" r="2.2"/><path d="M5.8 16c.6-1.6 1.8-2.4 3.2-2.4s2.6.8 3.2 2.4M14.5 10h3.5M14.5 13.5h3.5"/></symbol>
+  <symbol id="i-campana" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 1.5h-15zM10 20.5h4"/></symbol>
+  <symbol id="i-izq" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></symbol>
+  <symbol id="i-der" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-lupa" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20 20"/></symbol>
+  <symbol id="i-ok" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-chispa" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></symbol>
+</svg>
+
+<aside class="lateral">
+  <div class="marca"><div class="sello"><svg class="ic"><use href="#i-camion"/></svg></div><div><b>Facturas de la flota</b><small>Panel de oficina</small></div></div>
+  <nav class="menu">
+    <a><svg class="ic"><use href="#i-cuadros"/></svg>Resumen</a>
+    <a class="on"><svg class="ic"><use href="#i-recibo"/></svg>Facturas</a>
+    <a><svg class="ic"><use href="#i-revisar"/></svg>Por revisar<b class="cuenta">3</b></a>
+    <a><svg class="ic"><use href="#i-chat"/></svg>Chats</a>
+    <a><svg class="ic"><use href="#i-barras"/></svg>Gastos</a>
+    <a><svg class="ic"><use href="#i-lista"/></svg>Manifiestos</a>
+    <hr>
+    <a><svg class="ic"><use href="#i-persona"/></svg>Conductores</a>
+    <a><svg class="ic"><use href="#i-camion"/></svg>Vehículos</a>
+    <a><svg class="ic"><use href="#i-campana"/></svg>Recordatorios</a>
+  </nav>
+  <div class="pie"><b><span class="punto"></span>WhatsApp conectado</b>Las facturas llegan solas a esta hoja.</div>
+</aside>
+
+<div class="principal">
+  <header class="barra">
+    <h1>Facturas</h1>
+    <div class="der">
+      <div class="mes"><svg class="ic"><use href="#i-izq"/></svg><span>Noviembre 2026</span><svg class="ic"><use href="#i-der"/></svg></div>
+      <div class="buscar"><svg class="ic"><use href="#i-lupa"/></svg>Buscar proveedor o placa<kbd>Ctrl K</kbd></div>
+    </div>
+  </header>
+
+  <div class="cuerpo">
+    <div class="izq">
+      <div class="kpis">
+        <div class="panel kpi"><div class="l">Facturas del mes</div><div class="n">214</div><div class="d">+1 hace 12 s</div></div>
+        <div class="panel kpi"><div class="l">Gasto del mes</div><div class="n">$38.420.000</div><div class="d">6 vehículos</div></div>
+        <div class="panel kpi m"><div class="l">Por revisar</div><div class="n">3</div><div class="d">la IA dudó de un dato</div></div>
+        <div class="panel kpi"><div class="l">Leídos sin ayuda</div><div class="n">88 %</div><div class="d">de los datos · en pruebas</div></div>
+      </div>
+
+      <section class="panel lista">
+        <div class="lista-cab">
+          <span class="tab on">Todas <span class="num">214</span></span>
+          <span class="tab">Aprobadas <span class="num">211</span></span>
+          <span class="tab">Por revisar <span class="num">3</span></span>
+          <div class="der"><span class="chip">Todas las categorías</span><span class="chip">Todos los vehículos</span></div>
+        </div>
+        <table>
+          <thead><tr><th>Fecha</th><th>Proveedor</th><th>NIT</th><th>Placa</th><th class="der-t">Total</th><th>Estado</th></tr></thead>
+          <tbody>
+            <tr class="nueva"><td class="fecha">17-NOV<small>07:43</small></td><td class="prov">Concesión Ruta Central S.A.S.<span class="recien">NUEVA</span><small>Peaje · Andrés Gil</small></td><td class="nit">900.481.276-3</td><td><span class="placa">ABC-123</span></td><td class="der-t total">$18.700</td><td><span class="chip lleno">Aprobada</span></td></tr>
+            <tr><td class="fecha">17-NOV<small>06:55</small></td><td class="prov">Estación de Servicio El Cruce<small>Combustible · Julián Soto</small></td><td class="nit">800.215.903-1</td><td><span class="placa">DEF-456</span></td><td class="der-t total">$412.000</td><td><span class="chip lleno">Aprobada</span></td></tr>
+            <tr><td class="fecha">16-NOV<small>18:20</small></td><td class="prov">Llantas y Rines Rodamar<small>Repuestos · Camilo Ríos</small></td><td class="nit">901.337.562-8</td><td><span class="placa">GHI-789</span></td><td class="der-t total">$1.260.000</td><td><span class="chip mant">Por revisar</span></td></tr>
+            <tr><td class="fecha">16-NOV<small>15:02</small></td><td class="prov">Parqueadero La Bahía<small>Parqueo · Andrés Gil</small></td><td class="nit">900.774.118-0</td><td><span class="placa">ABC-123</span></td><td class="der-t total">$25.000</td><td><span class="chip lleno">Aprobada</span></td></tr>
+            <tr><td class="fecha">16-NOV<small>11:47</small></td><td class="prov">Concesión Ruta Central S.A.S.<small>Peaje · Óscar Lema</small></td><td class="nit">900.481.276-3</td><td><span class="placa">JKL-012</span></td><td class="der-t total">$18.700</td><td><span class="chip lleno">Aprobada</span></td></tr>
+            <tr><td class="fecha">16-NOV<small>09:30</small></td><td class="prov">Lubricantes Rueda Libre<small>Mantenimiento · Julián Soto</small></td><td class="nit">830.092.447-5</td><td><span class="placa">DEF-456</span></td><td class="der-t total">$186.000</td><td><span class="chip lleno">Aprobada</span></td></tr>
+            <tr><td class="fecha">15-NOV<small>19:14</small></td><td class="prov">Restaurante El Paradero<small>Viáticos · Camilo Ríos</small></td><td class="nit">901.552.840-6</td><td><span class="placa">GHI-789</span></td><td class="der-t total">$32.000</td><td><span class="chip lleno">Aprobada</span></td></tr>
+            <tr><td class="fecha">15-NOV<small>16:40</small></td><td class="prov">Estación de Servicio El Cruce<small>Combustible · Felipe Mora</small></td><td class="nit">800.215.903-1</td><td><span class="placa">MNO-345</span></td><td class="der-t total">$398.000</td><td><span class="chip lleno">Aprobada</span></td></tr>
+            <tr><td class="fecha">15-NOV<small>08:05</small></td><td class="prov">Taller Mecánico Doble Eje<small>Repuestos · Óscar Lema</small></td><td class="nit">901.118.209-4</td><td><span class="placa">JKL-012</span></td><td class="der-t total">$540.000</td><td><span class="chip mant">Por revisar</span></td></tr>
+            <tr><td class="fecha">14-NOV<small>17:26</small></td><td class="prov">Concesión Vía Alta S.A.S.<small>Peaje · Felipe Mora</small></td><td class="nit">900.663.104-9</td><td><span class="placa">MNO-345</span></td><td class="der-t total">$11.300</td><td><span class="chip lleno">Aprobada</span></td></tr>
+            <tr><td class="fecha">14-NOV<small>10:12</small></td><td class="prov">Ferretería El Perno<small>Repuestos · Julián Soto</small></td><td class="nit">901.240.377-1</td><td><span class="placa">DEF-456</span></td><td class="der-t total">$74.500</td><td><span class="chip lleno">Aprobada</span></td></tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+    <aside class="panel detalle">
+      <div class="cab"><h3>Factura nueva</h3><span class="chip lleno">Aprobada</span></div>
+      <div class="origen">
+        <div class="mini"><i></i></div>
+        <div><b>Foto por WhatsApp</b><small>Andrés Gil · hoy 07:42</small></div>
+      </div>
+      <div class="campos">
+        <div class="campo"><span>Proveedor</span><b>Concesión Ruta Central S.A.S.</b></div>
+        <div class="campo"><span>NIT</span><b class="m">900.481.276-3<em>Lo escribió el conductor</em></b></div>
+        <div class="campo"><span>Número</span><b class="m">PJ-0045821</b></div>
+        <div class="campo"><span>Fecha</span><b class="m">17-NOV-2026 · 07:38</b></div>
+        <div class="campo"><span>Categoría</span><b>Peaje</b></div>
+        <div class="campo"><span>Forma de pago</span><b>Efectivo</b></div>
+        <div class="campo"><span>Placa</span><b class="m">ABC-123</b></div>
+        <div class="campo"><span>Total</span><b class="m" style="font-size:15px;font-weight:500">$18.700</b></div>
+      </div>
+      <div class="leida"><svg class="ic"><use href="#i-chispa"/></svg>7 de 8 datos leídos de la foto; el NIT lo preguntó.</div>
+      <div class="pregunta"><b>Preguntó por el chat · respondió en 40 s</b><q>No leo bien el NIT del proveedor. ¿Me lo escribes?</q></div>
+      <div class="manif">
+        <div class="l"><span>Manifiesto ABC-123</span><span>Noviembre</span></div>
+        <div class="n">$6.140.000<small>37 facturas</small></div>
+        <div class="prog"><i></i></div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<div class="ficticio">DATOS FICTICIOS</div>
+</body>
+</html>
