@@ -135,3 +135,7 @@ qué pantalla trajo a cada cliente.
 - La muestra con el kit de NOID (colores, logo cromado, Switzer) está en la rama local `marca-noid-muestra` del repo
   `noid` (de Carlos): hasta que Carlos la revise y se publique con `npm run demo:publicar`, noidcorp.com muestra la
   carta naranja de antes. Vista local de todo junto: `servidor.py` del scratchpad de la sesión (sitio + demo).
+- 19-nov, ajustes de DON: sin la línea bajo el encabezado; garantía = "si algo falla en el primer mes después de la
+  entrega"; en celular la carta 3D muestra el plato escaneado y "Ponlo en tu mesa" abre la AR del teléfono ahí mismo
+  (Quick Look / Scene Viewer / WebXR con model-viewer 4.4.0); si no hay AR, abre la carta completa. En escritorio,
+  el teléfono con la carta, "Abrir la carta completa" y el QR.
