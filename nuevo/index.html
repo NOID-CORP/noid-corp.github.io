@@ -7,7 +7,7 @@
 <!-- Borrador en /nuevo/: quitar esta línea al pasar la página a la raíz (y agregar canonical y og:url) -->
 <meta name="robots" content="noindex">
 <meta name="description" content="Te decimos, gratis, qué tareas de tu negocio puede hacer la IA: contestar tu WhatsApp, leer tus facturas, llamar a tus clientes. Cuánto tiempo te ahorra y cuánto cuesta, por escrito en 48 horas.">
-<meta name="theme-color" content="#0A0A0B">
+<meta name="theme-color" content="#0D0A08">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_CO">
 <meta property="og:site_name" content="NOID">
@@ -32,24 +32,30 @@
 @font-face{font-family:"DM Mono";src:url(fuentes/dm-mono-400.woff2) format("woff2");font-weight:400;font-display:swap}
 @font-face{font-family:"DM Mono";src:url(fuentes/dm-mono-500.woff2) format("woff2");font-weight:500;font-display:swap}
 
-/* ===== Colores (manual 04 + 19-nov): café, tinto, azul, mantequilla y NEGRO (pantallas de lujo: portada, cromados, carta 3D).
-   El plateado existe solo dentro de los cromados 3D (el logo): nunca como color de texto, fondo o borde ===== */
+/* ===== Colores (manual 04 + 19-nov). El NEGRO es el escenario de toda la página: un negro cálido, de la familia del café
+   (#0D0A08, no un negro neutro), para que café, tinto y azul se sientan del mismo mundo. Los colores son capítulos:
+   tinto = lo que ya hicimos (entra y sale del negro en degradado), azul = el diagnóstico (una tarjeta sobre el negro),
+   café y tinto = las ondas del cierre (salen del negro). El café vive como material: el chat, la textura de píxeles.
+   Nunca dos fondos con corte recto. El plateado existe solo dentro de los cromados 3D (el logo) ===== */
 :root{
-  --cafe:#362011;--tinto:#4D0C10;--azul:#C7D8EE;--mant:#FAECB2;--negro:#0A0A0B;
+  --cafe:#362011;--tinto:#4D0C10;--azul:#C7D8EE;--mant:#FAECB2;--negro:#0D0A08;
   --texto:"Switzer","Helvetica Neue",Arial,sans-serif;
   --mono:"DM Mono",ui-monospace,Menlo,monospace;
   --ancha:"Panchang","Arial Black",sans-serif;
   --curva:cubic-bezier(.23,1,.32,1);
   --g:18px;
   /* Tema de cada pantalla: café (por defecto), tinto o azul ("café y tinto sobre azul") */
-  --fondo:var(--cafe);--tinta:var(--azul);--acento:var(--mant);--suave:rgba(199,216,238,.8);--linea:rgba(199,216,238,.22);
+  --fondo:var(--negro);--tinta:var(--azul);--acento:var(--mant);--suave:rgba(199,216,238,.76);--linea:rgba(199,216,238,.16);
   --btn-fondo:var(--azul);--btn-tinta:var(--cafe);--btn-hover:var(--mant);--foco:var(--mant);
   color-scheme:dark;
 }
 @media (min-width:600px){:root{--g:28px}}
 @media (min-width:900px){:root{--g:44px}}
 .t-tinto{--fondo:var(--tinto);--suave:rgba(199,216,238,.86)}
-.t-negro{--fondo:var(--negro);--suave:rgba(199,216,238,.74);--linea:rgba(199,216,238,.16)}
+.t-tinto.entra{background:linear-gradient(to bottom,var(--negro) 0,var(--tinto) min(52vh,460px))}
+.t-tinto.sale{background:linear-gradient(to bottom,var(--tinto) calc(100% - min(52vh,460px)),var(--negro) 100%)}
+/* El diagnóstico: una tarjeta azul sobre el negro, no una pantalla azul de borde a borde */
+.tarjeta{background:var(--fondo);color:var(--tinta);padding:clamp(28px,5vw,72px)}
 .t-azul{--fondo:var(--azul);--tinta:var(--cafe);--acento:var(--tinto);--suave:rgba(54,32,17,.84);--linea:rgba(54,32,17,.28);
   --btn-fondo:var(--cafe);--btn-tinta:var(--azul);--btn-hover:var(--tinto);--foco:var(--tinto)}
 *,*::before,*::after{box-sizing:border-box}
@@ -57,7 +63,7 @@ html{background:var(--negro);-webkit-text-size-adjust:100%;text-size-adjust:100%
 @media (max-width:899px){html{scroll-padding-bottom:96px}}
 html{scroll-padding-top:72px}
 @media (min-width:900px){html{scroll-padding-top:80px}}
-body{margin:0;background:var(--cafe);color:var(--azul);font:400 17px/1.55 var(--texto);-webkit-font-smoothing:antialiased;overflow-x:clip}
+body{margin:0;background:var(--negro);color:var(--azul);font:400 17px/1.55 var(--texto);-webkit-font-smoothing:antialiased;overflow-x:clip}
 h1,h2,h3,p,figure,ol,ul,dl,dd{margin:0}
 ol,ul{padding:0;list-style:none}
 img,svg{display:block;max-width:100%}
@@ -114,16 +120,17 @@ h2{font-size:clamp(34px,5vw,66px);line-height:1.06}
 .enlace{display:inline-flex;align-items:center;min-height:44px;margin-top:6px;font-size:16px;color:var(--tinta);text-underline-offset:4px}
 
 /* ===== Textura de píxeles (manual 09): celdas de 9 px con tres rayitas ===== */
-.px{background-color:var(--cafe);background-image:
+.papel .px{background-color:var(--cafe);background-image:
   radial-gradient(ellipse at 58% 42%,rgba(54,32,17,0) 0,rgba(54,32,17,.25) 45%,rgba(54,32,17,.82) 100%),
   linear-gradient(to bottom,transparent 0 7px,var(--cafe) 7px 9px),
   linear-gradient(to right,rgba(77,12,16,.95) 0 2px,transparent 2px 3px,rgba(199,216,238,.26) 3px 5px,transparent 5px 6px,rgba(250,236,178,.17) 6px 8px,transparent 8px 9px);
   background-size:100% 100%,9px 9px,9px 9px}
 
-.t-negro .px{background-color:var(--negro);background-image:
-  radial-gradient(ellipse at 58% 42%,rgba(10,10,11,0) 0,rgba(10,10,11,.35) 45%,rgba(10,10,11,.9) 100%),
+.px{background-color:var(--negro);background-image:
+  radial-gradient(ellipse at 58% 42%,rgba(13,10,8,0) 0,rgba(13,10,8,.35) 45%,rgba(13,10,8,.9) 100%),
   linear-gradient(to bottom,transparent 0 7px,var(--negro) 7px 9px),
-  linear-gradient(to right,rgba(77,12,16,.8) 0 2px,transparent 2px 3px,rgba(199,216,238,.2) 3px 5px,transparent 5px 6px,rgba(250,236,178,.12) 6px 8px,transparent 8px 9px)}
+  linear-gradient(to right,rgba(77,12,16,.8) 0 2px,transparent 2px 3px,rgba(199,216,238,.2) 3px 5px,transparent 5px 6px,rgba(250,236,178,.12) 6px 8px,transparent 8px 9px);
+  background-size:100% 100%,9px 9px,9px 9px}
 
 /* Huecos de imagen: guardan su proporción; si la imagen no cargara, se ve la textura */
 .marco{position:relative;overflow:hidden;width:100%}
@@ -162,7 +169,7 @@ h2{font-size:clamp(34px,5vw,66px);line-height:1.06}
 .centro .cromo{width:min(100%,340px)}
 
 /* ===== Encabezado negro con el logo cromado en 3D (arriba a la izquierda, en todos los tamaños) y botón fijo (celular) ===== */
-.cabecera{display:flex;position:fixed;inset:0 0 auto 0;z-index:40;height:64px;align-items:center;justify-content:space-between;padding:0 var(--g);background:rgba(10,10,11,.86);-webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2)}
+.cabecera{display:flex;position:fixed;inset:0 0 auto 0;z-index:40;height:80px;align-items:center;justify-content:space-between;padding:0 var(--g) 10px;background:linear-gradient(to bottom,var(--negro) 0,rgba(13,10,8,.9) 55%,rgba(13,10,8,0) 100%)}
 .cabecera .btn{min-height:44px;padding:9px 16px;font-size:15px}
 @media (max-width:899px){.cabecera .btn{display:none}}
 /* El logo: el 3D se dibuja en el canvas; mientras carga (o si no hay WebGL) se ve la foto del mismo cromado */
@@ -173,7 +180,7 @@ h2{font-size:clamp(34px,5vw,66px);line-height:1.06}
 .logo-enlace.vivo canvas{opacity:1}.logo-enlace.vivo img{opacity:0}
 /* Manual 10: el cromado nunca junto a la firma en 2D. En el cierre (la firma grande) el logo del encabezado se esconde */
 .sin-logo .cabecera .logo-enlace{opacity:0;pointer-events:none}
-.barra-fija{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px var(--g) calc(10px + env(safe-area-inset-bottom,0px));background:var(--negro);border-top:1px solid rgba(199,216,238,.16);transform:translateY(110%);transition:transform .25s var(--curva);visibility:hidden}
+.barra-fija{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px var(--g) calc(10px + env(safe-area-inset-bottom,0px));padding-top:26px;background:linear-gradient(to top,var(--negro) 72%,rgba(13,10,8,0) 100%);transform:translateY(110%);transition:transform .25s var(--curva);visibility:hidden}
 .barra-fija.ver{transform:none;visibility:visible}
 .barra-fija .btn{width:100%}
 @media (min-width:900px){.barra-fija{display:none}}
@@ -182,9 +189,9 @@ h2{font-size:clamp(34px,5vw,66px);line-height:1.06}
 .portada .escena>.texto{gap:20px}
 .portada .frase{max-width:34ch}
 @media (max-width:899px){.portada-escena{grid-template-areas:"texto" "accion" "imagen"}}
-.ojo{position:relative;aspect-ratio:1/1;width:min(100%,600px);margin-inline:auto;outline:1px solid rgba(199,216,238,.22);outline-offset:-1px}
+.ojo{position:relative;aspect-ratio:1/1;width:min(100%,600px);margin-inline:auto}
 @media (max-width:899px){.ojo{width:min(100%,420px)}}
-.ojo canvas{position:absolute;inset:0;width:100%;height:100%}
+.ojo canvas{position:absolute;inset:0;width:100%;height:100%;-webkit-mask-image:radial-gradient(closest-side,#000 86%,transparent 100%);mask-image:radial-gradient(closest-side,#000 86%,transparent 100%)}
 
 /* ===== 2 · Pruébalo ===== */
 .prueba{display:grid;gap:20px}
@@ -196,7 +203,7 @@ h2{font-size:clamp(34px,5vw,66px);line-height:1.06}
 .aviso-demo{font-size:16px;line-height:1.45;color:var(--suave);display:flex;gap:10px;align-items:baseline}
 .aviso-demo b{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mant);border:1px solid var(--mant);padding:.35em .5em;flex:none}
 .demo{display:grid;gap:14px}
-.chat{display:flex;flex-direction:column;background:var(--cafe);border:1.5px solid rgba(199,216,238,.45);min-width:0}
+.chat{display:flex;flex-direction:column;background:var(--cafe);border:1px solid rgba(199,216,238,.24);min-width:0}
 .chat-cab{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid rgba(199,216,238,.22)}
 .chat-av{width:36px;height:36px;border-radius:50%;background:var(--azul);color:var(--cafe);display:grid;place-items:center;flex:none}
 .chat-av svg{width:22px;height:22px}
@@ -340,7 +347,8 @@ h2{font-size:clamp(34px,5vw,66px);line-height:1.06}
 /* ===== 12 · Cierre: la portada del manual. Firma en movimiento sobre las ondas, sin cromado ===== */
 .cierre{overflow:hidden;text-align:center}
 .cierre canvas.ondas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
-.cierre .caja{position:relative;z-index:1;display:grid;justify-items:center;gap:22px}
+.cierre::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to bottom,var(--negro) 0,rgba(13,10,8,0) 34%,rgba(13,10,8,0) 70%,var(--negro) 100%)}
+.cierre .caja{position:relative;z-index:2;display:grid;justify-items:center;gap:22px}
 .firma-viva{width:min(84vw,620px);height:auto;overflow:visible;color:var(--azul)}
 .firma-viva .lt,.firma-viva .gira,.firma-viva .late{transform-box:fill-box;transform-origin:50% 50%}
 .firma-viva .lt{animation:ola 2.6s ease-in-out infinite}
@@ -359,7 +367,7 @@ h2{font-size:clamp(34px,5vw,66px);line-height:1.06}
 .cierre .garantia{margin-inline:auto;text-align:center}
 
 /* ===== Pie ===== */
-.pie{padding:36px var(--g) calc(36px + env(safe-area-inset-bottom,0px));border-top:1px solid rgba(199,216,238,.16);background:var(--negro)}
+.pie{padding:36px var(--g) calc(36px + env(safe-area-inset-bottom,0px));background:var(--negro)}
 .pie .caja{display:grid;gap:14px}
 .pie-filas{display:flex;flex-wrap:wrap;gap:4px 36px;font-size:16px}
 .pie-filas a,.pie-legal a{display:inline-flex;align-items:center;min-height:44px;text-underline-offset:4px}
@@ -412,7 +420,7 @@ h2{font-size:clamp(34px,5vw,66px);line-height:1.06}
 <main id="contenido">
 
 <!-- 1 · Portada -->
-<section class="pantalla t-negro portada" id="inicio" data-n="1" data-nombre="portada" aria-labelledby="t1">
+<section class="pantalla portada" id="inicio" data-n="1" data-nombre="portada" aria-labelledby="t1">
   <div class="caja escena portada-escena">
     <div class="texto">
       <h1 id="t1">Deja de hacerlo <span class="foco">a mano</span></h1>
@@ -426,7 +434,7 @@ h2{font-size:clamp(34px,5vw,66px);line-height:1.06}
     </div>
     <div class="imagen">
       <!-- El ojo dibujado: parpadea una vez al abrir y sigue el cursor (manual 06) -->
-      <figure class="ojo px" id="ojo" data-modo="vivo" role="img" aria-label="El ojo de NOID, con la mirilla sobre el iris">
+      <figure class="ojo" id="ojo" data-modo="vivo" role="img" aria-label="El ojo de NOID, con la mirilla sobre el iris">
         <canvas id="ojoCv" aria-hidden="true"></canvas>
       </figure>
     </div>
@@ -477,7 +485,7 @@ h2{font-size:clamp(34px,5vw,66px);line-height:1.06}
 </section>
 
 <!-- 3 · Llamar -->
-<section class="pantalla t-negro" id="llamadas" data-n="3" data-nombre="llamadas" aria-labelledby="t3">
+<section class="pantalla" id="llamadas" data-n="3" data-nombre="llamadas" aria-labelledby="t3">
   <div class="caja escena">
     <div class="texto">
       <p class="etq">Lo que podemos hacer · Llamar</p>
@@ -519,7 +527,7 @@ h2{font-size:clamp(34px,5vw,66px);line-height:1.06}
 </section>
 
 <!-- 5 · Seguimiento -->
-<section class="pantalla t-negro" id="seguimiento" data-n="5" data-nombre="seguimiento" aria-labelledby="t5">
+<section class="pantalla" id="seguimiento" data-n="5" data-nombre="seguimiento" aria-labelledby="t5">
   <div class="caja escena centro">
     <div class="imagen">
       <div class="marco cromo px" data-cromo><img src="img/portapapeles.webp" width="900" height="900" loading="lazy" decoding="async" sizes="(min-width:900px) 340px, min(86vw,380px)" alt="Portapapeles de cromo con tres casillas, una marcada"></div>
@@ -536,7 +544,7 @@ h2{font-size:clamp(34px,5vw,66px);line-height:1.06}
 </section>
 
 <!-- 6 · Carta en 3D: la demo real de la carta de muestra de NOID -->
-<section class="pantalla t-negro carta3d" id="carta-3d" data-n="6" data-nombre="la carta en 3D" aria-labelledby="t6c">
+<section class="pantalla carta3d" id="carta-3d" data-n="6" data-nombre="la carta en 3D" aria-labelledby="t6c">
   <div class="caja escena izq">
     <div class="texto">
       <p class="etq">Lo que podemos hacer · Restaurantes</p>
@@ -609,7 +617,7 @@ h2{font-size:clamp(34px,5vw,66px);line-height:1.06}
 </section>
 
 <!-- 7 · Caso: citas -->
-<section class="pantalla t-tinto" id="caso-citas" data-n="8" data-nombre="el caso de las citas" aria-labelledby="t7">
+<section class="pantalla t-tinto entra" id="caso-citas" data-n="8" data-nombre="el caso de las citas" aria-labelledby="t7">
   <div class="caja escena img-grande">
     <div class="texto">
       <p class="etq">Lo que ya hicimos · Salud domiciliaria</p>
@@ -651,7 +659,7 @@ h2{font-size:clamp(34px,5vw,66px);line-height:1.06}
 </section>
 
 <!-- 9 · Caso: GPS -->
-<section class="pantalla t-tinto" id="caso-gps" data-n="10" data-nombre="el caso del GPS" aria-labelledby="t9">
+<section class="pantalla t-tinto sale" id="caso-gps" data-n="10" data-nombre="el caso del GPS" aria-labelledby="t9">
   <div class="caja escena">
     <div class="texto">
       <p class="etq">Lo que ya hicimos · Personal en campo</p>
@@ -672,8 +680,8 @@ h2{font-size:clamp(34px,5vw,66px);line-height:1.06}
 </section>
 
 <!-- 10 · Así empieza (tu diagnóstico) -->
-<section class="pantalla t-azul empieza" id="empieza" data-n="11" data-nombre="el diagnóstico" aria-labelledby="t10">
-  <div class="caja">
+<section class="pantalla empieza" id="empieza" data-n="11" data-nombre="el diagnóstico" aria-labelledby="t10">
+  <div class="caja t-azul tarjeta">
     <p class="etq">Tu diagnóstico</p>
     <h2 id="t10" style="margin-top:16px">Así empieza: <span class="foco">gratis</span></h2>
     <ol class="pasos">
@@ -820,7 +828,7 @@ prueba.addEventListener('focusout',function(e){if(e.target.tagName==='INPUT'){es
 /* ---------- 1 · El ojo: parpadea una vez al abrir y sigue el cursor (manual 06) ---------- */
 (function(){
   var fig=$('ojo'),cv=$('ojoCv'),ctx=cv.getContext('2d');
-  var C={cafe:'#362011',tinto:'#4D0C10',azul:'#C7D8EE',mant:'#FAECB2',negro:'#0A0A0B'};
+  var C={cafe:'#362011',tinto:'#4D0C10',azul:'#C7D8EE',mant:'#FAECB2',negro:'#0D0A08'};
   var W=0,H=0,DPR=1,cols=60,visible=true,corriendo=false;
   var mir={x:0,y:.08,tx:0,ty:.08},px=null,py=null,ultMov=-1e4,parpIni=-1;
   var fino=window.matchMedia&&matchMedia('(pointer:fine)').matches;
@@ -844,7 +852,8 @@ prueba.addEventListener('focusout',function(e){if(e.target.tagName==='INPUT'){es
         return v;
       }
     }
-    if(v===.07){var e=Math.sqrt(x*x/1.9+(y+.2)*(y+.2)/1.6);v=.07*clamp(1.35-e*.75,0,1);}
+    /* Fondo de puntos que se apaga hacia afuera: sobre el negro el ojo flota, sin caja */
+    if(v===.07){var e=Math.sqrt(x*x/1.9+(y+.2)*(y+.2)/1.6);v=.07*clamp(1.2-e*1.05,0,1);}
     return v;
   }
   function medir(){
@@ -857,12 +866,13 @@ prueba.addEventListener('focusout',function(e){if(e.target.tagName==='INPUT'){es
     var s=W/2.6,cx=0,cy=-.18;
     function X(a){return W/2+(a-cx)*s;}function Y(b){return H/2+(b-cy)*s;}
     ctx.clearRect(0,0,W,H);
-    ctx.fillStyle=C.negro;ctx.globalAlpha=.55;ctx.fillRect(0,0,W,H);ctx.globalAlpha=1;
-    var mh=MIH*Math.max(.15,Math.min(1,LID));
+        var mh=MIH*Math.max(.15,Math.min(1,LID));
     /* La mirilla tinto siempre sobre el iris */
     ctx.fillStyle=C.tinto;ctx.fillRect(X(IRX-MIH),Y(IRY-mh),2*MIH*s,2*mh*s);
-    ctx.strokeStyle='rgba(199,216,238,.26)';ctx.lineWidth=DPR;ctx.beginPath();
-    ctx.moveTo(0,Y(IRY+.03));ctx.lineTo(W,Y(IRY+.03));ctx.moveTo(X(IRX+.02),0);ctx.lineTo(X(IRX+.02),H);ctx.stroke();
+    /* Las líneas de la mirilla se desvanecen hacia los bordes: el ojo no tiene caja */
+    var gh=ctx.createLinearGradient(0,0,W,0),gv=ctx.createLinearGradient(0,0,0,H);[gh,gv].forEach(function(g){g.addColorStop(0,'rgba(199,216,238,0)');g.addColorStop(.5,'rgba(199,216,238,.26)');g.addColorStop(1,'rgba(199,216,238,0)');});
+    ctx.lineWidth=DPR;ctx.strokeStyle=gh;ctx.beginPath();ctx.moveTo(0,Y(IRY+.03));ctx.lineTo(W,Y(IRY+.03));ctx.stroke();
+    ctx.strokeStyle=gv;ctx.beginPath();ctx.moveTo(X(IRX+.02),0);ctx.lineTo(X(IRX+.02),H);ctx.stroke();
     var d=2.6/cols,x0=cx-W/2/s-d,x1=cx+W/2/s+d,y0=cy-H/2/s-d,y1=cy+H/2/s+d,dy=d*.866,j0=Math.floor(y0/dy),j1=Math.ceil(y1/dy),min=.4*DPR;
     ctx.fillStyle=C.azul;ctx.beginPath();
     for(var j=j0;j<=j1;j++){var wy=j*dy,off=(j&1)?d/2:0,i0=Math.floor((x0-off)/d),i1=Math.ceil((x1-off)/d);
