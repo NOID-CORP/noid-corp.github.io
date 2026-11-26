@@ -189,6 +189,30 @@ h2{font-size:clamp(34px,5vw,66px);line-height:1.06}
 .portada .escena>.texto{gap:20px}
 .portada .frase{max-width:34ch}
 @media (max-width:899px){.portada-escena{grid-template-areas:"texto" "accion" "imagen"}}
+
+/* Serie activa (Saturnoid): bloque corto, no pantalla completa; la imagen se funde en el negro, sin bordes */
+.pantalla.serie{min-height:0;padding-block:24px 8px}
+.serie-fila{display:grid;gap:22px}
+.serie-img{display:block;margin-inline:calc(var(--g) * -1)}
+.serie-img img{display:block;width:100%;height:auto;aspect-ratio:1200/630;object-fit:cover;object-position:70% 50%;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 18%,#000 62%,transparent 100%);
+          mask-image:linear-gradient(to bottom,transparent 0,#000 18%,#000 62%,transparent 100%)}
+.serie-texto{display:grid;gap:14px;justify-items:start;margin-top:-14%;position:relative}
+.serie .etq{display:inline-flex;align-items:center;gap:10px}
+.serie .punto{width:8px;height:8px;border-radius:50%;background:#E5484D;box-shadow:0 0 0 0 rgba(229,72,77,.6);animation:enVivo 2s var(--curva) infinite}
+@keyframes enVivo{0%{box-shadow:0 0 0 0 rgba(229,72,77,.55)}70%,100%{box-shadow:0 0 0 9px rgba(229,72,77,0)}}
+.serie .nota{margin-top:0}
+.serie-acciones{display:grid;gap:4px;justify-items:start;margin-top:6px}
+@media (min-width:900px){
+  .pantalla.serie{padding-block:16px 24px}
+  .serie-fila{grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-areas:"texto img";align-items:center;column-gap:clamp(40px,6vw,96px)}
+  .serie-texto{grid-area:texto;margin-top:0}
+  .serie-img{grid-area:img;margin-inline:0 calc(var(--g) * -1)}
+  .serie-img img{-webkit-mask-image:linear-gradient(to right,transparent 0,#000 38%),linear-gradient(to bottom,transparent 0,#000 24%,#000 70%,transparent 100%);
+                         mask-image:linear-gradient(to right,transparent 0,#000 38%),linear-gradient(to bottom,transparent 0,#000 24%,#000 70%,transparent 100%);
+                 -webkit-mask-composite:source-in;mask-composite:intersect}
+}
+@media (prefers-reduced-motion:reduce){.serie .punto{animation:none}}
 .ojo{position:relative;aspect-ratio:1/1;width:min(100%,600px);margin-inline:auto}
 @media (max-width:899px){.ojo{width:min(100%,420px)}}
 .ojo canvas{position:absolute;inset:0;width:100%;height:100%;-webkit-mask-image:radial-gradient(closest-side,#000 86%,transparent 100%);mask-image:radial-gradient(closest-side,#000 86%,transparent 100%)}
@@ -437,6 +461,26 @@ h2{font-size:clamp(34px,5vw,66px);line-height:1.06}
       <figure class="ojo" id="ojo" data-modo="vivo" role="img" aria-label="El ojo de NOID, con la mirilla sobre el iris">
         <canvas id="ojoCv" aria-hidden="true"></canvas>
       </figure>
+    </div>
+  </div>
+</section>
+
+<!-- Serie activa: Saturnoid. El enlace del reel y los pasajeros salen en vivo de Supabase (saturnoid_resumen),
+     el mismo dato que usa noidcorp.com/saturnoid: se cambia con `node admin/estado.mjs reel=…` en el repo saturnoid -->
+<section class="pantalla serie" id="serie" data-n="serie" data-nombre="la serie Saturnoid" aria-labelledby="tSerie">
+  <div class="caja serie-fila">
+    <a class="serie-img" href="/saturnoid/" tabindex="-1" aria-hidden="true">
+      <img src="/saturnoid/assets/img/portada-1200.jpg" width="1200" height="630" alt="" loading="lazy" decoding="async">
+    </a>
+    <div class="serie-texto">
+      <p class="etq"><span class="punto" aria-hidden="true"></span>Serie activa<span id="serieEp"></span></p>
+      <h2 id="tSerie">Saturnoid</h2>
+      <p class="frase">Nuestra serie en Instagram: una nave que despega cuando llena sus asientos. Comenta el episodio y te damos el tuyo.</p>
+      <p class="nota" id="seriePasajeros" hidden></p>
+      <div class="serie-acciones">
+        <a class="btn-sec" id="serieReel" href="https://www.instagram.com/noidd.corp/" target="_blank" rel="noopener"><span aria-hidden="true">▶</span> <span id="serieReelTxt">Ver el episodio</span> <span aria-hidden="true">↗</span></a>
+        <a class="enlace" href="/saturnoid/">Busca tu asiento en noidcorp.com/saturnoid <span aria-hidden="true">&nbsp;→</span></a>
+      </div>
     </div>
   </div>
 </section>
@@ -1213,6 +1257,29 @@ prueba.addEventListener('focusout',function(e){if(e.target.tagName==='INPUT'){es
   if('ResizeObserver' in window){var p=false,ancho=0;new ResizeObserver(function(){var w=cv.clientWidth;if(p||w===ancho)return;ancho=w;p=true;requestAnimationFrame(function(){p=false;dibujar();});}).observe(cv);}
 })();
 
+})();
+</script>
+<script>
+/* Serie activa: el reel del episodio y los pasajeros, en vivo (misma fuente que noidcorp.com/saturnoid).
+   Sin reel cargado, el botón lleva al perfil de Instagram. Si Supabase no responde, queda el enlace al perfil. */
+(function(){
+  'use strict';
+  var URL='https://czycgwhcdexmfvvywzsv.supabase.co/rest/v1/rpc/saturnoid_resumen?apikey=sb_publishable_FWcsqusCfPVGoH2DQ5a7ug_iKYQN2Dp';
+  if(!window.fetch)return;
+  fetch(URL).then(function(r){return r.ok?r.json():null;}).then(function(R){
+    if(!R)return;
+    var e=R.estado||{},ep=Math.max(1,e.episodio_actual||0);
+    document.getElementById('serieEp').textContent=' · Ep. '+ep;
+    if(e.reel_url&&/^https:\/\/(www\.)?instagram\.com\//.test(e.reel_url)){
+      document.getElementById('serieReel').href=e.reel_url;
+      document.getElementById('serieReelTxt').textContent='Ver el episodio '+ep;
+    }
+    if(R.pasajeros>0){
+      var p=document.getElementById('seriePasajeros');
+      p.textContent=R.pasajeros.toLocaleString('es-CO')+(R.pasajeros===1?' pasajero':' pasajeros')+' a bordo';
+      p.hidden=false;
+    }
+  }).catch(function(){});
 })();
 </script>
 </body>
